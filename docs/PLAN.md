@@ -1,434 +1,322 @@
-# Japanese Helper — Product & Engineering Plan
+# Japanese Helper — Plan (v2)
 
-A pocket Japanese tool for Malaysian Chinese travellers and residents who switch
-freely between English and Mandarin (and sprinkle in Malay and Hokkien/Cantonese).
-Two jobs, done together:
+A private, static website that **prepares a Mandarin/English bilingual for real
+Japanese situations before they happen** (cashier, taxi, restaurant), and serves as
+a fast reference on the phone when the moment arrives.
 
-1. **Get you through the moment** — cashier, taxi, restaurant — in seconds, with
-   no menu-digging.
-2. **Teach you while you use it**, so each real interaction leaves a small
-   permanent deposit of Japanese.
+Decisions locked in:
 
----
-
-## 1. Who this is for, and why existing tools fall short
-
-### The user
-
-- Reads **Chinese characters** fluently (simplified first, often traditional too).
-- Speaks **Mandarin + English** interchangeably, mid-sentence ("这个 how much ah?").
-- Often has **Hokkien or Cantonese** at home, and uses Malay loanwords in daily
-  speech ("tapau" = 打包, "boleh", "belanja").
-- Japanese level: zero to N5. Recognises kanji meanings but not readings.
-- Context: short trips (5–10 days) or first months living in Japan.
-
-### The unfair advantage nobody exploits
-
-Malaysian Chinese users already hold three keys to Japanese that a typical
-English-speaking learner lacks:
-
-| Asset the user already has | What it unlocks in Japanese |
+| Question | Decision |
 |---|---|
-| Hanzi literacy | ~70% of signage, menus, and receipts are readable on sight (会計, 入口, 禁煙, 牛肉, 大盛) |
-| Sino-Japanese vocabulary via Mandarin | 電話 / 电话, 銀行 / 银行, 料理, 注文 — meaning transfers directly |
-| Hokkien / Cantonese pronunciation | On'yomi readings are often closer to southern Chinese than to Mandarin (学: Hokkien *hak* ≈ Japanese *gaku*; 三: Cantonese *saam* ≈ *san*; 世界: Hokkien *sè-kài* ≈ *sekai*) |
-| Fluent code-switching | Comfortable with mixed-script input; no need to force a single input language |
-
-Google Translate, DeepL, and Duolingo all treat the user as *either* an English
-speaker *or* a Chinese speaker. This tool treats them as **both at once** and
-uses kanji as the bridge rather than romaji.
-
-### Where generic translators fail in the moment
-
-- They need you to pick a source language first. The user's speech is mixed.
-- They return one Japanese string with no guidance on **how to say it** or **what
-  comes next** (the cashier's follow-up question).
-- Zero learning. You are just as helpless on day 10 as on day 1.
-- Slow: unlock, open app, tap, type, wait. The cashier has already asked twice.
+| Primary use | **Preparation beforehand.** In-the-moment use is a fallback, not the design centre. |
+| Voice | Only what the browser gives for free (speech synthesis, and speech recognition where supported). No paid speech or translation services. |
+| Platform | Static HTML/CSS/JS site in this GitHub repo, no backend, no build step required. |
+| Users | One person (the owner). No accounts, no analytics, no monetisation. |
+| Chinese script | **Traditional Chinese** for all glosses. |
+| Dialect bridges | Dropped. Owner speaks Mandarin and English; no Hokkien/Cantonese layer. |
+| Dietary flags | Dropped. No pork/alcohol marking. |
+| Content review | Owner and Claude author and review together, in the repo. |
 
 ---
 
-## 2. Product principles
+## 1. What the tool is
 
-1. **Speed over completeness.** Anything used in a queue must resolve in under
-   3 seconds and under 3 taps. Offline first for the scripted situations.
-2. **Kanji is the bridge, not romaji.** Show 漢字 with furigana; show Chinese
-   gloss next to English gloss, always both.
-3. **Accept the user's real language.** Mixed English/Mandarin/Malay/dialect input
-   is the default, not an edge case.
-4. **Scripted situations are state machines, not free translation.** A konbini
-   cashier asks the same 5 questions in the same order. Predict them.
-5. **Teach in 10-second bites, attached to what just happened.** Never interrupt
-   the transaction; tutor immediately after, and again later via spaced review.
-6. **Scaffolding fades.** The more times you've done something, the less the app
-   does for you.
+Three things, in priority order:
 
----
+1. **A study course built from real scripts.** Each scenario is a short dialogue
+   that actually happens in Japan, broken into what the other person will say
+   (recognise) and what you say back (produce). You work through it before the
+   trip.
+2. **A rehearsal partner.** The browser plays the clerk, you answer. Scaffolding
+   shrinks as you get better. Spaced review keeps it alive until departure.
+3. **A pocket reference for the moment.** Big-text phrase cards you can tap and
+   show, working offline on the phone. This is the emergency layer.
 
-## 3. Core scenarios (MVP scope)
-
-Each scenario ships as a **script** (predicted dialogue), a **phrase bank**
-(offline), and **tutoring hooks**.
-
-### 3.1 Cashier (konbini / supermarket / drugstore)
-
-Predictable clerk questions — the app **listens** and highlights the one it
-hears, showing ready-made answers:
-
-| Clerk says | Meaning (中 / EN) | One-tap answers |
-|---|---|---|
-| ポイントカードはお持ちですか？ | 有积分卡吗？/ Do you have a point card? | ないです (没有 / No) |
-| 袋はご利用ですか？ / レジ袋いりますか？ | 要袋子吗？/ Need a bag? | お願いします / いりません |
-| お箸はお付けしますか？ | 要筷子吗？/ Chopsticks? | 一つお願いします / 大丈夫です |
-| 温めますか？ | 要加热吗？/ Heat it up? | はい、お願いします / そのままで |
-| お支払い方法は？ | 怎么付款？/ How will you pay? | カードで / 現金で / これで (tap phone) |
-| 年齢確認ボタンを押してください | 请按年龄确认 / Press the age-confirm button | (just an explanation card) |
-
-Cultural notes surfaced once: put cash in the tray, not the hand; 「大丈夫です」
-means "no thanks" here; tax-free counter needs passport.
-
-### 3.2 Taxi
-
-User-initiated. Input is usually a **destination** (address, hotel name, station,
-Google Maps pin) plus a few control phrases.
-
-- **Show mode**: destination rendered in large Japanese text to show the driver,
-  with 「ここまでお願いします」 on top.
-- Control phrases: 「ここで止めてください」「領収書お願いします」「カードは使えますか？」
-  「トランクを開けてもらえますか？」
-- Listen mode for the driver's likely questions: 「高速使いますか？」(用高速公路吗？),
-  「どちらのルートで？」, 「ここでいいですか？」.
-- Cultural notes: doors open automatically (don't touch), no tipping, hail with
-  a raised hand, red 空車 sign = available.
-
-### 3.3 Restaurant (ramen shop / izakaya / family restaurant / 食券 ticket machine)
-
-- **Menu decode**: camera → OCR → kanji-first gloss (中 + EN) with Malaysian-
-  relevant flags: pork (豚 / 猪肉), alcohol (酒), raw (生), spice level (辛),
-  portion words (大盛 / 並 / 小). Point at 「豚骨」 and it says 猪骨汤 / pork-bone
-  broth. This is where the hanzi advantage shines: the user already half-reads it.
-- **Ordering**: 「これを二つお願いします」「おすすめは何ですか？」「豚肉抜きでできますか？」
-  「お会計お願いします」「別々でお願いします」(分开付 / separate bills).
-- **Ticket machine (食券) walkthrough**: pay first, hand ticket to staff.
-- **Listen mode** for staff: 「何名様ですか？」(几位？), 「お飲み物は？」,
-  「ご注文はお決まりですか？」, 「以上でよろしいですか？」, 「お会計はご一緒ですか？」.
-- Cultural notes: no tipping; 「すみません」 to call staff; the 呼び出しボタン;
-  お通し charge at izakaya; water is free (お水).
-
-### Deferred scenarios (post-MVP)
-
-Hotel check-in, train station / IC card top-up, pharmacy / symptoms, tax-free
-shopping, asking directions, onsen etiquette, emergencies (police/hospital).
+What it is **not**: a general translator. Free-form translation is out of scope.
+The value is in a small, well-drilled set of phrases, not in covering everything.
 
 ---
 
-## 4. Interaction modes
+## 2. Why this works for a Mandarin/English reader
 
-| Mode | Trigger | What it does | Latency budget |
+The owner already reads kanji. That means:
+
+- Most signage and menu words are readable on sight (會計, 入口, 禁煙, 牛肉, 大盛).
+  The course only needs to teach the **reading** and the **usage**, not the meaning.
+- Sino-Japanese vocabulary transfers via Mandarin (電話, 銀行, 料理, 注文). We
+  teach these as "same characters, new pronunciation".
+- The real learning load is (a) kana readings, (b) the polite request grammar
+  frame, (c) recognising staff keigo, and (d) **kanji traps** where the Japanese
+  meaning diverges from Chinese (手紙, 勉強, 大丈夫, 汽車, 娘, 老婆, 湯, 人參,
+  切手, 怪我, 迷惑, 邪魔, 結束, 新聞).
+
+Every phrase card therefore shows: 漢字 with furigana, 繁體中文 gloss, English
+gloss, and a one-line note that says either "same as Chinese" or "trap: means X".
+
+---
+
+## 3. Scenarios
+
+### 3.1 Cashier (便利店 / 超市 / 藥妝店)
+
+Recognise (staff says, you only need to understand):
+
+| Japanese | 繁中 | English | Your reply options |
 |---|---|---|---|
-| **Quick cards** | Open app → scenario tile | Offline phrase grid, tap → TTS + big text | < 1 s, offline |
-| **Listen** | Hold a button (or auto in scenario) | Japanese ASR → match against scenario script → show meaning (中/EN) + suggested replies | < 2 s |
-| **Say** | Hold mic, speak mixed-language | Multilingual ASR → LLM normalisation → Japanese (漢字+furigana+romaji) → TTS | < 3 s |
-| **Show** | Any result → tap | Full-screen Japanese text, high contrast, rotated for the other person | instant |
-| **See** | Camera | OCR menu/sign → kanji-first gloss with dietary flags | < 3 s |
-| **Type** | Keyboard | Same pipeline as Say, for quiet contexts | < 2 s |
+| ポイントカードはお持ちですか？ | 有集點卡嗎？ | Do you have a point card? | ないです / 大丈夫です |
+| 袋はご利用ですか？ | 需要袋子嗎？ | Do you need a bag? | お願いします / いりません |
+| お箸はお付けしますか？ | 要附筷子嗎？ | Shall I add chopsticks? | 一つお願いします / 大丈夫です |
+| 温めますか？ | 要加熱嗎？ | Shall I heat it? | はい、お願いします / そのままで |
+| お支払い方法は？ | 請問怎麼付款？ | How will you pay? | カードで / 現金で / これで |
+| 年齢確認ボタンを押してください | 請按年齡確認鍵 | Please press the age-confirm button | (understand only) |
 
-### The "Say" pipeline handles real Manglish
+Produce: 「これください」「袋いりません」「カードでお願いします」「レシートお願いします」
+「トイレはどこですか？」「免税できますか？」
 
-Input examples the system must handle:
+Notes: cash goes in the tray; 大丈夫です = "no thanks"; passport for tax-free.
 
-- "this one 打包 can?" → 「これ、持ち帰りできますか？」
-- "两个 this, one 那个, no 辣" → 「これを二つ、あれを一つ、辛くしないでください」
-- "tolong, 我要 go Shinjuku station" → 「新宿駅までお願いします」
-- "got 猪肉 inside or not?" → 「豚肉は入っていますか？」
+### 3.2 Taxi (計程車)
 
-Pipeline: multilingual ASR (Whisper-class, handles code-switching) → LLM with a
-scenario-aware system prompt that (a) resolves the mixed input into an intent,
-(b) produces natural polite Japanese at the right register, (c) returns
-structured JSON: japanese, furigana, romaji, zh_gloss, en_gloss, notes,
-kanji_bridges, expected_follow_ups.
+Produce: 「〇〇までお願いします」「ここでいいです」「ここで止めてください」
+「領収書お願いします」「カードは使えますか？」「トランクを開けてもらえますか？」
 
----
+Recognise: 「高速使いますか？」(要走高速嗎？) 「どちらのルートで？」 「ここでよろしいですか？」
 
-## 5. Embedded tutoring: learning while using
+Show card: destination in large Japanese text with 「ここまでお願いします」 above it.
+The user types or pastes the destination before leaving the hotel.
 
-The tutoring layer is **not a separate course**. Every translation event is a
-learning event, and the app adapts how much help it gives.
+Notes: doors open automatically; no tipping; red 空車 = vacant.
 
-### 5.1 Micro-lesson attached to every result (≤ 10 seconds to read)
+### 3.3 Restaurant (拉麵店 / 居酒屋 / 食券機 / 家庭餐廳)
 
-Shown *after* the phrase is spoken/shown, collapsible, one card:
+Recognise: 「何名様ですか？」(幾位？) 「お飲み物は？」 「ご注文はお決まりですか？」
+「以上でよろしいですか？」 「お会計はご一緒ですか？」 「食券をお願いします」
 
-1. **Kanji bridge** — "注文 = 订单/点餐. Same characters as Chinese 注文? No —
-   Chinese uses 点菜; Japanese kept the older word. Meaning still guessable."
-2. **Pronunciation bridge** — "文 = *mon*. Cantonese *man*, Hokkien *bûn*. Hear
-   the family resemblance?"
-3. **One grammar bite** — "〜をお願いします = 'please (give me) X'. Universal
-   polite request. Swap the noun, reuse everywhere."
-4. **Kanji trap** (when relevant) — false friends for Chinese readers:
-   手紙 (letter, not toilet paper), 勉強 (study, not force), 大丈夫 (I'm fine,
-   not "big husband"), 汽車 (steam train, not car), 娘 (daughter, not mother),
-   老婆 (old woman, not wife), 湯 (hot water/bath, not soup), 人参 (carrot, not ginseng).
+Produce: 「二人です」「これを二つお願いします」「おすすめは何ですか？」
+「お水お願いします」「すみません」(to call staff) 「お会計お願いします」「別々でお願いします」
+「持ち帰りできますか？」
 
-### 5.2 Predict-then-reveal (active recall during real use)
+Menu-reading drill: a set of menu photos or text lists where the user reads the
+kanji (already knows the meaning), then learns the Japanese reading. Portion
+words 大盛 / 並 / 小, 替え玉, おかわり, 定食, セット.
 
-Once a phrase has been shown to the user twice, the third time the app shows a
-**hint first** (kanji only, or Chinese gloss only) and a "Show answer" button.
-If the user says it themselves, ASR confirms it and the phrase advances a level.
-This is the core loop: **you learn by being slightly under-supported at exactly
-the moment you need the phrase**.
+Notes: no tipping; ticket machine flow (pay first, hand the ticket over); お通し
+charge at izakaya; water is free.
 
-Scaffolding levels per phrase:
+### Later scenarios
 
-| Level | What the app shows |
-|---|---|
-| 0 | Full: 漢字 + furigana + romaji + 中 + EN + TTS auto-plays |
-| 1 | 漢字 + furigana + 中/EN; TTS on tap |
-| 2 | 漢字 only + Chinese gloss; "reveal reading" button |
-| 3 | Chinese/English prompt only: "Say: 要袋子 / need a bag" → user speaks, ASR checks |
-| 4 | Retired to review deck; resurfaces via spaced repetition |
-
-### 5.3 Post-scenario recap (30 seconds, optional)
-
-When the user leaves a scenario (or at day's end): "Today at the konbini you
-used 4 phrases. You said 「袋いりません」 yourself for the first time. Two new
-kanji bridges: 袋 (袋子), 温 (温/暖)." Then one or two quick recall prompts.
-
-### 5.4 Spaced repetition seeded by real life
-
-No pre-made deck. The review deck is built **only** from phrases and kanji the
-user actually encountered. An SM-2/FSRS scheduler surfaces them at 1d / 3d / 7d /
-21d. Notifications are gentle and situational: "Heading out? 3 phrases from
-yesterday's ramen shop, 40 seconds."
-
-### 5.5 Rehearsal mode (before you go)
-
-Offline role-play of the scenario script: the app plays the clerk (TTS), user
-answers by voice or tap. Lets a nervous user practise the konbini flow in the
-hotel before walking out. Uses the same scaffolding levels.
-
-### 5.6 Progress that means something
-
-Not XP. Instead: "Phrases you can say unaided: 12." "Kanji you recognised in the
-wild: 48." "Scenarios completed without Show mode: 3." A map of Japan lighting up
-prefectures where phrases were used is a cheap, delightful touch.
+Hotel check-in, train and IC card, pharmacy, directions, tax-free counter.
+Each is one JSON file; adding one needs no code changes.
 
 ---
 
-## 6. Language design decisions
+## 4. The learning design (the core of the product)
 
-- **Register**: default to polite 〜です/〜ます + お願いします. Never casual form in
-  MVP. Explain *why* once (customers use polite; staff use keigo you only need to
-  recognise, not produce).
-- **Recognition vs production split**: staff keigo (お持ちですか, ご利用ですか,
-  お決まりですか) is taught for **listening only**, with a plain-form gloss.
-  Production phrases are kept to a small polite set.
-- **Script display**: 漢字 with ruby furigana always; romaji toggleable and off by
-  default after level 1 (romaji is a crutch this user base does not need as much).
-- **Chinese gloss**: simplified by default, traditional toggle. Where the natural
-  Malaysian-Mandarin word differs from mainland usage, prefer the Malaysian one
-  (e.g. 打包 over 外带, 巴刹 acceptable as a hint for 市場).
-- **Dialect bridges**: opt-in per user (Hokkien / Cantonese / neither). Data comes
-  from Unihan (kCantonese) and a Hokkien reading table (Taiwanese MOE dictionary
-  data, Tai-lo). Shown only when the reading is genuinely similar; a mismatch is
-  worse than nothing.
-- **Malay loanwords**: a small normalisation table (tapau→打包, boleh→can,
-  belanja→treat, kena→must, lah/loh/meh stripped) runs before the LLM.
-
----
-
-## 7. Architecture
+### 4.1 Course structure
 
 ```
-┌────────────────────── Mobile app (Expo / React Native) ──────────────────────┐
-│  UI: Quick cards · Listen · Say · Show · See · Rehearse · Review               │
-│  Local: phrase bank (SQLite) · scenario scripts · SRS state · kanji bridges    │
-│  On-device: platform ASR (ja-JP) · platform TTS (ja-JP) · OCR (ML Kit/Vision) │
-│  Tokeniser: kuromoji.js (furigana for offline phrases)                         │
-└───────────────┬───────────────────────────────────────────────────────────────┘
-                │ HTTPS, only for free-form input / menu decode / recap
-┌───────────────▼─────────── Backend (thin, serverless) ────────────────────────┐
-│  /translate   mixed-input → structured Japanese (Claude, scenario prompt)     │
-│  /decode-menu OCR text → kanji-first gloss + dietary flags                    │
-│  /recap       day's usage → recap text + recall prompts                       │
-│  /asr         multilingual ASR for mixed speech (Whisper-class) when platform │
-│               recognisers can't handle code-switching                         │
-│  Cache: phrase-level cache keyed by normalised input (most requests repeat)   │
-└───────────────────────────────────────────────────────────────────────────────┘
+Scenario
+  └─ Lesson 1: Read the script (5 min)     — full dialogue, all glosses visible
+  └─ Lesson 2: Recognise (5 min)           — hear staff lines, pick the meaning
+  └─ Lesson 3: Produce (5 min)             — see 繁中/EN prompt, recall the Japanese
+  └─ Lesson 4: Rehearse (5 min)            — full role-play, browser plays staff
+  └─ Ongoing: Review                        — spaced repetition of that scenario's cards
 ```
 
-### Component choices (recommendations, not final)
+A three-scenario course is about one hour of first-pass study plus ten minutes a
+day of review. That fits the two weeks before a trip.
 
-| Concern | Recommendation | Why |
+### 4.2 Scaffolding levels per card
+
+| Level | Prompt shown | You must |
 |---|---|---|
-| App framework | **Expo (React Native) + TypeScript** | One codebase for iOS/Android, fast iteration, Expo modules for speech/camera; web preview for content authoring |
-| Offline store | SQLite via expo-sqlite | Phrase bank + SRS state; works with zero connectivity |
-| Japanese ASR (Listen) | Platform recognisers (iOS Speech / Android SpeechRecognizer, ja-JP) | Free, fast, on-device; clerk speech is scripted so fuzzy match to script is enough |
-| Mixed-language ASR (Say) | Whisper-class multilingual model, server-side first; on-device (whisper.cpp small) later | Platform recognisers are single-language; code-switched speech needs a multilingual model |
-| Free-form translation + tutoring text | **Claude Opus 5 (`claude-opus-5`)** via Anthropic SDK, adaptive thinking, `effort: "low"` for the hot path, structured output (`output_config.format`) for the JSON result | Handles Manglish/Mandarin mixing and register; low effort keeps latency in budget while staying on the most capable model; structured output removes parsing fragility |
-| Refusal handling | Enable server-side fallbacks (`fallbacks: "default"`) | Harmless for this domain but costs nothing and avoids a dead end |
-| TTS | Platform TTS (ja-JP) offline; optional higher-quality cloud voice later | Instant, free, works in a queue |
-| Furigana | kuromoji.js (JS port of MeCab-style tokeniser) | Runs on device; JMdict for glosses |
-| Dictionaries | JMdict + KANJIDIC2 (EDRDG licence), Unihan (kMandarin, kCantonese), Taiwanese MOE Hokkien readings | All openly licensed |
-| OCR (See) | Google ML Kit (Android) / Apple Vision (iOS) Japanese text recognition | On-device, free |
-| Backend | Serverless functions (Cloudflare Workers or Vercel) + KV cache | Tiny surface; mostly a proxy with prompt + cache |
-| Analytics | Local-first event log; opt-in upload | Needed to tune scripts, must respect privacy |
+| 0 | 漢字 + furigana + 繁中 + EN + audio autoplay | Just read and listen |
+| 1 | 漢字 + furigana + 繁中/EN, audio on tap | Read aloud |
+| 2 | 漢字 only + 繁中 | Recall the reading, then reveal |
+| 3 | 繁中 or EN prompt only | Recall the whole Japanese phrase, then reveal |
+| 4 | Audio only (staff lines) | Recall meaning |
 
-### Key backend prompt design (translate endpoint)
+Cards climb a level after two correct recalls, drop a level after a miss.
+Self-graded (tap "got it" / "missed"), which is honest enough for one user and
+needs no speech recognition.
 
-System prompt is stable and cached (prompt caching); per-request content is just
-the scenario id, user profile flags (dialect, script preference), and the input.
-Output schema:
+### 4.3 Rehearsal mode
+
+The browser speaks the staff line (speech synthesis, ja-JP voice), shows nothing
+or shows the 繁中 meaning depending on level, and waits. You answer aloud, then
+tap to reveal the model answer and self-grade. Where the browser supports speech
+recognition, an optional "check me" button transcribes what you said and shows it
+next to the model answer. This is the only voice-input feature, and it is optional.
+
+### 4.4 Spaced repetition
+
+A simple SM-2 scheduler over all cards you have seen. Intervals 1d, 3d, 7d, 14d,
+30d. The home page shows "Due today: 12 cards, ~4 min". State lives in the
+browser's localStorage with an export/import button so it survives a device change.
+
+### 4.5 Trip mode
+
+Set a departure date. The site turns it into a plan: which lessons on which days,
+review load tapering to a final rehearsal the day before. On the trip itself the
+home page defaults to the reference cards and the Show screen.
+
+### 4.6 Kanji trap deck
+
+A standalone deck, separate from scenarios, of characters whose Japanese meaning
+diverges from Chinese. Short, high-value, and specifically useful to this owner.
+
+---
+
+## 5. In-the-moment layer (fallback)
+
+- **Reference cards**: scenario phrase grid, large text, tap to hear, tap again for
+  full-screen Show mode with high contrast.
+- **Listen (emergency)**: a single "what did they say?" button using the browser's
+  speech recognition (ja-JP) where available, fuzzy-matched against the current
+  scenario's staff lines. If no match, it shows the raw transcript with furigana
+  from the phrase data where possible. If the browser has no recognition, the
+  button is hidden. Zero cost, best-effort.
+- **Offline**: a service worker caches the whole site so it works in a basement
+  ramen shop with no signal.
+
+---
+
+## 6. Technical design
+
+### Stack
+
+- **Plain HTML, CSS, and JavaScript** (ES modules). No framework, no bundler.
+  Opens from `index.html` or from GitHub Pages.
+- **Content as JSON** under `content/`, one file per scenario, plus `traps.json`.
+- **State in localStorage**: SRS schedule, levels, trip date, settings. Export and
+  import as a JSON file.
+- **Speech synthesis**: `speechSynthesis` with a `ja-JP` voice. Free, offline on
+  iOS/macOS, decent quality.
+- **Speech recognition**: `webkitSpeechRecognition` / `SpeechRecognition` where
+  present (Chrome, Safari). Feature-detected; the UI degrades cleanly without it.
+- **Furigana**: authored directly in the content files as segment pairs, rendered
+  with `<ruby>`. No tokeniser needed because content is curated, not generated.
+- **PWA**: manifest plus service worker for offline use and "Add to Home Screen".
+
+### Repo layout
+
+```
+index.html              home: due reviews, trip plan, scenario tiles
+scenario.html           lessons and reference cards for one scenario
+rehearse.html           role-play
+review.html             spaced repetition session
+show.html               full-screen phrase display
+css/                    one stylesheet, light and dark
+js/
+  app.js                routing and page glue
+  content.js            loads and validates JSON
+  srs.js                SM-2 scheduling
+  speech.js             synthesis + optional recognition, feature-detected
+  store.js              localStorage with export/import
+content/
+  cashier.json
+  taxi.json
+  restaurant.json
+  traps.json
+tools/
+  validate.js           checks every card has ja, furigana, zh_tw, en, tags
+sw.js, manifest.json
+docs/PLAN.md
+```
+
+### Card schema
 
 ```json
 {
-  "japanese": "これを二つ、持ち帰りでお願いします。",
-  "furigana": [["これ",""],["を",""],["二つ","ふたつ"],["、",""],["持ち帰り","もちかえり"],["で",""],["お願いします","おねがいします"]],
-  "romaji": "kore o futatsu, mochikaeri de onegaishimasu",
-  "zh": "这个两个，打包。",
-  "en": "Two of these, to take away please.",
-  "register": "polite",
-  "kanji_bridges": [{"kanji":"持","zh":"持/拿","note":"same meaning; 持ち帰り = 拿回去 = takeaway"}],
-  "traps": [],
-  "expected_follow_ups": ["袋はご利用ですか？", "お箸はお付けしますか？"],
-  "grammar_bite": "〜でお願いします = 'please do it as X' (持ち帰りで, カードで, 別々で)"
+  "id": "cashier.bag.ask",
+  "role": "staff",
+  "ja": "袋はご利用ですか？",
+  "furigana": [["袋","ふくろ"],["は",""],["ご利用","ごりよう"],["ですか？",""]],
+  "zh_tw": "需要袋子嗎？",
+  "en": "Do you need a bag?",
+  "note": "利用 = 使用. Same characters as Chinese, polite ご- prefix.",
+  "trap": null,
+  "replies": ["cashier.bag.yes", "cashier.bag.no"],
+  "tags": ["cashier", "recognise"]
 }
 ```
 
-The app renders the result, queues `expected_follow_ups` into Listen mode, and
-writes `kanji_bridges` + the phrase into the SRS store.
+`role` is `staff` (recognise) or `me` (produce). `replies` links staff lines to
+the user's possible answers so rehearsal can branch.
+
+### Hosting
+
+GitHub Pages serves the site straight from the repo. Note that Pages on a private
+repository needs a paid GitHub plan, and the resulting URL is unlisted rather than
+truly private. Since no personal data ever leaves the browser, that is acceptable
+for this use. Alternatives if that matters: clone the repo and open `index.html`
+locally, or host on Cloudflare Pages with access control.
 
 ---
 
-## 8. Content pipeline
+## 7. Content workflow (owner + Claude)
 
-Scripts and phrase banks are **data, not code**: YAML files per scenario,
-reviewed by a native Japanese speaker and a Malaysian Chinese speaker.
+1. Claude drafts a scenario JSON from the dialogue outlines above.
+2. Owner reviews: Traditional Chinese wording feels natural, English is clear,
+   phrases match what they actually want to say.
+3. Claude checks Japanese register (polite form throughout, natural phrasing) and
+   furigana segmentation; `tools/validate.js` checks the schema.
+4. Commit. The site picks up new content with no code change.
 
-```
-content/
-  scenarios/
-    cashier.yaml        # clerk utterances, variants, answers, cultural notes
-    taxi.yaml
-    restaurant.yaml
-  phrases/
-    core.yaml           # cross-scenario polite phrases
-  bridges/
-    kanji_traps.yaml    # false friends for Chinese readers
-    readings_hokkien.tsv
-    readings_cantonese.tsv
-  loanwords/
-    malay_normalise.yaml
-```
-
-Each phrase entry: `ja`, `reading`, `zh_cn`, `zh_tw`, `en`, `audio` (pre-rendered
-TTS for offline), `variants` (what ASR should fuzzy-match), `tags`, `level`.
-
-A small build step validates YAML, generates furigana, pre-renders audio, and
-packs a SQLite bundle shipped with the app.
+Sources for authenticity: Japanese convenience-store and restaurant training
+material, travel vlogs, and the standard clerk scripts (マニュアル敬語), which are
+highly consistent across chains.
 
 ---
 
-## 9. Roadmap
+## 8. Roadmap
 
-### Phase 0 — Discovery (2 weeks)
+### Phase 1 — Course skeleton (first working version)
 
-- Interview 8–10 target users (recent Japan trips). Record where they got stuck.
-- Collect 20+ real konbini / restaurant / taxi exchanges (transcribe from
-  YouTube vlogs, friends' recordings) to build the scripts from reality.
-- Decide Expo vs Flutter for good (recommendation: Expo).
-- Set up repo structure, CI, content validation.
+- Static site scaffold, dark/light, phone-first.
+- `cashier.json` fully authored and reviewed.
+- Lesson 1 (read), Lesson 3 (produce, levels 0–3), reference cards, Show mode.
+- Speech synthesis for every card.
+- localStorage state with export/import.
 
-### Phase 1 — Offline MVP (6 weeks)
+### Phase 2 — Full loop
 
-- Quick cards for 3 scenarios, Show mode, platform TTS.
-- Listen mode with platform ja-JP ASR fuzzy-matched to scripts.
-- Micro-lesson cards (kanji bridge, grammar bite, trap) hand-authored per phrase.
-- Scaffolding levels 0–2 (no ASR self-check yet).
-- Ship to 10 testers via TestFlight / internal track before their trips.
+- Lesson 2 (recognise, audio-first) and Lesson 4 (rehearsal role-play).
+- SM-2 review sessions and "due today" on the home page.
+- `taxi.json` and `restaurant.json` authored and reviewed.
+- Kanji trap deck.
+- Service worker for offline; PWA manifest.
 
-### Phase 2 — Free-form + tutoring loop (6 weeks)
+### Phase 3 — Trip mode and polish
 
-- Say / Type mode: mixed-input → Claude → structured Japanese. Malay loanword
-  normalisation. Server cache.
-- See mode: OCR menu decode with dietary flags.
-- Scaffolding level 3 (speak it yourself, ASR confirms) and SRS review deck.
-- Post-scenario recap.
-- Hokkien / Cantonese pronunciation bridges (opt-in).
+- Departure date → daily plan.
+- Optional speech-recognition "check me" in rehearsal and "what did they say?"
+  in reference mode, feature-detected.
+- Menu-reading drill for the restaurant scenario.
+- Printable one-page cheat sheet per scenario.
 
-### Phase 3 — Rehearsal and breadth (6 weeks)
+### Phase 4 — Breadth
 
-- Rehearsal role-play mode.
-- Add scenarios: hotel, train/IC card, pharmacy, tax-free, directions.
-- On-device multilingual ASR for Say mode (whisper.cpp) to cut latency/cost.
-- Progress views; prefecture map.
-
-### Phase 4 — Polish and growth
-
-- Traditional Chinese UI, English UI, Malay UI toggle.
-- Shareable phrase cards (users send to travel companions).
-- Community-submitted scripts with moderation.
+- Hotel, train/IC card, pharmacy, directions, tax-free.
+- Anything the first trip revealed was missing.
 
 ---
 
-## 10. Success metrics
+## 9. What "working" looks like
 
-Product:
-
-- **Time-to-phrase** in Quick cards: median < 3 s from app open.
-- **Listen match rate**: ≥ 85% of clerk utterances in scripted scenarios matched
-  correctly (measured on tester recordings).
-- **Say pipeline** end-to-end: p50 < 3 s, p95 < 5 s.
-
-Learning:
-
-- % of phrases that reach scaffolding level 3 within a trip.
-- Unaided utterances per scenario visit (should rise over a trip).
-- 7-day and 30-day review retention after the trip ends.
-
-Qualitative: "Did you feel less anxious at the register on day 5 than day 1?"
+- Before the trip: all cashier and restaurant "produce" cards at level 3 or above;
+  all "recognise" cards answerable from audio alone.
+- On the trip: the reference layer is opened rarely, and mostly for taxi
+  destinations.
+- After the trip: a short list of phrases that were missing, fed back into content.
 
 ---
 
-## 11. Risks and mitigations
+## 10. Immediate next steps
 
-| Risk | Mitigation |
-|---|---|
-| Mixed-language ASR is unreliable in noisy shops | Scripted Listen mode uses single-language ja-JP recogniser + fuzzy script match; Say mode falls back to Type; push-to-talk close to mouth |
-| Latency kills the queue use case | Offline-first for all scripted content; LLM only for novel input; aggressive phrase cache; `effort: "low"` on the hot path |
-| LLM produces unnatural or wrong-register Japanese | Structured output with register field; golden test set of 200 Manglish inputs reviewed by native speaker; eval run in CI on prompt changes |
-| Kanji bridges mislead (false cognates) | Trap list curated by bilingual reviewer; bridges only shown when meaning actually transfers; every bridge carries a confidence flag |
-| Dialect readings shown when not actually similar | Only surface when phonetic distance is below a threshold; human-reviewed table for the top 300 kanji |
-| Tutoring feels like nagging in the moment | Never block the transaction; micro-lesson is collapsed by default; recap is opt-in; notifications off by default |
-| Dictionary / data licensing | JMdict/KANJIDIC2 require attribution (EDRDG); Unihan is Unicode-licensed; MOE dictionary CC BY-ND — check redistribution terms before bundling |
-| Privacy (recording other people's speech) | Listen mode processes on-device, never uploads audio; Say mode uploads only the user's own speech with clear indicator; no retention server-side |
-
----
-
-## 12. Open questions for the owner
-
-1. **Platform priority**: iOS first, Android first, or both via Expo from day one?
-   (Recommendation: both via Expo; Malaysian market is Android-heavy but early
-   travellers skew iOS.)
-2. **Who reviews content?** We need one native Japanese speaker and one Malaysian
-   Chinese bilingual reviewer for the phrase bank. Volunteers, or budget?
-3. **Chinese script default**: simplified (most Malaysian Chinese schooling) or
-   traditional (some communities, and closer to Japanese kanji forms)?
-4. **Monetisation**: free with server-side features capped, or one-time purchase?
-   Affects how much of Say mode must run on-device.
-5. **Scope of dialect support in MVP**: Hokkien and Cantonese both, or pick one
-   based on the discovery interviews?
-
----
-
-## 13. Immediate next steps
-
-1. Scaffold the Expo + TypeScript app and the `content/` directory with the three
-   scenario YAML files (even rough drafts unblock UI work).
-2. Write `content/scenarios/cashier.yaml` fully from real transcripts — it is the
-   highest-frequency, most-scripted scenario and the best demo.
-3. Prototype Listen mode with platform ja-JP ASR and fuzzy matching against the
-   cashier script; validate on 10 recorded clips.
-4. Draft the translate system prompt and a 50-item Manglish golden set; wire the
-   Anthropic SDK with structured output; measure latency at `effort: "low"`.
-5. Design the micro-lesson card and scaffolding-level UI on paper before code.
+1. Scaffold the static site (index, one scenario page, styles, store, speech).
+2. Author `content/cashier.json` in full, with Traditional Chinese glosses and
+   furigana, for the owner to review.
+3. Build the produce-lesson with scaffolding levels 0–3 and self-grading.
+4. Add the reference card grid and Show mode.
+5. Push, enable GitHub Pages, test on the owner's phone with the ja-JP voice.

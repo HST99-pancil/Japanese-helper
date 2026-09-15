@@ -1,7 +1,8 @@
 # Japanese-helper
 
-Translate and tutor Malaysian Chinese users (English/Mandarin code-switchers) in
-Japanese for on-the-spot situations: cashier, taxi, restaurant. Every
-translation doubles as a micro-lesson, with scaffolding that fades as you learn.
+A private static website that prepares a Mandarin/English bilingual for real
+Japanese situations (cashier, taxi, restaurant) before the trip, and doubles as
+an offline phrase reference on the phone during it. Traditional Chinese glosses,
+kanji-first, browser speech only, no backend.
 
-See [docs/PLAN.md](docs/PLAN.md) for the product and engineering plan.
+See [docs/PLAN.md](docs/PLAN.md) for the plan.
