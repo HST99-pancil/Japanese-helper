@@ -212,7 +212,7 @@ js/
 content/
   index.json            list of scenarios
   cashier.json
-  taxi.json             (next)
+  taxi.json
   restaurant.json       (next)
 tools/
   validate.js           checks ids, roles, furigana bases, reply links, dialogue refs
@@ -279,7 +279,8 @@ highly consistent across chains.
 ### Phase 2 — Content and loop
 
 - Owner review of `cashier.json` wording; fixes.
-- `taxi.json` and `restaurant.json` authored and reviewed.
+- `taxi.json` authored (30 cards, 10-turn script, 8 notes) with the destination card ✅; awaiting owner review.
+- `restaurant.json` authored and reviewed.
 - Kanji trap deck.
 - Test on the owner's phone: voice quality, tap targets, offline.
 

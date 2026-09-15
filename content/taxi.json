@@ -1,0 +1,326 @@
+{
+  "id": "taxi",
+  "title": { "ja": "タクシー", "zh_tw": "計程車", "en": "Taxi" },
+  "subtitle": { "zh_tw": "路邊叫車 / 車站排隊 / 飯店叫車", "en": "Street hail / station rank / hotel call" },
+  "intro": {
+    "zh_tw": "日本的計程車幾乎不需要說話：把目的地給司機看，說一句「〜までお願いします」，到了付錢就好。這裡的句子多半是為了萬一——走不走高速、在哪裡停、能不能刷卡。",
+    "en": "A Japanese taxi barely needs talking: show the driver the destination, say 「〜までお願いします」, pay when you arrive. Most lines here are for the exceptions: highway or not, where to stop, whether cards work."
+  },
+  "destination": true,
+  "notes": [
+    { "zh_tw": "車門是司機控制的自動門。不要自己開、不要自己關，尤其是左後門。站著等它開就好。", "en": "Doors are opened and closed by the driver. Don't open or close them yourself, especially the rear left door. Just wait." },
+    { "zh_tw": "不用給小費。找零會一分不少找回來，不用客氣。", "en": "No tipping. You get every yen of change back; that is normal." },
+    { "zh_tw": "路邊叫車：舉手。車頭紅色「空車」= 可載客；「賃走」= 載客中；「迎車」= 已被預約；「回送」= 收班。", "en": "Street hail: raise a hand. Red 空車 on the dash = available; 賃走 = occupied; 迎車 = booked; 回送 = off duty." },
+    { "zh_tw": "目的地用日文顯示在手機上最有效。用下方「目的地卡」打好飯店或車站的日文名字，上車直接給司機看。", "en": "Showing the destination in Japanese on your phone works best. Use the destination card below: type the hotel or station name in Japanese and hold it up as you get in." },
+    { "zh_tw": "大部分車可以刷卡和用 IC 卡（Suica 等），但鄉下或個人車可能只收現金。不確定就上車前先問「カードは使えますか？」。", "en": "Most taxis take cards and IC cards like Suica, but rural or owner-operated cabs may be cash only. If unsure, ask 「カードは使えますか？」 before getting in." },
+    { "zh_tw": "司機常會問要不要走高速公路（過路費另計，較快）。不確定就說「お任せします」交給他決定。", "en": "Drivers often ask whether to take the expressway (toll extra, faster). If unsure, say 「お任せします」 and leave it to them." },
+    { "zh_tw": "後座也要繫安全帶，這是法律規定。", "en": "Rear seatbelts are required by law." },
+    { "zh_tw": "計程車不便宜：東京起跳約 500 日圓，跳表快。短程方便，長程考慮電車。", "en": "Taxis are not cheap: about 500 yen flagfall in Tokyo and the meter moves fast. Fine for short hops; consider the train for long ones." }
+  ],
+  "dialogue": [
+    { "staff": "taxi.door", "me": [] },
+    { "staff": "taxi.where", "me": ["taxi.to.station", "taxi.to.hotel", "taxi.to.address"] },
+    { "staff": "taxi.address.ask", "me": ["taxi.here.map"] },
+    { "staff": "taxi.seatbelt", "me": [] },
+    { "staff": "taxi.highway.ask", "me": ["taxi.highway.yes", "taxi.highway.no"] },
+    { "staff": "taxi.route.ask", "me": ["taxi.route.trust"] },
+    { "staff": "taxi.here.ask", "me": ["taxi.here.ok", "taxi.further"] },
+    { "staff": "taxi.fare", "me": ["taxi.card.ask", "taxi.pay.card", "taxi.receipt"] },
+    { "staff": "taxi.receipt.give", "me": ["taxi.thanks.me"] },
+    { "staff": "taxi.thanks", "me": [] }
+  ],
+  "cards": [
+    {
+      "id": "taxi.door",
+      "role": "staff",
+      "ja": "ドアは自動で開きます。",
+      "furigana": [["ドアは", ""], ["自動", "じどう"], ["で", ""], ["開", "あ"], ["きます。", ""]],
+      "zh_tw": "車門會自動開。",
+      "en": "The door opens automatically.",
+      "note": "自動 兩字和中文一樣。開く = 開。司機在你碰門之前就會說這句。 / 自動 reads as in Chinese. Drivers say this before you reach for the handle.",
+      "variants": ["ドアは自動です", "ドア開けますね", "自動ドアです", "ドアはこちらで開けます"]
+    },
+    {
+      "id": "taxi.where",
+      "role": "staff",
+      "ja": "どちらまで行かれますか？",
+      "furigana": [["どちらまで", ""], ["行", "い"], ["かれますか？", ""]],
+      "zh_tw": "請問到哪裡？",
+      "en": "Where to?",
+      "note": "どちら = 哪裡（敬語）。まで = 到。行かれます 是 行きます 的敬語。 / どちら = where (polite). まで = to, up to. 行かれます is the polite form of \"go\".",
+      "variants": ["どちらまで", "どこまで行きますか", "どちらまでですか", "ご行き先は"],
+      "replies": ["taxi.to.station", "taxi.to.hotel", "taxi.to.address"]
+    },
+    {
+      "id": "taxi.address.ask",
+      "role": "staff",
+      "ja": "住所はわかりますか？",
+      "furigana": [["住所", "じゅうしょ"], ["はわかりますか？", ""]],
+      "zh_tw": "知道地址嗎？",
+      "en": "Do you know the address?",
+      "note": "陷阱：住所 在日文是「地址」，不是「住的地方」。わかりますか = 知道嗎。 / Trap: 住所 means \"address\", not \"residence\". わかりますか = do you know?",
+      "trap": "住所 ＝ 地址，不是住處",
+      "variants": ["住所わかりますか", "住所はありますか", "地図ありますか", "場所わかりますか"],
+      "replies": ["taxi.here.map"]
+    },
+    {
+      "id": "taxi.seatbelt",
+      "role": "staff",
+      "ja": "シートベルトをお願いします。",
+      "furigana": [["シートベルトをお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請繫安全帶。",
+      "en": "Seatbelt, please.",
+      "note": "シートベルト = seatbelt。後座也要繫。 / Rear seatbelts are required too. Sometimes a recorded announcement says it instead.",
+      "variants": ["シートベルトの着用をお願いします", "後ろもシートベルトお願いします", "シートベルトお願いします"]
+    },
+    {
+      "id": "taxi.highway.ask",
+      "role": "staff",
+      "ja": "高速使いますか？",
+      "furigana": [["高速", "こうそく"], ["使", "つか"], ["いますか？", ""]],
+      "zh_tw": "要走高速公路嗎？",
+      "en": "Shall I take the expressway?",
+      "note": "高速 = 高速公路（高速道路）。使う = 使用。過路費另計。 / 高速 is short for 高速道路, the expressway. 使う = to use. Tolls are added to the fare.",
+      "variants": ["高速道路使いますか", "高速に乗りますか", "高速でいいですか", "高速はどうしますか"],
+      "replies": ["taxi.highway.yes", "taxi.highway.no"]
+    },
+    {
+      "id": "taxi.route.ask",
+      "role": "staff",
+      "ja": "ルートはお任せでいいですか？",
+      "furigana": [["ルートはお", ""], ["任", "まか"], ["せでいいですか？", ""]],
+      "zh_tw": "路線交給我決定可以嗎？",
+      "en": "Shall I choose the route?",
+      "note": "任せる = 交給、委任。お任せ 在餐廳也用（廚師決定）。 / 任せる = to entrust. お任せ is the same word used in restaurants for \"chef's choice\".",
+      "variants": ["道はお任せでいいですか", "ルートはどうしますか", "どちらの道で行きますか", "いつもの道でいいですか"],
+      "replies": ["taxi.route.trust"]
+    },
+    {
+      "id": "taxi.here.ask",
+      "role": "staff",
+      "ja": "ここでよろしいですか？",
+      "furigana": [["ここでよろしいですか？", ""]],
+      "zh_tw": "在這裡可以嗎？",
+      "en": "Is here all right?",
+      "note": "よろしいですか 是 いいですか 的敬語。快到時司機一定會問。 / よろしいですか is the polite いいですか. Asked as you approach the destination.",
+      "variants": ["ここでいいですか", "こちらでよろしいですか", "この辺でいいですか", "ここで大丈夫ですか"],
+      "replies": ["taxi.here.ok", "taxi.further"]
+    },
+    {
+      "id": "taxi.fare",
+      "role": "staff",
+      "ja": "千二百円になります。",
+      "furigana": [["千二百円", "せんにひゃくえん"], ["になります。", ""]],
+      "zh_tw": "一千兩百日圓。",
+      "en": "That's 1,200 yen.",
+      "note": "金額看跳表就好，不必聽懂數字。〜になります 和便利店一樣。 / Read the meter; you don't need to catch the number. Same 〜になります as at the register.",
+      "variants": ["千二百円です", "お会計千二百円になります", "千二百円でございます"],
+      "replies": ["taxi.card.ask", "taxi.pay.card", "taxi.receipt"]
+    },
+    {
+      "id": "taxi.card.ok",
+      "role": "staff",
+      "ja": "カード、大丈夫ですよ。",
+      "furigana": [["カード、", ""], ["大丈夫", "だいじょうぶ"], ["ですよ。", ""]],
+      "zh_tw": "可以刷卡。",
+      "en": "Cards are fine.",
+      "note": "這裡的 大丈夫 是「可以、沒問題」。同一個詞，看情境。 / Here 大丈夫 means \"fine, OK\". Same word as \"no thanks\"; context decides.",
+      "variants": ["カード使えますよ", "カード大丈夫です", "はい、使えます"]
+    },
+    {
+      "id": "taxi.card.no",
+      "role": "staff",
+      "ja": "すみません、現金のみです。",
+      "furigana": [["すみません、", ""], ["現金", "げんきん"], ["のみです。", ""]],
+      "zh_tw": "抱歉，只收現金。",
+      "en": "Sorry, cash only.",
+      "note": "のみ = 只有（書面語）。聽到這句就換一台車或準備現金。 / のみ = only (formal). Hearing this, switch cabs or have cash ready.",
+      "variants": ["現金だけです", "カードは使えません", "カードはちょっと"]
+    },
+    {
+      "id": "taxi.receipt.give",
+      "role": "staff",
+      "ja": "領収書です。",
+      "furigana": [["領収書", "りょうしゅうしょ"], ["です。", ""]],
+      "zh_tw": "這是收據。",
+      "en": "Here's your receipt.",
+      "note": "領収書 = 收據（日文寫 収）。上面有車行電話，東西掉在車上時很重要。 / 領収書 = receipt, with 収 in Japanese form. It carries the company's phone number, vital if you leave something behind.",
+      "variants": ["レシートです", "こちら領収書です", "領収書になります"],
+      "replies": ["taxi.thanks.me"]
+    },
+    {
+      "id": "taxi.thanks",
+      "role": "staff",
+      "ja": "ありがとうございました。",
+      "furigana": [["ありがとうございました。", ""]],
+      "zh_tw": "謝謝。",
+      "en": "Thank you.",
+      "note": "下車時說。門會自動開，等一下就好。 / Said as you leave. The door opens for you; just wait.",
+      "variants": ["ありがとうございます", "お気をつけて", "忘れ物ないですか"]
+    },
+
+    {
+      "id": "taxi.to.station",
+      "role": "me",
+      "ja": "新宿駅までお願いします。",
+      "furigana": [["新宿駅", "しんじゅくえき"], ["までお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請到新宿站。",
+      "en": "To Shinjuku Station, please.",
+      "note": "〜まで = 到〜。駅 = 車站（驛 的日本寫法）。換地名就能用：東京駅、渋谷駅、空港。 / 〜まで = to. 駅 is the Japanese form of 驛, station. Swap the place name: 東京駅, 渋谷駅, 空港."
+    },
+    {
+      "id": "taxi.to.hotel",
+      "role": "me",
+      "ja": "このホテルまでお願いします。",
+      "furigana": [["このホテルまでお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請到這間飯店。（出示手機）",
+      "en": "To this hotel, please. (showing your phone)",
+      "note": "一邊給司機看飯店的日文名字。ホテル = hotel。 / Say it while showing the hotel's Japanese name. ホテル = hotel."
+    },
+    {
+      "id": "taxi.to.address",
+      "role": "me",
+      "ja": "この住所までお願いします。",
+      "furigana": [["この", ""], ["住所", "じゅうしょ"], ["までお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請到這個地址。",
+      "en": "To this address, please.",
+      "note": "住所 = 地址。給司機看寫好的日文地址，司機會輸入導航。 / 住所 = address. Show the Japanese address; the driver types it into the navigation."
+    },
+    {
+      "id": "taxi.here.map",
+      "role": "me",
+      "ja": "ここです。",
+      "furigana": [["ここです。", ""]],
+      "zh_tw": "就是這裡。（指著地圖）",
+      "en": "It's here. (pointing at the map)",
+      "note": "指著手機地圖上的釘子說。最短、最有效。 / Say it pointing at the pin on your map. Shortest and most effective."
+    },
+    {
+      "id": "taxi.highway.yes",
+      "role": "me",
+      "ja": "はい、高速でお願いします。",
+      "furigana": [["はい、", ""], ["高速", "こうそく"], ["でお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "好，走高速。",
+      "en": "Yes, the expressway please.",
+      "note": "又是 〜でお願いします 句型：用高速。 / The same 〜でお願いします frame: \"by expressway, please\"."
+    },
+    {
+      "id": "taxi.highway.no",
+      "role": "me",
+      "ja": "高速なしでお願いします。",
+      "furigana": [["高速", "こうそく"], ["なしでお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "不走高速。",
+      "en": "No expressway, please.",
+      "note": "なし = 無、不要。〜なしで = 不加〜。點餐也能用：氷なしで（不加冰）。 / なし = without. 〜なしで = without 〜. Works when ordering too: 氷なしで, no ice."
+    },
+    {
+      "id": "taxi.route.trust",
+      "role": "me",
+      "ja": "お任せします。",
+      "furigana": [["お", ""], ["任", "まか"], ["せします。", ""]],
+      "zh_tw": "交給你決定。",
+      "en": "I'll leave it to you.",
+      "note": "任 = 任憑、委任。萬用句：路線、餐廳推薦都可以說。 / 任 = to entrust. A universal answer: routes, restaurant recommendations, anything."
+    },
+    {
+      "id": "taxi.here.ok",
+      "role": "me",
+      "ja": "はい、ここでいいです。",
+      "furigana": [["はい、ここでいいです。", ""]],
+      "zh_tw": "好，這裡就可以。",
+      "en": "Yes, here is fine.",
+      "note": "ここで = 在這裡。いいです = 可以。 / ここで = here. いいです = it's fine."
+    },
+    {
+      "id": "taxi.further",
+      "role": "me",
+      "ja": "もう少し先でお願いします。",
+      "furigana": [["もう", ""], ["少", "すこ"], ["し", ""], ["先", "さき"], ["でお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請再往前一點。",
+      "en": "A little further ahead, please.",
+      "note": "陷阱：先 在這裡是「前面」，不是「先／首先」。もう少し = 再一點。 / Trap: 先 here means \"ahead\", not \"first\". もう少し = a little more.",
+      "trap": "先 ＝ 前面，不是「先」"
+    },
+    {
+      "id": "taxi.stop",
+      "role": "me",
+      "ja": "ここで止めてください。",
+      "furigana": [["ここで", ""], ["止", "と"], ["めてください。", ""]],
+      "zh_tw": "請在這裡停。",
+      "en": "Please stop here.",
+      "note": "止める = 停止。看到目的地了就說。 / 止める = to stop. Say it when you see your destination."
+    },
+    {
+      "id": "taxi.card.ask",
+      "role": "me",
+      "ja": "カードは使えますか？",
+      "furigana": [["カードは", ""], ["使", "つか"], ["えますか？", ""]],
+      "zh_tw": "可以刷卡嗎？",
+      "en": "Can I pay by card?",
+      "note": "使えますか = 能用嗎。最好上車前就問。 / 使えますか = can it be used? Best asked before you get in."
+    },
+    {
+      "id": "taxi.pay.card",
+      "role": "me",
+      "ja": "カードでお願いします。",
+      "furigana": [["カードでお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "用卡付。",
+      "en": "By card, please.",
+      "note": "和便利店一模一樣。IC 卡就說 Suica でお願いします 或直接 これで。 / Identical to the register. For an IC card, say Suicaで or just これで."
+    },
+    {
+      "id": "taxi.receipt",
+      "role": "me",
+      "ja": "領収書お願いします。",
+      "furigana": [["領収書", "りょうしゅうしょ"], ["お", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請給我收據。",
+      "en": "Receipt, please.",
+      "note": "計程車一定要拿收據：上面有車行電話和車號，東西掉了才找得回來。 / Always take the taxi receipt: it has the company's number and the cab ID, your only way to recover a lost item."
+    },
+    {
+      "id": "taxi.trunk",
+      "role": "me",
+      "ja": "トランクを開けてもらえますか？",
+      "furigana": [["トランクを", ""], ["開", "あ"], ["けてもらえますか？", ""]],
+      "zh_tw": "可以幫我開後車廂嗎？",
+      "en": "Could you open the trunk?",
+      "note": "〜てもらえますか = 可以幫我〜嗎。有行李時上車前說。 / 〜てもらえますか = could you 〜 for me? Say it before getting in when you have luggage."
+    },
+    {
+      "id": "taxi.hurry",
+      "role": "me",
+      "ja": "少し急いでいます。",
+      "furigana": [["少", "すこ"], ["し", ""], ["急", "いそ"], ["いでいます。", ""]],
+      "zh_tw": "我有點趕時間。",
+      "en": "I'm in a bit of a hurry.",
+      "note": "急 = 急。客氣地說，司機會盡量。 / 急 = urgent, as in Chinese. Said politely; the driver will do what they can."
+    },
+    {
+      "id": "taxi.howlong",
+      "role": "me",
+      "ja": "何分くらいかかりますか？",
+      "furigana": [["何分", "なんぷん"], ["くらいかかりますか？", ""]],
+      "zh_tw": "大概要幾分鐘？",
+      "en": "About how many minutes?",
+      "note": "何分 = 幾分。かかる = 花（時間或錢）。くらい = 大概。 / 何分 = how many minutes. かかる = to take (time) or cost. くらい = about."
+    },
+    {
+      "id": "taxi.howmuch",
+      "role": "me",
+      "ja": "いくらくらいですか？",
+      "furigana": [["いくらくらいですか？", ""]],
+      "zh_tw": "大概多少錢？",
+      "en": "About how much?",
+      "note": "いくら = 多少錢。到處都用得到。 / いくら = how much. Useful everywhere."
+    },
+    {
+      "id": "taxi.thanks.me",
+      "role": "me",
+      "ja": "ありがとうございました。",
+      "furigana": [["ありがとうございました。", ""]],
+      "zh_tw": "謝謝。",
+      "en": "Thank you.",
+      "note": "下車時用過去式 〜ました，因為服務已經結束。便利店拿東西時是現在式。 / Past tense when leaving, since the service is done. At the register, present tense as you receive your goods."
+    }
+  ]
+}

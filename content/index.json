@@ -1,3 +1,6 @@
 {
-  "scenarios": ["cashier"]
+  "scenarios": [
+    "cashier",
+    "taxi"
+  ]
 }

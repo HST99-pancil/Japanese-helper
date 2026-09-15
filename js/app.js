@@ -313,7 +313,12 @@ let cardFilter = "me";
 function viewCards(sid) {
   const s = scenario(sid); if (!s) return go("#/");
   const list = cardsOf(sid, cardFilter === "all" ? null : cardFilter);
+  const dest = s.destination ? `<form class="dest" id="destform">
+      <label for="dest-input"><b>目的地卡 · Destination card</b><small class="muted">用日文打飯店或車站名，上車給司機看。 / Type the hotel or station in Japanese; show it as you get in.</small></label>
+      <div class="dest-row"><input id="dest-input" type="text" autocomplete="off" placeholder="例：東京駅 / ヒルトン新宿" value="${h(getSettings().lastDestination || "")}"><button class="btn primary" type="submit">放大 ⤢</button></div>
+    </form>` : "";
   app.innerHTML = `${topbar(`單字卡 <small>${h(s.title.zh_tw)}</small>`, `#/s/${sid}`)}
+    ${dest}
     <div class="tabs">
       ${[["me", "我說 · Me"], ["staff", "店員說 · Staff"], ["all", "全部 · All"]].map(([k, l]) => `<button class="tab ${cardFilter === k ? "on" : ""}" data-f="${k}">${l}</button>`).join("")}
     </div>
@@ -324,10 +329,25 @@ function viewCards(sid) {
       </div>`).join("")}</div>`;
   bind();
   app.querySelectorAll("[data-f]").forEach((b) => b.addEventListener("click", () => { cardFilter = b.dataset.f; viewCards(sid); }));
+  document.getElementById("destform")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const v = document.getElementById("dest-input").value.trim();
+    if (!v) return;
+    setSetting("lastDestination", v);
+    go(`#/show/dest/${encodeURIComponent(v)}`);
+  });
 }
 
-function viewShow(id) {
-  const c = card(id); if (!c) return go("#/");
+function viewShow(id, extra) {
+  let c;
+  if (id === "dest") {
+    const text = decodeURIComponent(extra || "");
+    if (!text) return go("#/");
+    const sid = allScenarios().find((x) => x.destination)?.id || "taxi";
+    c = { ja: `${text}までお願いします。`, furigana: [[text, ""], ["までお", ""], ["願", "ねが"], ["いします。", ""]], zh_tw: `請到 ${text}。`, scenario: sid };
+  } else {
+    c = card(id); if (!c) return go("#/");
+  }
   app.innerHTML = `<div class="show" id="showpane">
       <a class="close" href="#/s/${c.scenario}/cards">✕</a>
       <div class="show-ja">${ruby(c, true)}</div>
@@ -386,7 +406,7 @@ function route() {
   if (!parts.length) return viewHome();
   if (parts[0] === "review") return viewReview();
   if (parts[0] === "settings") return viewSettings();
-  if (parts[0] === "show") return viewShow(parts[1]);
+  if (parts[0] === "show") return viewShow(parts[1], parts[2]);
   if (parts[0] === "s") {
     const [, sid, lesson] = parts;
     switch (lesson) {
