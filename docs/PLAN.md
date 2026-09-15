@@ -201,26 +201,22 @@ diverges from Chinese. Short, high-value, and specifically useful to this owner.
 ### Repo layout
 
 ```
-index.html              home: due reviews, trip plan, scenario tiles
-scenario.html           lessons and reference cards for one scenario
-rehearse.html           role-play
-review.html             spaced repetition session
-show.html               full-screen phrase display
-css/                    one stylesheet, light and dark
+index.html              single page; hash routes: #/ #/s/:id #/s/:id/read|recognise|produce|rehearse|cards #/review #/show/:card #/settings
+css/app.css             one stylesheet, light and dark
 js/
-  app.js                routing and page glue
-  content.js            loads and validates JSON
-  srs.js                SM-2 scheduling
+  app.js                router and views (home, scenario, lessons, drills, rehearsal, cards, show, settings)
+  content.js            loads and indexes JSON
+  srs.js                fixed-ladder scheduling (1/3/7/14/30 days) + scaffolding level
   speech.js             synthesis + optional recognition, feature-detected
   store.js              localStorage with export/import
 content/
+  index.json            list of scenarios
   cashier.json
-  taxi.json
-  restaurant.json
-  traps.json
+  taxi.json             (next)
+  restaurant.json       (next)
 tools/
-  validate.js           checks every card has ja, furigana, zh_tw, en, tags
-sw.js, manifest.json
+  validate.js           checks ids, roles, furigana bases, reply links, dialogue refs
+sw.js, manifest.json, icon.svg
 docs/PLAN.md
 ```
 
@@ -271,21 +267,21 @@ highly consistent across chains.
 
 ## 8. Roadmap
 
-### Phase 1 — Course skeleton (first working version)
+### Phase 1 — Course skeleton ✅ (built)
 
 - Static site scaffold, dark/light, phone-first.
-- `cashier.json` fully authored and reviewed.
-- Lesson 1 (read), Lesson 3 (produce, levels 0–3), reference cards, Show mode.
-- Speech synthesis for every card.
-- localStorage state with export/import.
+- `cashier.json` authored (33 cards, 10-turn script, 7 notes); awaiting owner review.
+- All four lessons (read, recognise, produce, rehearse), reference cards, Show mode.
+- Speech synthesis for every card; optional "check me" recognition in rehearsal.
+- Fixed-ladder review with "due today" on the home page.
+- localStorage state with export/import; service worker and manifest.
 
-### Phase 2 — Full loop
+### Phase 2 — Content and loop
 
-- Lesson 2 (recognise, audio-first) and Lesson 4 (rehearsal role-play).
-- SM-2 review sessions and "due today" on the home page.
+- Owner review of `cashier.json` wording; fixes.
 - `taxi.json` and `restaurant.json` authored and reviewed.
 - Kanji trap deck.
-- Service worker for offline; PWA manifest.
+- Test on the owner's phone: voice quality, tap targets, offline.
 
 ### Phase 3 — Trip mode and polish
 

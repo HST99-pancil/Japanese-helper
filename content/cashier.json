@@ -1,0 +1,350 @@
+{
+  "id": "cashier",
+  "title": { "ja": "レジ", "zh_tw": "結帳", "en": "Cashier" },
+  "subtitle": { "zh_tw": "便利店 / 超市 / 藥妝店", "en": "Convenience store / supermarket / drugstore" },
+  "intro": {
+    "zh_tw": "便利店店員用的是一套固定的敬語。聽起來很長，其實問題只有五、六個，答案也只有兩、三種。學會這一組，全日本的收銀台都通用。",
+    "en": "Convenience-store staff use a fixed set of polite phrases. It sounds long, but there are only five or six questions and two or three ways to answer each. Learn this set and every register in Japan works the same way."
+  },
+  "notes": [
+    { "zh_tw": "收銀台前有一個小托盤（カルトン）。現金放在托盤上，不要直接遞到店員手裡。找零也會放回托盤。", "en": "There is a small tray at the register. Put cash on the tray, not into the clerk's hand. Change comes back on the tray too." },
+    { "zh_tw": "「大丈夫です」在這裡的意思是「不用了」，不是「沒問題」。店員問要不要袋子、筷子、集點卡，都可以用它拒絕。", "en": "「大丈夫です」 here means \"no, thank you\", not \"it's OK\". Use it to decline bags, chopsticks, and point cards." },
+    { "zh_tw": "塑膠袋要收費（大約 3～5 日圓），所以一定會被問要不要袋子。", "en": "Plastic bags are charged (about 3–5 yen), so you will always be asked whether you want one." },
+    { "zh_tw": "買酒或香菸時，螢幕會跳出年齡確認。自己按「はい」就好，不需要出示證件。", "en": "Buying alcohol or cigarettes brings up an age-confirmation screen. Just press 「はい」 yourself; no ID is needed." },
+    { "zh_tw": "便當可以請店員加熱。「温めますか」通常只在買便當或熟食時才會問。", "en": "Bento can be heated at the counter. 「温めますか」 is only asked when you buy a bento or hot food." },
+    { "zh_tw": "免稅需要護照，大型店通常有專用櫃台。便利店一般沒有免稅。", "en": "Tax-free needs your passport and is usually at a dedicated counter in larger stores. Convenience stores generally do not offer it." },
+    { "zh_tw": "付款時說「〜で」就是「用〜付」：カードで、現金で、これで（拿出手機或 IC 卡）。", "en": "「〜で」 when paying means \"with 〜\": by card, in cash, with this (holding up your phone or IC card)." }
+  ],
+  "dialogue": [
+    { "staff": "cashier.greet", "me": [] },
+    { "staff": "cashier.point.ask", "me": ["cashier.point.no", "cashier.no.thanks"] },
+    { "staff": "cashier.bag.ask", "me": ["cashier.bag.yes", "cashier.bag.no"] },
+    { "staff": "cashier.chopsticks.ask", "me": ["cashier.chopsticks.one", "cashier.no.thanks"] },
+    { "staff": "cashier.warm.ask", "me": ["cashier.warm.yes", "cashier.warm.no"] },
+    { "staff": "cashier.total", "me": [] },
+    { "staff": "cashier.pay.ask", "me": ["cashier.pay.card", "cashier.pay.cash", "cashier.pay.this"] },
+    { "staff": "cashier.card.touch", "me": [] },
+    { "staff": "cashier.receipt.ask", "me": ["cashier.receipt.yes", "cashier.receipt.no"] },
+    { "staff": "cashier.thanks", "me": ["cashier.thanks.me"] }
+  ],
+  "cards": [
+    {
+      "id": "cashier.greet",
+      "role": "staff",
+      "ja": "いらっしゃいませ。",
+      "furigana": [["いらっしゃいませ。", ""]],
+      "zh_tw": "歡迎光臨。",
+      "en": "Welcome.",
+      "note": "不需要回答。走進任何店都會聽到。 / No reply needed. You hear it entering any shop."
+    },
+    {
+      "id": "cashier.next",
+      "role": "staff",
+      "ja": "次にお待ちの方、どうぞ。",
+      "furigana": [["次", "つぎ"], ["にお", ""], ["待", "ま"], ["ちの", ""], ["方", "かた"], ["、どうぞ。", ""]],
+      "zh_tw": "下一位客人請。",
+      "en": "Next customer, please.",
+      "note": "次 = 次（下一個），方 = 位（人的敬稱）。 / 次 = next, as in Chinese. 方 here is a polite word for \"person\"."
+    },
+    {
+      "id": "cashier.point.ask",
+      "role": "staff",
+      "ja": "ポイントカードはお持ちですか？",
+      "furigana": [["ポイントカードはお", ""], ["持", "も"], ["ちですか？", ""]],
+      "zh_tw": "有集點卡嗎？",
+      "en": "Do you have a point card?",
+      "note": "持 = 持有。お持ちですか 是「持っていますか」的敬語。 / 持 = to hold, same as Chinese. お持ちですか is the polite form of \"do you have\".",
+      "variants": ["ポイントカードお持ちですか", "ポイントカードはございますか", "アプリはお持ちですか"],
+      "replies": ["cashier.point.no", "cashier.no.thanks"]
+    },
+    {
+      "id": "cashier.bag.ask",
+      "role": "staff",
+      "ja": "袋はご利用ですか？",
+      "furigana": [["袋", "ふくろ"], ["はご", ""], ["利用", "りよう"], ["ですか？", ""]],
+      "zh_tw": "需要袋子嗎？",
+      "en": "Do you need a bag?",
+      "note": "利用 = 使用，和中文一樣。ご〜 是敬語前綴。 / 利用 = to use, same as Chinese. ご- is a polite prefix.",
+      "variants": ["レジ袋はいりますか", "レジ袋ご利用ですか", "袋はお付けしますか", "袋はご入用ですか"],
+      "replies": ["cashier.bag.yes", "cashier.bag.no"]
+    },
+    {
+      "id": "cashier.bag.charge",
+      "role": "staff",
+      "ja": "袋は三円になります。",
+      "furigana": [["袋", "ふくろ"], ["は", ""], ["三円", "さんえん"], ["になります。", ""]],
+      "zh_tw": "袋子三日圓。",
+      "en": "The bag is three yen.",
+      "note": "円 = 圓（日圓）。〜になります 是店員常用的「是〜」。 / 円 is the yen character. 〜になります is clerk-speak for \"that will be 〜\"."
+    },
+    {
+      "id": "cashier.chopsticks.ask",
+      "role": "staff",
+      "ja": "お箸はお付けしますか？",
+      "furigana": [["お", ""], ["箸", "はし"], ["はお", ""], ["付", "つ"], ["けしますか？", ""]],
+      "zh_tw": "要附筷子嗎？",
+      "en": "Shall I add chopsticks?",
+      "note": "箸 = 筷子（中文古語也用「箸」）。付ける = 附上。 / 箸 is an old Chinese word for chopsticks, still used in Japanese. 付ける = to attach.",
+      "variants": ["お箸はご利用ですか", "お箸お付けしますか", "スプーンはお付けしますか", "お箸はいりますか"],
+      "replies": ["cashier.chopsticks.one", "cashier.no.thanks"]
+    },
+    {
+      "id": "cashier.warm.ask",
+      "role": "staff",
+      "ja": "温めますか？",
+      "furigana": [["温", "あたた"], ["めますか？", ""]],
+      "zh_tw": "要加熱嗎？",
+      "en": "Shall I heat it up?",
+      "note": "温 = 溫（溫暖）。買便當時才會問。 / 温 = warm, as in Chinese. Only asked for bento and hot food.",
+      "variants": ["お弁当温めますか", "こちら温めますか", "温めはいかがですか"],
+      "replies": ["cashier.warm.yes", "cashier.warm.no"]
+    },
+    {
+      "id": "cashier.total",
+      "role": "staff",
+      "ja": "お会計は八百五十円になります。",
+      "furigana": [["お", ""], ["会計", "かいけい"], ["は", ""], ["八百五十円", "はっぴゃくごじゅうえん"], ["になります。", ""]],
+      "zh_tw": "總共八百五十日圓。",
+      "en": "That comes to 850 yen.",
+      "note": "陷阱：会計 在日文是「結帳」，不是「會計」。金額看螢幕就好，不必聽懂數字。 / Trap: 会計 means \"the bill\", not \"accounting\". Read the amount off the screen; you do not need to catch the number.",
+      "trap": "会計 ＝ 結帳，不是會計學",
+      "variants": ["お会計八百五十円です", "合計八百五十円になります", "八百五十円でございます"]
+    },
+    {
+      "id": "cashier.pay.ask",
+      "role": "staff",
+      "ja": "お支払いはどうされますか？",
+      "furigana": [["お", ""], ["支払", "しはら"], ["いはどうされますか？", ""]],
+      "zh_tw": "請問怎麼付款？",
+      "en": "How would you like to pay?",
+      "note": "支払い = 支付。どうされますか 是「どうしますか」的敬語。 / 支払い = payment; 支 and 払 both relate to paying out. どうされますか is polite \"how will you do it\".",
+      "variants": ["お支払い方法はいかがなさいますか", "お支払いは", "お支払い方法は"],
+      "replies": ["cashier.pay.card", "cashier.pay.cash", "cashier.pay.this"]
+    },
+    {
+      "id": "cashier.card.touch",
+      "role": "staff",
+      "ja": "こちらにタッチしてください。",
+      "furigana": [["こちらにタッチしてください。", ""]],
+      "zh_tw": "請在這裡感應。",
+      "en": "Please tap here.",
+      "note": "こちら = 這邊（敬語）。信用卡有時是「差し込んでください」（請插卡）。 / こちら = here (polite). For chip cards you may hear 「差し込んでください」, \"please insert\".",
+      "variants": ["カードをタッチしてください", "こちらにかざしてください", "カードを差し込んでください", "暗証番号をお願いします"]
+    },
+    {
+      "id": "cashier.receipt.ask",
+      "role": "staff",
+      "ja": "レシートはご利用ですか？",
+      "furigana": [["レシートはご", ""], ["利用", "りよう"], ["ですか？", ""]],
+      "zh_tw": "需要收據嗎？",
+      "en": "Do you need the receipt?",
+      "note": "レシート = receipt。跟袋子同一個句型 ご利用ですか。 / Same pattern as the bag question. Some clerks just hand it over without asking.",
+      "variants": ["レシートはいりますか", "レシートご利用ですか", "レシートはよろしいですか"],
+      "replies": ["cashier.receipt.yes", "cashier.receipt.no"]
+    },
+    {
+      "id": "cashier.age.ask",
+      "role": "staff",
+      "ja": "年齢確認ボタンを押してください。",
+      "furigana": [["年齢確認", "ねんれいかくにん"], ["ボタンを", ""], ["押", "お"], ["してください。", ""]],
+      "zh_tw": "請按年齡確認鍵。",
+      "en": "Please press the age-confirmation button.",
+      "note": "年齢確認 四個字和中文一樣。押す = 按（不是「押」）。 / 年齢確認 reads exactly as Chinese 年齡確認. 押す means to press, not to pawn.",
+      "trap": "押す ＝ 按，不是抵押",
+      "variants": ["年齢確認お願いします", "画面のボタンを押してください", "こちらのボタンをタッチしてください"]
+    },
+    {
+      "id": "cashier.wait",
+      "role": "staff",
+      "ja": "少々お待ちください。",
+      "furigana": [["少々", "しょうしょう"], ["お", ""], ["待", "ま"], ["ちください。", ""]],
+      "zh_tw": "請稍等。",
+      "en": "One moment, please.",
+      "note": "少々 = 稍稍。待つ = 等待。 / 少々 = a little; 待 = wait, both as in Chinese."
+    },
+    {
+      "id": "cashier.thanks",
+      "role": "staff",
+      "ja": "ありがとうございました。",
+      "furigana": [["ありがとうございました。", ""]],
+      "zh_tw": "謝謝（您）。",
+      "en": "Thank you (for your purchase).",
+      "note": "過去式 〜ました，交易結束時用。你自己說的是現在式 ありがとうございます。 / Past tense, used as the transaction ends. You reply with the present tense ありがとうございます.",
+      "variants": ["ありがとうございます", "またお越しくださいませ"],
+      "replies": ["cashier.thanks.me"]
+    },
+
+    {
+      "id": "cashier.point.no",
+      "role": "me",
+      "ja": "ないです。",
+      "furigana": [["ないです。", ""]],
+      "zh_tw": "沒有。",
+      "en": "I don't have one.",
+      "note": "最短的回答。 / The shortest possible answer."
+    },
+    {
+      "id": "cashier.no.thanks",
+      "role": "me",
+      "ja": "大丈夫です。",
+      "furigana": [["大丈夫", "だいじょうぶ"], ["です。", ""]],
+      "zh_tw": "不用了。",
+      "en": "No, thank you.",
+      "note": "陷阱：大丈夫 不是「大丈夫（男子）」，是「沒事 / 不用」。拒絕袋子、筷子、集點卡都用它。 / Trap: 大丈夫 has nothing to do with a \"great man\". It means \"I'm fine\", so \"no need\". Use it to decline anything.",
+      "trap": "大丈夫 ＝ 不用了／沒事，不是大男人"
+    },
+    {
+      "id": "cashier.bag.yes",
+      "role": "me",
+      "ja": "お願いします。",
+      "furigana": [["お", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "麻煩你。（要）",
+      "en": "Yes, please.",
+      "note": "願 = 願（請求）。萬用的「請 / 麻煩你」。 / 願 = to wish or request. The universal \"please\"."
+    },
+    {
+      "id": "cashier.bag.no",
+      "role": "me",
+      "ja": "いりません。",
+      "furigana": [["いりません。", ""]],
+      "zh_tw": "不需要。",
+      "en": "I don't need one.",
+      "note": "いる = 要（需要）。いりません = 不要。 / いる = to need. いりません = don't need. Slightly more direct than 大丈夫です; both are fine."
+    },
+    {
+      "id": "cashier.chopsticks.one",
+      "role": "me",
+      "ja": "一つお願いします。",
+      "furigana": [["一", "ひと"], ["つお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請給一份。",
+      "en": "One, please.",
+      "note": "一つ ひとつ、二つ ふたつ、三つ みっつ。數量 + お願いします。 / Counting: 一つ hitotsu, 二つ futatsu, 三つ mittsu. Quantity + お願いします."
+    },
+    {
+      "id": "cashier.warm.yes",
+      "role": "me",
+      "ja": "はい、お願いします。",
+      "furigana": [["はい、お", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "好，麻煩你。",
+      "en": "Yes, please.",
+      "note": "はい + お願いします，接受任何提議都適用。 / はい + お願いします accepts any offer."
+    },
+    {
+      "id": "cashier.warm.no",
+      "role": "me",
+      "ja": "そのままで大丈夫です。",
+      "furigana": [["そのままで", ""], ["大丈夫", "だいじょうぶ"], ["です。", ""]],
+      "zh_tw": "不用加熱，就這樣就好。",
+      "en": "No, as it is is fine.",
+      "note": "そのまま = 就這樣（原樣）。 / そのまま = as it is."
+    },
+    {
+      "id": "cashier.pay.card",
+      "role": "me",
+      "ja": "カードでお願いします。",
+      "furigana": [["カードでお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "用卡付。",
+      "en": "By card, please.",
+      "note": "〜で = 用〜。這個句型換名詞就能用一輩子。 / 〜で = \"by/with 〜\". Swap the noun and reuse forever."
+    },
+    {
+      "id": "cashier.pay.cash",
+      "role": "me",
+      "ja": "現金でお願いします。",
+      "furigana": [["現金", "げんきん"], ["でお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "付現金。",
+      "en": "Cash, please.",
+      "note": "現金 兩個字和中文一樣，唸 げんきん。 / 現金 is the same as Chinese, read genkin."
+    },
+    {
+      "id": "cashier.pay.this",
+      "role": "me",
+      "ja": "これでお願いします。",
+      "furigana": [["これでお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "用這個付。（拿出手機或 IC 卡）",
+      "en": "With this, please. (holding up phone or IC card)",
+      "note": "拿出 Suica、PayPay 或手機時說。店員會幫你選付款方式。 / Say this while holding up Suica, PayPay, or your phone. The clerk selects the payment type."
+    },
+    {
+      "id": "cashier.this",
+      "role": "me",
+      "ja": "これください。",
+      "furigana": [["これください。", ""]],
+      "zh_tw": "我要這個。",
+      "en": "This one, please.",
+      "note": "指著東西說。ください = 請給我。 / Say it while pointing. ください = please give me."
+    },
+    {
+      "id": "cashier.receipt.yes",
+      "role": "me",
+      "ja": "レシートお願いします。",
+      "furigana": [["レシートお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請給我收據。",
+      "en": "Receipt, please.",
+      "note": "正式發票是 領収書（りょうしゅうしょ），報帳才需要。 / A formal invoice is 領収書 ryōshūsho; only needed for expense claims."
+    },
+    {
+      "id": "cashier.receipt.no",
+      "role": "me",
+      "ja": "レシートはいりません。",
+      "furigana": [["レシートはいりません。", ""]],
+      "zh_tw": "不用收據。",
+      "en": "No receipt, thanks.",
+      "note": "或者直接說 大丈夫です。 / Or just 大丈夫です."
+    },
+    {
+      "id": "cashier.toilet",
+      "role": "me",
+      "ja": "トイレはどこですか？",
+      "furigana": [["トイレはどこですか？", ""]],
+      "zh_tw": "廁所在哪裡？",
+      "en": "Where is the toilet?",
+      "note": "どこ = 哪裡。〜はどこですか 可以問任何地點。 / どこ = where. 〜はどこですか asks for any location."
+    },
+    {
+      "id": "cashier.taxfree",
+      "role": "me",
+      "ja": "免税できますか？",
+      "furigana": [["免税", "めんぜい"], ["できますか？", ""]],
+      "zh_tw": "可以免稅嗎？",
+      "en": "Can I get tax-free?",
+      "note": "免税 = 免稅（日文寫 税）。できますか = 可以嗎。 / 免税 = tax exemption; note the Japanese form of 税. できますか = is it possible?"
+    },
+    {
+      "id": "cashier.sorry",
+      "role": "me",
+      "ja": "すみません。",
+      "furigana": [["すみません。", ""]],
+      "zh_tw": "不好意思。",
+      "en": "Excuse me.",
+      "note": "叫店員、道歉、借過，全都用這句。 / Calls staff, apologises, or asks to pass. The most useful word in Japan."
+    },
+    {
+      "id": "cashier.repeat",
+      "role": "me",
+      "ja": "もう一度お願いします。",
+      "furigana": [["もう", ""], ["一度", "いちど"], ["お", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請再說一次。",
+      "en": "Once more, please.",
+      "note": "一度 = 一次。聽不懂時的救命句。 / 一度 = one time. Your lifeline when you miss something."
+    },
+    {
+      "id": "cashier.slow",
+      "role": "me",
+      "ja": "ゆっくりお願いします。",
+      "furigana": [["ゆっくりお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請說慢一點。",
+      "en": "Slowly, please.",
+      "note": "ゆっくり = 慢慢地。 / ゆっくり = slowly."
+    },
+    {
+      "id": "cashier.thanks.me",
+      "role": "me",
+      "ja": "ありがとうございます。",
+      "furigana": [["ありがとうございます。", ""]],
+      "zh_tw": "謝謝。",
+      "en": "Thank you.",
+      "note": "拿到東西時說。現在式。 / Say it as you receive your goods. Present tense."
+    }
+  ]
+}

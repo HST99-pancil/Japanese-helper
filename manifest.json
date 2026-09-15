@@ -1,0 +1,10 @@
+{
+  "name": "日本語ヘルパー · Japanese Helper",
+  "short_name": "日本語",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ee",
+  "theme_color": "#c8413b",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
