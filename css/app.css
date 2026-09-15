@@ -93,6 +93,37 @@ ruby rt { font-size: .5em; color: var(--muted); }
 .refcard:active { background: var(--line); }
 .show-link { position: absolute; right: 10px; top: 10px; font-size: .85rem; color: var(--muted); padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; }
 
+/* simulator */
+.sim-entry { display: block; margin-top: 14px; background: var(--card); border: 1px dashed var(--staff); border-radius: var(--radius); padding: 14px 16px; }
+.sim-entry-title { font-weight: 700; font-size: 1.1rem; color: var(--staff); }
+.tile.custom { border-style: dashed; }
+.simform { display: grid; gap: 10px; }
+.simform textarea { width: 100%; font: inherit; font-size: 1.05rem; padding: 12px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--card); color: var(--ink); resize: vertical; }
+.simform textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { font: inherit; font-size: .85rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--muted); cursor: pointer; text-align: left; }
+.chip:active { background: var(--line); }
+.simform .actions { margin: 4px 0; align-items: center; }
+.error-box { background: var(--card); border: 1px solid var(--miss); color: var(--miss); border-radius: var(--radius); padding: 10px 14px; margin: 8px 0; }
+.sim-result { margin-top: 10px; }
+.sim-req { font-size: .9rem; }
+.sim-title { color: var(--ink); font-size: 1.3rem; margin: 4px 0 6px; } .sim-title small { color: var(--muted); font-weight: 400; font-size: .9rem; }
+.branch { border-left: 3px solid var(--line); padding-left: 14px; margin: 22px 0; }
+.branch-head { display: flex; justify-content: space-between; align-items: center; font-size: .85rem; margin-bottom: 4px; }
+.lk { font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--line); }
+.lk.common { background: var(--ok); color: #fff; } .lk.sometimes { background: #c98a1b; color: #fff; } .lk.rare { background: var(--line); color: var(--muted); }
+.outcome { font-size: .9rem; margin-top: 6px; }
+.save-row { margin-top: 8px; }
+.btn.small-btn { min-height: 34px; padding: 4px 12px; font-size: .85rem; font-weight: 500; }
+.saved { color: var(--ok); font-size: .85rem; font-weight: 600; }
+.history { list-style: none; padding: 0; display: grid; gap: 6px; }
+.history li { display: flex; gap: 8px; align-items: center; }
+.hist { flex: 1; text-align: left; font: inherit; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; color: var(--ink); cursor: pointer; }
+.hist small { display: block; }
+.del-link { font: inherit; font-size: .8rem; color: var(--miss); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; cursor: pointer; }
+.refcard .del-link { position: absolute; right: 10px; bottom: 10px; }
+.row input[type=password] { font: inherit; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+
 /* destination card */
 .dest { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--staff); border-radius: var(--radius); padding: 12px 14px; margin: 4px 0 14px; display: grid; gap: 8px; }
 .dest label { display: grid; gap: 2px; } .dest small { font-size: .85rem; }

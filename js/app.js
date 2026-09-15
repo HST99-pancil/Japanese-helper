@@ -1,5 +1,6 @@
-import { loadAll, allScenarios, scenario, card, allCards, cardsOf } from "./content.js";
-import { getSettings, setSetting, getCardState, exportJSON, importJSON, resetAll } from "./store.js";
+import { loadAll, allScenarios, scenario, card, allCards, cardsOf, CUSTOM_ID } from "./content.js";
+import { getSettings, setSetting, getCardState, exportJSON, importJSON, resetAll, customCards, addCustomCard, removeCustomCard, sims, addSim, removeSim } from "./store.js";
+import { simulate, provider, MODELS } from "./ai.js";
 import { grade, touch, dueCards, progress, maxLevel } from "./srs.js";
 import { speak, stop, canSpeak, canListen, listen, similarity, japaneseVoices } from "./speech.js";
 
@@ -55,11 +56,28 @@ function viewHome() {
         ? `<a class="btn primary big" href="#/review">今日複習 · Review today<span class="count">${due.length} 張卡 · 約 ${Math.max(1, Math.round(due.length / 3))} 分鐘</span></a>`
         : `<div class="muted">今天沒有要複習的卡。 / Nothing due today.</div>`}
     </section>
-    <section class="tiles">${tiles}</section>
+    <section class="tiles">${tiles}${customTile()}</section>
+    <a class="sim-entry" href="#/sim">
+      <div class="sim-entry-title">模擬 · Simulate</div>
+      <div class="muted">問 Claude 某件事怎麼說，看對方可能怎麼回、你怎麼接。 / Ask how to say something and see how the exchange could go.</div>
+    </a>
     <section class="footer muted">
       ${canSpeak() ? "" : "<p>⚠ 這個瀏覽器不支援語音朗讀。 / This browser has no speech synthesis.</p>"}
       <p>先學，再用。 Learn first, then use.</p>
     </section>`;
+}
+
+function customTile() {
+  const cs = customCards();
+  if (!cs.length) return "";
+  const p = progress(cs.map((c) => ({ ...c, scenario: CUSTOM_ID })));
+  return `<a class="tile custom" href="#/s/${CUSTOM_ID}">
+    <div class="tile-ja">マイフレーズ</div>
+    <div class="tile-zh">我的句子 · My phrases</div>
+    <div class="tile-sub">從模擬存下來的句子</div>
+    <div class="bar"><i style="width:${p.total ? (100 * p.learned / p.total) : 0}%"></i></div>
+    <div class="tile-meta">${p.learned}/${p.total} 已學會</div>
+  </a>`;
 }
 
 function viewScenario(sid) {
@@ -73,15 +91,15 @@ function viewScenario(sid) {
     <p class="intro zh">${h(s.intro.zh_tw)}</p>
     <p class="intro en muted">${h(s.intro.en)}</p>
     <div class="lessons">
-      <a class="lesson" href="#/s/${sid}/read"><b>1</b><span>讀劇本<small>Read the script · ${s.dialogue.length} 個回合</small></span></a>
-      <a class="lesson" href="#/s/${sid}/recognise"><b>2</b><span>聽懂店員<small>Recognise · ${staff.length} 句</small></span></a>
-      <a class="lesson" href="#/s/${sid}/produce"><b>3</b><span>自己說<small>Produce · ${me.length} 句</small></span></a>
-      <a class="lesson" href="#/s/${sid}/rehearse"><b>4</b><span>模擬演練<small>Rehearse the whole dialogue</small></span></a>
+      ${s.dialogue.length ? `<a class="lesson" href="#/s/${sid}/read"><b>1</b><span>讀劇本<small>Read the script · ${s.dialogue.length} 個回合</small></span></a>` : ""}
+      ${staff.length ? `<a class="lesson" href="#/s/${sid}/recognise"><b>${s.dialogue.length ? 2 : "▶"}</b><span>聽懂對方<small>Recognise · ${staff.length} 句</small></span></a>` : ""}
+      ${me.length ? `<a class="lesson" href="#/s/${sid}/produce"><b>${s.dialogue.length ? 3 : "▶"}</b><span>自己說<small>Produce · ${me.length} 句</small></span></a>` : ""}
+      ${s.dialogue.length ? `<a class="lesson" href="#/s/${sid}/rehearse"><b>4</b><span>模擬演練<small>Rehearse the whole dialogue</small></span></a>` : ""}
       <a class="lesson ref" href="#/s/${sid}/cards"><b>▦</b><span>單字卡 · 現場查閱<small>Reference cards · Show mode</small></span></a>
     </div>
     <div class="progress-line muted">${p.learned}/${p.total} 已學會（程度 3 以上） · ${p.seen} 已看過</div>
-    <h2>注意事項 · Notes</h2>
-    <ul class="notes">${notes}</ul>`;
+    ${notes ? `<h2>注意事項 · Notes</h2><ul class="notes">${notes}</ul>` : ""}
+    ${s.custom ? `<p class="muted small">要刪除句子：到單字卡，點「刪除」。 / To remove a phrase, open the cards and tap 刪除.</p>` : ""}`;
 }
 
 function cardBlock(c, { reveal = true, showZh = true, showEn = true, showFurigana = getSettings().furigana } = {}) {
@@ -326,9 +344,14 @@ function viewCards(sid) {
     <div class="reflist">${list.map((c) => `<div class="refcard ${c.role}" data-speak="${h(c.ja)}">
         <div class="line">${ruby(c)}</div><div class="zh">${h(c.zh_tw)}</div><div class="en muted">${h(c.en)}</div>
         <a class="show-link" href="#/show/${c.id}" onclick="event.stopPropagation()">放大 ⤢</a>
+        ${s.custom ? `<button class="del-link" data-del="${c.id}">刪除</button>` : ""}
       </div>`).join("")}</div>`;
   bind();
   app.querySelectorAll("[data-f]").forEach((b) => b.addEventListener("click", () => { cardFilter = b.dataset.f; viewCards(sid); }));
+  app.querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (confirm("刪除這句？ / Remove this phrase?")) { removeCustomCard(b.dataset.del); viewCards(sid); }
+  }));
   document.getElementById("destform")?.addEventListener("submit", (e) => {
     e.preventDefault();
     const v = document.getElementById("dest-input").value.trim();
@@ -357,6 +380,102 @@ function viewShow(id, extra) {
   document.getElementById("showpane").addEventListener("click", (e) => { if (!e.target.closest("a")) speak(c.ja, { rate: 0.85 }); });
 }
 
+// ---------- simulator ----------
+const SIM_EXAMPLES = [
+  "我想問店員這件衣服有沒有更大的尺寸",
+  "Ask the hotel to keep my luggage after checkout",
+  "餐廳想問可以分開付嗎，還有可以不要加芫茜",
+  "藥妝店問哪一種是止痛藥，然後要免稅",
+];
+let simState = { busy: false, error: "", current: null, request: "" };
+
+function phraseCard(p, role, source, { compact = false } = {}) {
+  const saved = customCards().some((c) => c.ja === p.ja && c.role === role);
+  const payload = h(JSON.stringify({ role, ja: p.ja, furigana: p.furigana, zh_tw: p.zh_tw, en: p.en, note: p.note, source }));
+  return `<div class="card ${role}">
+    <div class="line">${ruby(p)} ${speakBtn(p.ja)}</div>
+    <div class="zh">${h(p.zh_tw)}</div>
+    <div class="en muted">${h(p.en)}</div>
+    ${p.note && !compact ? `<div class="note">${h(p.note)}</div>` : ""}
+    <div class="save-row">${saved ? `<span class="saved">✓ 已存入複習</span>` : `<button class="btn small-btn" data-save="${payload}">＋ 存入複習 · Save</button>`}</div>
+  </div>`;
+}
+
+function renderSimResult(sim, request) {
+  const like = { common: ["常見", "common"], sometimes: ["有時", "sometimes"], rare: ["少見", "rare"] };
+  const branches = sim.branches.map((b, i) => `<section class="branch">
+      <div class="branch-head"><span class="lk ${b.likelihood}">${like[b.likelihood]?.[0] || ""} · ${like[b.likelihood]?.[1] || b.likelihood}</span><span class="muted">可能性 ${i + 1}</span></div>
+      <div class="who">對方 · They say</div>${phraseCard(b.staff, "staff", sim.title.zh_tw)}
+      <div class="who me">你 · You</div><div class="replies">${b.replies.map((r) => phraseCard(r, "me", sim.title.zh_tw)).join("")}</div>
+      <div class="outcome muted">→ ${h(b.outcome.zh_tw)} / ${h(b.outcome.en)}</div>
+    </section>`).join("");
+  return `<article class="sim-result">
+    <div class="sim-req muted">「${h(request)}」</div>
+    <h2 class="sim-title">${h(sim.title.zh_tw)} <small>${h(sim.title.en)}</small></h2>
+    <p class="intro zh">${h(sim.setting.zh_tw)}</p><p class="intro en muted">${h(sim.setting.en)}</p>
+    <div class="who me">你先說 · You open with</div>${phraseCard(sim.opening, "me", sim.title.zh_tw)}
+    ${branches}
+    ${sim.traps.length ? `<h2>漢字陷阱 · Kanji traps</h2><ul class="notes">${sim.traps.map((t) => `<li><b class="trap">${h(t.kanji)}</b> ${h(t.zh_tw)}<div class="en muted">${h(t.en)}</div></li>`).join("")}</ul>` : ""}
+    ${sim.tips.length ? `<h2>小提醒 · Tips</h2><ul class="notes">${sim.tips.map((t) => `<li><div class="zh">${h(t.zh_tw)}</div><div class="en muted">${h(t.en)}</div></li>`).join("")}</ul>` : ""}
+    <div class="actions"><button class="btn primary" id="save-all">全部存入複習 · Save all</button><button class="btn" id="sim-again">換個說法再模擬 · Re-run</button></div>
+  </article>`;
+}
+
+async function viewSim() {
+  const prov = await provider();
+  const history = sims();
+  const st = simState;
+  app.innerHTML = `${topbar("模擬 · Simulate")}
+    <p class="hint muted">用中文、英文或混著寫都可以：你想做什麼、想問什麼。Claude 會給你開口的第一句、對方可能的幾種回應、每一種你怎麼接。 / Describe what you want to do in Mandarin, English, or both. You get your opening line, the likely responses, and what to say to each.</p>
+    <form id="simform" class="simform">
+      <textarea id="sim-input" rows="3" placeholder="例：我想問店員這件衣服有沒有更大的尺寸">${h(st.request)}</textarea>
+      <div class="chips">${SIM_EXAMPLES.map((x) => `<button type="button" class="chip" data-ex="${h(x)}">${h(x)}</button>`).join("")}</div>
+      <div class="actions"><button class="btn primary" type="submit" id="sim-go" ${st.busy || !prov ? "disabled" : ""}>${st.busy ? "模擬中… · Simulating…" : "模擬 · Simulate"}</button>
+        <span class="muted small">${prov ? `使用：${h(prov.label)}` : `尚未設定：到 <a href="#/settings">設定</a> 輸入 API key，或在 claude.ai 的預覽頁使用。 / Not set up: add an API key in Settings, or use the claude.ai preview.`}</span></div>
+    </form>
+    ${st.error ? `<div class="error-box">${h(st.error)}</div>` : ""}
+    <div id="sim-out">${st.current ? renderSimResult(st.current.result, st.current.request) : ""}</div>
+    ${history.length ? `<h2>最近的模擬 · Recent</h2><ul class="history">${history.map((x) => `<li><button class="hist" data-hist="${x.id}">${h(x.result.title.zh_tw)} <small class="muted">${h(x.request.slice(0, 40))}</small></button><button class="del-link" data-histdel="${x.id}">刪除</button></li>`).join("")}</ul>` : ""}`;
+  bind();
+  wireSim();
+}
+
+function wireSim() {
+  const st = simState;
+  const input = document.getElementById("sim-input");
+  input?.addEventListener("input", () => { st.request = input.value; });
+  app.querySelectorAll("[data-ex]").forEach((b) => b.addEventListener("click", () => { input.value = b.dataset.ex; st.request = input.value; input.focus(); }));
+  document.getElementById("simform")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const req = input.value.trim();
+    if (!req || st.busy) return;
+    st.busy = true; st.error = ""; st.request = req; await viewSim();
+    try {
+      const result = await simulate(req);
+      st.current = addSim(req, result);
+    } catch (err) {
+      st.error = err.message === "no_provider" ? "沒有可用的 Claude。請到設定輸入 API key。 / No Claude available. Add an API key in Settings." : `模擬失敗 · Failed: ${err.message}`;
+    } finally {
+      st.busy = false; await viewSim();
+    }
+  });
+  app.querySelectorAll("[data-save]").forEach((b) => b.addEventListener("click", () => {
+    addCustomCard(JSON.parse(b.dataset.save));
+    b.outerHTML = `<span class="saved">✓ 已存入複習</span>`;
+  }));
+  document.getElementById("save-all")?.addEventListener("click", async () => {
+    const sim = st.current.result, src = sim.title.zh_tw;
+    let n = 0;
+    if (addCustomCard({ role: "me", ...sim.opening, source: src })) n++;
+    for (const b of sim.branches) { if (addCustomCard({ role: "staff", ...b.staff, source: src })) n++; for (const r of b.replies) if (addCustomCard({ role: "me", ...r, source: src })) n++; }
+    await viewSim();
+    alert(`已存入 ${n} 句。 / Saved ${n} phrases. They now appear in 我的句子 and daily review.`);
+  });
+  document.getElementById("sim-again")?.addEventListener("click", () => { document.getElementById("simform").requestSubmit(); });
+  app.querySelectorAll("[data-hist]").forEach((b) => b.addEventListener("click", async () => { st.current = sims().find((x) => x.id === b.dataset.hist); st.request = st.current.request; st.error = ""; await viewSim(); window.scrollTo(0, 0); }));
+  app.querySelectorAll("[data-histdel]").forEach((b) => b.addEventListener("click", async () => { removeSim(b.dataset.histdel); if (st.current?.id === b.dataset.histdel) st.current = null; await viewSim(); }));
+}
+
 // ---------- settings ----------
 function viewSettings() {
   const st = getSettings();
@@ -372,6 +491,12 @@ function viewSettings() {
       </label>
       <button class="btn" id="test">🔊 試聽 · Test voice</button>
       <hr>
+      <div class="row col"><span>模擬用的 Claude · Claude for the simulator</span>
+        <small class="muted">在 claude.ai 的預覽頁不需要 key。在 GitHub Pages 用自己的 API key（console.anthropic.com）。Key 只存在這個瀏覽器，直接連 Anthropic，不經過其他伺服器。每次模擬約幾分錢。 / No key needed on the claude.ai preview. On GitHub Pages use your own API key from console.anthropic.com. It stays in this browser and calls Anthropic directly. Each simulation costs a few cents.</small>
+        <input type="password" id="apikey" placeholder="sk-ant-…" value="${h(st.apiKey || "")}" autocomplete="off">
+        <select id="model">${MODELS.map((m) => `<option value="${m.id}" ${(st.model || MODELS[0].id) === m.id ? "selected" : ""}>${h(m.label)}</option>`).join("")}</select>
+      </div>
+      <hr>
       <div class="row col"><span>備份 · Backup</span>
         <div class="actions"><button class="btn" id="export">匯出進度 · Export</button><label class="btn">匯入 · Import<input type="file" id="import" accept="application/json" hidden></label></div>
         <small class="muted">進度只存在這個瀏覽器裡。換手機前先匯出。 / Progress lives only in this browser. Export before switching devices.</small>
@@ -385,6 +510,8 @@ function viewSettings() {
   document.getElementById("rate").oninput = (e) => { setSetting("rate", +e.target.value); document.getElementById("rateval").textContent = e.target.value; };
   document.getElementById("voice").onchange = (e) => setSetting("voiceURI", e.target.value || null);
   document.getElementById("test").onclick = () => speak("袋はご利用ですか？");
+  document.getElementById("apikey").onchange = (e) => setSetting("apiKey", e.target.value.trim());
+  document.getElementById("model").onchange = (e) => setSetting("model", e.target.value);
   document.getElementById("export").onclick = () => {
     const blob = new Blob([exportJSON()], { type: "application/json" });
     const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
@@ -405,6 +532,7 @@ function route() {
   window.scrollTo(0, 0);
   if (!parts.length) return viewHome();
   if (parts[0] === "review") return viewReview();
+  if (parts[0] === "sim") return viewSim();
   if (parts[0] === "settings") return viewSettings();
   if (parts[0] === "show") return viewShow(parts[1], parts[2]);
   if (parts[0] === "s") {

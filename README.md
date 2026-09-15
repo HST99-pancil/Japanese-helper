@@ -31,6 +31,17 @@ the offline, full-screen version.
 - `tools/validate.js` — checks every card (`node tools/validate.js`)
 - `sw.js`, `manifest.json` — offline cache and installable app
 
+## Simulator
+
+The 模擬 page asks Claude how a request you describe would actually go: your
+opening line, the likely responses, and what to say to each. Phrases can be
+saved into a "我的句子" deck that joins daily review.
+
+- On the claude.ai preview it uses the page's built-in Claude; no key needed.
+- On GitHub Pages, enter your own Anthropic API key in Settings. It is stored
+  only in that browser and the page calls the API directly. Default model is
+  Claude Opus 5; Sonnet 5 and Haiku 4.5 are selectable to save cost.
+
 ## Adding or editing content
 
 Edit the scenario JSON, run `node tools/validate.js`, commit. No code changes

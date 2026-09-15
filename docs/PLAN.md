@@ -276,6 +276,17 @@ highly consistent across chains.
 - Fixed-ladder review with "due today" on the home page.
 - localStorage state with export/import; service worker and manifest.
 
+### Phase 1b — Simulator ✅ (built)
+
+- 模擬 page: describe a request in Mandarin/English, get the opening line, 2–4
+  likely responses with replies, kanji traps, and tips, all in card format.
+- Two backends: the claude.ai artifact host's built-in `sample` capability
+  (no key) or the Claude API direct from the browser with the owner's key
+  (Opus 5 default, structured JSON output, server-side refusal fallback).
+- Saved phrases form a "我的句子" deck with produce/recognise drills, reference
+  cards, and inclusion in daily review. Last 20 simulations kept for offline
+  re-reading.
+
 ### Phase 2 — Content and loop
 
 - Owner review of `cashier.json` wording; fixes.
