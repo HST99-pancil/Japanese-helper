@@ -1,6 +1,9 @@
 {
   "scenarios": [
     "cashier",
-    "taxi"
+    "restaurant",
+    "taxi",
+    "shopping",
+    "yatai"
   ]
 }

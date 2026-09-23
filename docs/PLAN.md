@@ -212,8 +212,10 @@ js/
 content/
   index.json            list of scenarios
   cashier.json
+  restaurant.json
   taxi.json
-  restaurant.json       (next)
+  shopping.json
+  yatai.json
 tools/
   validate.js           checks ids, roles, furigana bases, reply links, dialogue refs
 sw.js, manifest.json, icon.svg

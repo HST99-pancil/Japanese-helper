@@ -92,7 +92,7 @@ function viewScenario(sid) {
     <p class="intro en muted">${h(s.intro.en)}</p>
     <div class="lessons">
       ${s.dialogue.length ? `<a class="lesson" href="#/s/${sid}/read"><b>1</b><span>讀劇本<small>Read the script · ${s.dialogue.length} 個回合</small></span></a>` : ""}
-      ${staff.length ? `<a class="lesson" href="#/s/${sid}/recognise"><b>${s.dialogue.length ? 2 : "▶"}</b><span>聽懂對方<small>Recognise · ${staff.length} 句</small></span></a>` : ""}
+      ${staff.length ? `<a class="lesson" href="#/s/${sid}/recognise"><b>${s.dialogue.length ? 2 : "▶"}</b><span>聽懂${speakerZh(sid)}<small>Recognise · ${staff.length} 句</small></span></a>` : ""}
       ${me.length ? `<a class="lesson" href="#/s/${sid}/produce"><b>${s.dialogue.length ? 3 : "▶"}</b><span>自己說<small>Produce · ${me.length} 句</small></span></a>` : ""}
       ${s.dialogue.length ? `<a class="lesson" href="#/s/${sid}/rehearse"><b>4</b><span>模擬演練<small>Rehearse the whole dialogue</small></span></a>` : ""}
       <a class="lesson ref" href="#/s/${sid}/cards"><b>▦</b><span>單字卡 · 現場查閱<small>Reference cards · Show mode</small></span></a>
@@ -101,6 +101,12 @@ function viewScenario(sid) {
     ${notes ? `<h2>注意事項 · Notes</h2><ul class="notes">${notes}</ul>` : ""}
     ${s.custom ? `<p class="muted small">要刪除句子：到單字卡，點「刪除」。 / To remove a phrase, open the cards and tap 刪除.</p>` : ""}`;
 }
+
+function speakerLabel(sid) {
+  const sp = scenario(sid)?.speaker;
+  return sp ? `${h(sp.zh_tw)} · ${h(sp.en)}` : "店員 · Staff";
+}
+function speakerZh(sid) { return h(scenario(sid)?.speaker?.zh_tw || "店員"); }
 
 function cardBlock(c, { reveal = true, showZh = true, showEn = true, showFurigana = getSettings().furigana } = {}) {
   return `<div class="card ${c.role}" data-id="${c.id}">
@@ -122,7 +128,7 @@ function viewRead(sid) {
     const st = card(t.staff);
     const replies = t.me.map((id) => cardBlock(card(id))).join("");
     return `<section class="turn"><div class="turn-n">${i + 1}</div>
-      <div class="who">店員 · Staff</div>${cardBlock(st)}
+      <div class="who">${speakerLabel(sid)}</div>${cardBlock(st)}
       ${replies ? `<div class="who me">你 · You</div><div class="replies">${replies}</div>` : ""}
     </section>`;
   }).join("");
@@ -133,7 +139,7 @@ function viewRead(sid) {
     ${turns}
     <h2>其他常用句 · Other useful lines</h2>
     <div class="replies">${extras.map((c) => cardBlock(c)).join("")}</div>
-    <div class="actions"><a class="btn primary" href="#/s/${sid}/recognise">下一課：聽懂店員 ›</a></div>`;
+    <div class="actions"><a class="btn primary" href="#/s/${sid}/recognise">下一課：聽懂${speakerZh(sid)} ›</a></div>`;
   bind();
 }
 
@@ -195,7 +201,7 @@ function renderDrill() {
       body += `<div class="actions grade"><button class="btn miss" data-grade="0">✗ 沒想起來 · Missed</button><button class="btn ok" data-grade="1">✓ 會了 · Got it</button></div>`;
     }
   } else {
-    body += `<div class="who">店員說 · Staff says</div>`;
+    body += `<div class="who">${speakerZh(c.scenario)}說 · ${h(scenario(c.scenario)?.speaker?.en || "Staff")} says</div>`;
     body += `<div class="prompt">
       <div class="line answer">${p.ja || revealed ? ruby(c) : `<span class="ja hidden">（聽）</span>`} ${speakBtn(c.ja, "🔊 再聽一次")}</div>
       ${revealed ? `<div class="zh big">${h(c.zh_tw)}</div><div class="en muted">${h(c.en)}</div>${c.note ? `<div class="note">${c.trap ? `<span class="trap">陷阱 · Trap</span> ` : ""}${h(c.note)}</div>` : ""}` : ""}
@@ -231,7 +237,7 @@ function renderDrill() {
 
 function viewRecognise(sid) {
   const s = scenario(sid); if (!s) return go("#/");
-  startDrill({ title: `2 · 聽懂店員 <small>${h(s.title.zh_tw)}</small>`, back: `#/s/${sid}`, queue: shuffle(cardsOf(sid, "staff")) });
+  startDrill({ title: `2 · 聽懂${speakerZh(sid)} <small>${h(s.title.zh_tw)}</small>`, back: `#/s/${sid}`, queue: shuffle(cardsOf(sid, "staff")) });
 }
 function viewProduce(sid) {
   const s = scenario(sid); if (!s) return go("#/");
@@ -268,7 +274,7 @@ function renderRehearse() {
   const stLv = getCardState(st.id).level;
   const showText = stLv <= 1 || r.phase !== "staff";
   const showMeaning = r.phase !== "staff";
-  let body = `<div class="who">店員 · Staff</div>
+  let body = `<div class="who">${speakerLabel(r.sid)}</div>
     <div class="prompt">
       <div class="line answer">${showText ? ruby(st) : `<span class="ja hidden">（聽）</span>`} ${speakBtn(st.ja, "🔊 再聽一次")}</div>
       ${showMeaning ? `<div class="zh">${h(st.zh_tw)}</div><div class="en muted">${h(st.en)}</div>` : ""}
@@ -338,7 +344,7 @@ function viewCards(sid) {
   app.innerHTML = `${topbar(`單字卡 <small>${h(s.title.zh_tw)}</small>`, `#/s/${sid}`)}
     ${dest}
     <div class="tabs">
-      ${[["me", "我說 · Me"], ["staff", "店員說 · Staff"], ["all", "全部 · All"]].map(([k, l]) => `<button class="tab ${cardFilter === k ? "on" : ""}" data-f="${k}">${l}</button>`).join("")}
+      ${[["me", "我說 · Me"], ["staff", `${speakerZh(sid)}說 · Them`], ["all", "全部 · All"]].map(([k, l]) => `<button class="tab ${cardFilter === k ? "on" : ""}" data-f="${k}">${l}</button>`).join("")}
     </div>
     <p class="hint muted">點一下聽發音；點「放大」給對方看。 / Tap to hear it; tap 放大 to show it full screen.</p>
     <div class="reflist">${list.map((c) => `<div class="refcard ${c.role}" data-speak="${h(c.ja)}">

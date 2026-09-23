@@ -1,0 +1,259 @@
+{
+  "id": "shopping",
+  "title": { "ja": "買い物", "zh_tw": "買東西", "en": "Shopping" },
+  "subtitle": { "zh_tw": "西松屋 / 藥妝店 / 服飾店", "en": "Nishimatsuya / drugstore / clothing shop" },
+  "intro": {
+    "zh_tw": "日本的商店大多是自助的：店員不會來問你要什麼。西松屋更是刻意不接客，這是他們壓低價格的方式。所以這一課重點不是「開口說」，而是「看懂標籤」——尺寸、樓層、賣場指示牌。要問的時候，是你走去收銀台找店員。",
+    "en": "Japanese shops are mostly self-service and staff will not approach you. Nishimatsuya deliberately does not do customer service; that is how they keep prices low. So this lesson is less about speaking than about reading labels: sizes, floors, section signs. When you do need to ask, you go to the register."
+  },
+  "notes": [
+    { "zh_tw": "西松屋店員很少，而且不會主動來問。要問就自己走去收銀台。這不是冷淡，是他們的經營方式。", "en": "Nishimatsuya keeps staff to a minimum and they will not approach you. Walk to the register if you need help. It is not rudeness, it is their business model." },
+    { "zh_tw": "童裝用身高（公分）分尺寸，不是年齡：80、90、100、110、120。出門前先量好小孩身高。", "en": "Children's clothes are sized by height in centimetres, not age: 80, 90, 100, 110, 120. Measure your child before you go." },
+    { "zh_tw": "標籤上的 身長 ＝ 身高，適応身長 ＝ 適合身高，胸囲 ＝ 胸圍，着丈 ＝ 衣長。看懂這幾個字就不用問人。", "en": "On the tag: 身長 height, 適応身長 the height range it fits, 胸囲 chest, 着丈 garment length. Read these and you never need to ask." },
+    { "zh_tw": "賣場指示牌：新生児 / ベビー / キッズ（嬰幼兒到兒童）、肌着（內衣）、トップス（上衣）、ボトムス（下身）、アウター（外套）、靴下（襪子）。", "en": "Section signs: 新生児 newborn, ベビー baby, キッズ kids, 肌着 innerwear, トップス tops, ボトムス bottoms, アウター outerwear, 靴下 socks." },
+    { "zh_tw": "很多分店沒有試衣間，內衣類一律不能試穿也不能退。要問就先問「試着できますか」。", "en": "Many branches have no fitting room, and innerwear can never be tried on or returned. Ask 「試着できますか」 first." },
+    { "zh_tw": "很多店有自助收銀（セルフレジ），螢幕可以切英文，連話都不用說。", "en": "Many shops have self-checkout (セルフレジ) with an English button, so you need not speak at all." },
+    { "zh_tw": "免稅：西松屋多數分店沒有。門口或收銀台沒看到「免税」牌子就別問。大型藥妝店和百貨才普遍有。", "en": "Tax-free: most Nishimatsuya branches do not offer it. If there is no 免税 sign, do not ask. Large drugstores and department stores usually do." },
+    { "zh_tw": "藥妝店的常見字：第一類医薬品（要問藥劑師）、風邪薬（感冒藥）、解熱鎮痛（退燒止痛）、目薬（眼藥水）、湿布（藥布）。", "en": "Drugstore words: 第一類医薬品 needs a pharmacist, 風邪薬 cold medicine, 解熱鎮痛 fever and pain, 目薬 eye drops, 湿布 medicated patch." }
+  ],
+  "dialogue": [
+    { "staff": "shopping.welcome", "me": [] },
+    { "staff": "shopping.help.ask", "me": ["shopping.where.size", "shopping.looking"] },
+    { "staff": "shopping.child.ask", "me": ["shopping.age", "shopping.height"] },
+    { "staff": "shopping.overthere", "me": ["shopping.thanks.me"] },
+    { "staff": "shopping.soldout", "me": ["shopping.other.branch", "shopping.understood"] },
+    { "staff": "shopping.checking", "me": ["shopping.yes.please"] },
+    { "staff": "shopping.nofitting", "me": ["shopping.understood"] },
+    { "staff": "shopping.taxfree.no", "me": ["shopping.understood"] },
+    { "staff": "shopping.register", "me": ["shopping.thanks.me"] }
+  ],
+  "cards": [
+    {
+      "id": "shopping.welcome",
+      "role": "staff",
+      "ja": "いらっしゃいませ。",
+      "furigana": [["いらっしゃいませ。", ""]],
+      "zh_tw": "歡迎光臨。",
+      "en": "Welcome.",
+      "note": "不用回答。西松屋可能連這句都沒有，店員在收銀台忙。 / No reply needed. At Nishimatsuya you may not even hear it; staff are busy at the register."
+    },
+    {
+      "id": "shopping.help.ask",
+      "role": "staff",
+      "ja": "何かお探しですか？",
+      "furigana": [["何", "なに"], ["かお", ""], ["探", "さが"], ["しですか？", ""]],
+      "zh_tw": "在找什麼嗎？",
+      "en": "Are you looking for something?",
+      "note": "探す ＝ 尋找。服飾店、藥妝店會問；西松屋幾乎不會。不想被打擾就說「見ているだけです」。 / 探す = to look for. Clothing shops and drugstores ask; Nishimatsuya rarely does. To be left alone, say 「見ているだけです」.",
+      "variants": ["何かお探しでしょうか", "お探しのものはございますか", "何かございましたらお声がけください"],
+      "replies": ["shopping.where.size", "shopping.looking"]
+    },
+    {
+      "id": "shopping.child.ask",
+      "role": "staff",
+      "ja": "何歳のお子様ですか？",
+      "furigana": [["何歳", "なんさい"], ["のお", ""], ["子様", "こさま"], ["ですか？", ""]],
+      "zh_tw": "小孩幾歲？",
+      "en": "How old is your child?",
+      "note": "歳 ＝ 歲。お子様 ＝ 您的小孩（敬語）。回答年齡或直接給身高更準。 / 歳 = years old. お子様 is the polite word for your child. Answer with the age, or better, the height.",
+      "variants": ["お子様は何歳ですか", "何歳くらいのお子様ですか", "お子様のサイズはおいくつですか"],
+      "replies": ["shopping.age", "shopping.height"]
+    },
+    {
+      "id": "shopping.overthere",
+      "role": "staff",
+      "ja": "あちらの棚になります。",
+      "furigana": [["あちらの", ""], ["棚", "たな"], ["になります。", ""]],
+      "zh_tw": "在那邊的架子。",
+      "en": "It's on that shelf over there.",
+      "note": "棚 ＝ 架子。あちら ＝ 那邊。聽到就看他手指的方向，不用全部聽懂。 / 棚 = shelf. あちら = over there. Watch where they point; you need not catch every word.",
+      "variants": ["あちらになります", "そちらの棚にございます", "二階になります", "あちらの奥になります"],
+      "replies": ["shopping.thanks.me"]
+    },
+    {
+      "id": "shopping.soldout",
+      "role": "staff",
+      "ja": "申し訳ございません、そのサイズは品切れです。",
+      "furigana": [["申", "もう"], ["し", ""], ["訳", "わけ"], ["ございません、そのサイズは", ""], ["品切", "しなぎ"], ["れです。", ""]],
+      "zh_tw": "抱歉，那個尺寸缺貨。",
+      "en": "Sorry, that size is sold out.",
+      "note": "品切れ ＝ 賣完（品 ＋ 切れ，東西用完了）。在庫（ざいこ）＝ 庫存。 / 品切れ = sold out, literally goods-used-up. 在庫 = stock.",
+      "trap": "品切れ ＝ 賣完，不是「品質切開」",
+      "variants": ["そのサイズは在庫がございません", "品切れとなっております", "こちらで最後の一点です"],
+      "replies": ["shopping.other.branch", "shopping.understood"]
+    },
+    {
+      "id": "shopping.checking",
+      "role": "staff",
+      "ja": "少々お待ちください、確認いたします。",
+      "furigana": [["少々", "しょうしょう"], ["お", ""], ["待", "ま"], ["ちください、", ""], ["確認", "かくにん"], ["いたします。", ""]],
+      "zh_tw": "請稍等，我確認一下。",
+      "en": "One moment, I'll check.",
+      "note": "確認 兩字和中文一樣。いたします 是 します 的謙讓語。 / 確認 reads as in Chinese. いたします is the humble form of します.",
+      "variants": ["確認してまいります", "お調べいたします", "在庫を確認いたします"],
+      "replies": ["shopping.yes.please"]
+    },
+    {
+      "id": "shopping.nofitting",
+      "role": "staff",
+      "ja": "申し訳ございません、試着はご遠慮いただいております。",
+      "furigana": [["申", "もう"], ["し", ""], ["訳", "わけ"], ["ございません、", ""], ["試着", "しちゃく"], ["はご", ""], ["遠慮", "えんりょ"], ["いただいております。", ""]],
+      "zh_tw": "抱歉，這裡不提供試穿。",
+      "en": "Sorry, we don't allow trying on.",
+      "note": "試着 ＝ 試穿。ご遠慮いただいております 是超客氣的「請不要」。聽到 遠慮 就知道是婉拒。 / 試着 = trying on. ご遠慮いただいております is an extremely polite refusal. Hearing 遠慮 means no.",
+      "trap": "遠慮 ＝ 婉拒／請勿，不是「考慮得遠」",
+      "variants": ["試着はできません", "肌着の試着はご遠慮ください", "試着室はございません"],
+      "replies": ["shopping.understood"]
+    },
+    {
+      "id": "shopping.taxfree.no",
+      "role": "staff",
+      "ja": "こちらの店舗では免税は行っておりません。",
+      "furigana": [["こちらの", ""], ["店舗", "てんぽ"], ["では", ""], ["免税", "めんぜい"], ["は", ""], ["行", "おこな"], ["っておりません。", ""]],
+      "zh_tw": "本店沒有提供免稅。",
+      "en": "This branch doesn't do tax-free.",
+      "note": "店舗 ＝ 店鋪。行う ＝ 進行、辦理（不是「走」）。 / 店舗 = shop or branch. 行う = to carry out, not to go.",
+      "trap": "行う ＝ 辦理、進行，不是「走」",
+      "variants": ["免税は取り扱っておりません", "免税カウンターは二階になります", "免税対応はしておりません"],
+      "replies": ["shopping.understood"]
+    },
+    {
+      "id": "shopping.register",
+      "role": "staff",
+      "ja": "お会計はあちらのレジでお願いします。",
+      "furigana": [["お", ""], ["会計", "かいけい"], ["はあちらのレジでお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請到那邊的收銀台結帳。",
+      "en": "Please pay at the register over there.",
+      "note": "レジ ＝ 收銀台（register）。接下來就是便利店那一套，你已經學過了。 / レジ = register. What follows is the convenience-store script you already know.",
+      "variants": ["レジはあちらになります", "セルフレジもご利用いただけます", "こちらのレジへどうぞ"],
+      "replies": ["shopping.thanks.me"]
+    },
+
+    {
+      "id": "shopping.where.size",
+      "role": "me",
+      "ja": "百センチの服はどこにありますか？",
+      "furigana": [["百", "ひゃく"], ["センチの", ""], ["服", "ふく"], ["はどこにありますか？", ""]],
+      "zh_tw": "一百公分的衣服在哪裡？",
+      "en": "Where are the 100cm clothes?",
+      "note": "換數字就好：八十 はちじゅう、九十 きゅうじゅう、百十 ひゃくじゅう。〜はどこにありますか 問任何東西都能用。 / Swap the number. 〜はどこにありますか asks where anything is."
+    },
+    {
+      "id": "shopping.looking",
+      "role": "me",
+      "ja": "見ているだけです。",
+      "furigana": [["見", "み"], ["ているだけです。", ""]],
+      "zh_tw": "我只是看看。",
+      "en": "I'm just looking.",
+      "note": "だけ ＝ 只是。被店員問要不要幫忙時的萬用回答，不失禮。 / だけ = only, just. A polite way to decline help."
+    },
+    {
+      "id": "shopping.age",
+      "role": "me",
+      "ja": "三歳です。",
+      "furigana": [["三歳", "さんさい"], ["です。", ""]],
+      "zh_tw": "三歲。",
+      "en": "Three years old.",
+      "note": "一歳 いっさい、二歳 にさい、三歳 さんさい、四歳 よんさい、八歳 はっさい。 / Ages: issai, nisai, sansai, yonsai, hassai."
+    },
+    {
+      "id": "shopping.height",
+      "role": "me",
+      "ja": "身長は九十五センチくらいです。",
+      "furigana": [["身長", "しんちょう"], ["は", ""], ["九十五", "きゅうじゅうご"], ["センチくらいです。", ""]],
+      "zh_tw": "身高大概九十五公分。",
+      "en": "About 95 centimetres tall.",
+      "note": "身長 ＝ 身高。くらい ＝ 大概。比講年齡準，店員會直接帶你去對的架子。 / 身長 = height. くらい = about. More useful than the age; staff can take you straight to the right shelf."
+    },
+    {
+      "id": "shopping.bigger",
+      "role": "me",
+      "ja": "これの大きいサイズはありますか？",
+      "furigana": [["これの", ""], ["大", "おお"], ["きいサイズはありますか？", ""]],
+      "zh_tw": "這件有大一號的嗎？",
+      "en": "Do you have this in a larger size?",
+      "note": "大きい ＝ 大。小一號就說 小さいサイズ。日本尺寸偏小，通常要拿大一號。 / 大きい = big; 小さい for smaller. Japanese sizes run small, so size up."
+    },
+    {
+      "id": "shopping.other.colour",
+      "role": "me",
+      "ja": "他の色はありますか？",
+      "furigana": [["他", "ほか"], ["の", ""], ["色", "いろ"], ["はありますか？", ""]],
+      "zh_tw": "有其他顏色嗎？",
+      "en": "Do you have another colour?",
+      "note": "他 ＝ 其他。色 ＝ 顏色。〜はありますか 是本課的主句型。 / 他 = other, 色 = colour. 〜はありますか is this lesson's core frame."
+    },
+    {
+      "id": "shopping.try",
+      "role": "me",
+      "ja": "試着できますか？",
+      "furigana": [["試着", "しちゃく"], ["できますか？", ""]],
+      "zh_tw": "可以試穿嗎？",
+      "en": "Can I try this on?",
+      "note": "試着 ＝ 試穿（試 ＋ 着）。できますか ＝ 可以嗎，問任何許可都能用。 / 試着 = try on, literally try-wear. できますか asks permission for anything."
+    },
+    {
+      "id": "shopping.other.branch",
+      "role": "me",
+      "ja": "他の店舗にはありますか？",
+      "furigana": [["他", "ほか"], ["の", ""], ["店舗", "てんぽ"], ["にはありますか？", ""]],
+      "zh_tw": "其他分店有嗎？",
+      "en": "Do other branches have it?",
+      "note": "店舗 ＝ 店鋪、分店。店員通常會用電腦幫你查。 / 店舗 = branch. Staff will usually check the computer for you."
+    },
+    {
+      "id": "shopping.yes.please",
+      "role": "me",
+      "ja": "はい、お願いします。",
+      "furigana": [["はい、お", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "好，麻煩你。",
+      "en": "Yes, please.",
+      "note": "店員說要去確認時就這樣回。 / The reply when staff offer to go and check."
+    },
+    {
+      "id": "shopping.understood",
+      "role": "me",
+      "ja": "わかりました、ありがとうございます。",
+      "furigana": [["わかりました、ありがとうございます。", ""]],
+      "zh_tw": "了解，謝謝。",
+      "en": "I see, thank you.",
+      "note": "被拒絕、沒貨、不能試穿時的標準收尾，不尷尬。 / The standard graceful close when the answer is no."
+    },
+    {
+      "id": "shopping.howmuch",
+      "role": "me",
+      "ja": "これはいくらですか？",
+      "furigana": [["これはいくらですか？", ""]],
+      "zh_tw": "這個多少錢？",
+      "en": "How much is this?",
+      "note": "標價通常寫 税込（含稅）或 税抜（未稅）。看到 税抜 要自己加一成。 / Prices are marked 税込 tax included or 税抜 tax excluded. Add ten percent to 税抜."
+    },
+    {
+      "id": "shopping.taxfree.ask",
+      "role": "me",
+      "ja": "免税できますか？",
+      "furigana": [["免税", "めんぜい"], ["できますか？", ""]],
+      "zh_tw": "可以免稅嗎？",
+      "en": "Can I get tax-free?",
+      "note": "要帶護照。門口沒有 免税 牌子就不用問。 / Bring your passport. If there is no 免税 sign, do not bother asking."
+    },
+    {
+      "id": "shopping.bag.no",
+      "role": "me",
+      "ja": "袋はいりません。",
+      "furigana": [["袋", "ふくろ"], ["はいりません。", ""]],
+      "zh_tw": "不用袋子。",
+      "en": "No bag, thanks.",
+      "note": "和便利店同一句。結帳的對話你已經全部學過了。 / The same line as at the register. You already know the whole checkout script."
+    },
+    {
+      "id": "shopping.thanks.me",
+      "role": "me",
+      "ja": "ありがとうございます。",
+      "furigana": [["ありがとうございます。", ""]],
+      "zh_tw": "謝謝。",
+      "en": "Thank you.",
+      "note": "被指路、被幫忙時說。 / Said when someone points the way or helps you."
+    }
+  ]
+}

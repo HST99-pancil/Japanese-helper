@@ -27,7 +27,8 @@ the offline, full-screen version.
 - `js/app.js` — views and router; `srs.js` scheduling; `speech.js` browser TTS
   and optional recognition; `store.js` localStorage with export/import;
   `content.js` loads scenarios
-- `content/*.json` — one file per scenario; `content/index.json` lists them
+- `content/*.json` — one file per scenario (cashier, restaurant, taxi,
+  shopping, yatai); `content/index.json` lists them
 - `tools/validate.js` — checks every card (`node tools/validate.js`)
 - `sw.js`, `manifest.json` — offline cache and installable app
 
@@ -47,4 +48,6 @@ saved into a "我的句子" deck that joins daily review.
 Edit the scenario JSON, run `node tools/validate.js`, commit. No code changes
 needed. Each card has `ja`, `furigana` (segments whose bases must concatenate to
 `ja`), `zh_tw`, `en`, an optional `note`, `trap`, `variants`, and for staff cards
-`replies` pointing at the user's possible answers.
+`replies` pointing at the user's possible answers. A scenario may set
+`"speaker"` to rename the other party (司機 in a taxi, 老闆 at a stall) and
+`"destination": true` to show the typed-destination card.

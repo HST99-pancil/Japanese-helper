@@ -1,0 +1,390 @@
+{
+  "id": "restaurant",
+  "title": { "ja": "レストラン", "zh_tw": "餐廳", "en": "Restaurant" },
+  "subtitle": { "zh_tw": "拉麵店 / 居酒屋 / 食券機 / 家庭餐廳", "en": "Ramen shop / izakaya / ticket machine / family restaurant" },
+  "intro": {
+    "zh_tw": "餐廳的對話比便利店長，但一樣是固定的：幾位、坐哪裡、點什麼、喝什麼、要不要再加點、怎麼結帳。看得懂菜單上的漢字已經贏一半，剩下的是把「これをお願いします」講順。",
+    "en": "Restaurant dialogue is longer than the register but just as fixed: how many, where to sit, what to order, drinks, anything else, how to pay. Reading the kanji on the menu is half the battle; the rest is saying 「これをお願いします」 smoothly."
+  },
+  "notes": [
+    { "zh_tw": "叫店員說「すみません」，不要舉手揮。很多店桌上有呼び出しボタン（呼叫鈴），按下去就好。", "en": "Call staff with 「すみません」, not by waving. Many places have a 呼び出しボタン call button on the table; press that instead." },
+    { "zh_tw": "水和茶是免費的，會自己送上來。要續杯說「お水お願いします」。", "en": "Water and tea are free and come automatically. Ask for more with 「お水お願いします」." },
+    { "zh_tw": "居酒屋會先送一小碟 お通し，那是收費的（300～500 日圓），等於座位費，不能退。", "en": "Izakaya bring a small dish called お通し that is charged (300–500 yen). It works as a cover charge and cannot be declined." },
+    { "zh_tw": "拉麵店常是食券機：先在門口機器買票，再把票交給店員。機器多半有英文鍵。", "en": "Ramen shops often use a ticket machine: buy a ticket at the door, then hand it to staff. Most machines have an English button." },
+    { "zh_tw": "不用給小費。結帳通常要自己拿帳單走到收銀台，不是在桌上付。", "en": "No tipping. You usually take the bill to the register yourself rather than paying at the table." },
+    { "zh_tw": "濕毛巾（おしぼり）是擦手的，不是擦臉或擦桌子。", "en": "The wet towel (おしぼり) is for your hands, not your face or the table." },
+    { "zh_tw": "朋友已經先進去了，就說「待ち合わせです」，店員會直接讓你進去，不會再帶你到新桌。", "en": "If your friend is already inside, say 「待ち合わせです」. Staff will let you through instead of seating you at a new table." },
+    { "zh_tw": "拉麵吃完想加麵說「替え玉お願いします」（只有豚骨類的店有）。飯或麵想加量，點餐時說「大盛りで」。", "en": "For extra noodles say 「替え玉お願いします」 (tonkotsu shops only). For a larger portion, say 「大盛りで」 when ordering." }
+  ],
+  "dialogue": [
+    { "staff": "restaurant.welcome", "me": ["restaurant.two", "restaurant.meeting"] },
+    { "staff": "restaurant.smoking", "me": ["restaurant.nonsmoking"] },
+    { "staff": "restaurant.seat", "me": ["restaurant.thanks.me"] },
+    { "staff": "restaurant.order.ask", "me": ["restaurant.this", "restaurant.recommend", "restaurant.notyet"] },
+    { "staff": "restaurant.drink.ask", "me": ["restaurant.water", "restaurant.beer", "restaurant.nodrink"] },
+    { "staff": "restaurant.anythingelse", "me": ["restaurant.thatsall", "restaurant.same"] },
+    { "staff": "restaurant.wait", "me": [] },
+    { "staff": "restaurant.served", "me": ["restaurant.thanks.me"] },
+    { "staff": "restaurant.bill.together", "me": ["restaurant.together", "restaurant.separate"] },
+    { "staff": "restaurant.thanks", "me": ["restaurant.gochisou"] }
+  ],
+  "cards": [
+    {
+      "id": "restaurant.welcome",
+      "role": "staff",
+      "ja": "いらっしゃいませ。何名様ですか？",
+      "furigana": [["いらっしゃいませ。", ""], ["何名様", "なんめいさま"], ["ですか？", ""]],
+      "zh_tw": "歡迎光臨，請問幾位？",
+      "en": "Welcome. How many people?",
+      "note": "名 ＝ 人數的量詞，様 是敬稱。回答用「〇人です」。 / 名 counts people, 様 is the polite suffix. Answer with 「〇人です」.",
+      "variants": ["何名様でしょうか", "何名様ですか", "お二人様ですか", "何人ですか"],
+      "replies": ["restaurant.two", "restaurant.meeting"]
+    },
+    {
+      "id": "restaurant.smoking",
+      "role": "staff",
+      "ja": "喫煙席と禁煙席、どちらになさいますか？",
+      "furigana": [["喫煙席", "きつえんせき"], ["と", ""], ["禁煙席", "きんえんせき"], ["、どちらになさいますか？", ""]],
+      "zh_tw": "吸菸區還是禁菸區？",
+      "en": "Smoking or non-smoking?",
+      "note": "喫煙 ＝ 吸菸，禁煙 ＝ 禁菸，和中文一樣。なさいます 是 します 的敬語。 / 喫煙 and 禁煙 read as in Chinese. なさいます is the polite form of します.",
+      "variants": ["お席は喫煙と禁煙どちらがよろしいですか", "禁煙席でよろしいですか", "喫煙されますか"],
+      "replies": ["restaurant.nonsmoking"]
+    },
+    {
+      "id": "restaurant.seat",
+      "role": "staff",
+      "ja": "こちらのお席へどうぞ。",
+      "furigana": [["こちらのお", ""], ["席", "せき"], ["へどうぞ。", ""]],
+      "zh_tw": "請往這邊的位子。",
+      "en": "This way to your table, please.",
+      "note": "席 ＝ 座位。こちら ＝ 這邊（敬語）。跟著走就好。 / 席 = seat. こちら = this way (polite). Just follow.",
+      "variants": ["こちらへどうぞ", "お席にご案内します", "こちらのお席になります"],
+      "replies": ["restaurant.thanks.me"]
+    },
+    {
+      "id": "restaurant.ticket",
+      "role": "staff",
+      "ja": "食券を先にお買い求めください。",
+      "furigana": [["食券", "しょっけん"], ["を", ""], ["先", "さき"], ["にお", ""], ["買", "か"], ["い", ""], ["求", "もと"], ["めください。", ""]],
+      "zh_tw": "請先在機器買餐券。",
+      "en": "Please buy a ticket first.",
+      "note": "陷阱：食券 ＝ 餐券，不是食物的證券。先 ＝ 先（這裡確實是「先」）。 / 食券 = meal ticket. Here 先 really does mean first, unlike 「もう少し先」 meaning ahead.",
+      "variants": ["食券をお願いします", "券売機で先に食券をお買い求めください", "先に券売機でお買い求めください"]
+    },
+    {
+      "id": "restaurant.order.ask",
+      "role": "staff",
+      "ja": "ご注文はお決まりですか？",
+      "furigana": [["ご", ""], ["注文", "ちゅうもん"], ["はお", ""], ["決", "き"], ["まりですか？", ""]],
+      "zh_tw": "決定要點什麼了嗎？",
+      "en": "Are you ready to order?",
+      "note": "注文 ＝ 點餐（中文的「訂單」）。決まる ＝ 決定。還沒決定就說「まだです」。 / 注文 = to order, the same characters as Chinese 訂單. 決まる = to be decided. Not ready? Say 「まだです」.",
+      "variants": ["ご注文お決まりですか", "ご注文はいかがなさいますか", "ご注文どうぞ", "お決まりでしたらどうぞ"],
+      "replies": ["restaurant.this", "restaurant.recommend", "restaurant.notyet"]
+    },
+    {
+      "id": "restaurant.drink.ask",
+      "role": "staff",
+      "ja": "お飲み物はいかがですか？",
+      "furigana": [["お", ""], ["飲", "の"], ["み", ""], ["物", "もの"], ["はいかがですか？", ""]],
+      "zh_tw": "要喝點什麼嗎？",
+      "en": "Anything to drink?",
+      "note": "飲み物 ＝ 飲料（飲 ＋ 物）。いかがですか ＝ 如何、要不要。 / 飲み物 = drink, literally drink-thing. いかがですか = how about it?",
+      "variants": ["お飲み物はどうされますか", "お飲み物は何になさいますか", "何かお飲み物は"],
+      "replies": ["restaurant.water", "restaurant.beer", "restaurant.nodrink"]
+    },
+    {
+      "id": "restaurant.anythingelse",
+      "role": "staff",
+      "ja": "以上でよろしいですか？",
+      "furigana": [["以上", "いじょう"], ["でよろしいですか？", ""]],
+      "zh_tw": "這樣就好了嗎？",
+      "en": "Is that everything?",
+      "note": "以上 ＝ 以上、就這些，和中文一樣。點完餐一定會問。 / 以上 reads as in Chinese and means that is all. Always asked at the end of an order.",
+      "variants": ["ご注文は以上でよろしいですか", "以上でよろしかったですか", "他にご注文は"],
+      "replies": ["restaurant.thatsall", "restaurant.same"]
+    },
+    {
+      "id": "restaurant.wait",
+      "role": "staff",
+      "ja": "少々お待ちください。",
+      "furigana": [["少々", "しょうしょう"], ["お", ""], ["待", "ま"], ["ちください。", ""]],
+      "zh_tw": "請稍等。",
+      "en": "One moment, please.",
+      "note": "和便利店同一句。不用回答，點個頭就好。 / The same line as at the register. No reply needed; a nod is enough.",
+      "variants": ["少々お待ちくださいませ", "しばらくお待ちください", "少しお時間いただきます"]
+    },
+    {
+      "id": "restaurant.served",
+      "role": "staff",
+      "ja": "お待たせしました。ご注文の品です。",
+      "furigana": [["お", ""], ["待", "ま"], ["たせしました。ご", ""], ["注文", "ちゅうもん"], ["の", ""], ["品", "しな"], ["です。", ""]],
+      "zh_tw": "久等了，這是您點的餐。",
+      "en": "Thank you for waiting. Here is your order.",
+      "note": "品 ＝ 品項、東西。上菜時說。你回「ありがとうございます」。 / 品 = item. Said when the food arrives. Reply with ありがとうございます.",
+      "variants": ["お待たせしました", "こちらご注文の品になります", "お待たせいたしました"],
+      "replies": ["restaurant.thanks.me"]
+    },
+    {
+      "id": "restaurant.lastorder",
+      "role": "staff",
+      "ja": "ラストオーダーのお時間です。",
+      "furigana": [["ラストオーダーのお", ""], ["時間", "じかん"], ["です。", ""]],
+      "zh_tw": "最後點餐時間到了。",
+      "en": "It's last orders.",
+      "note": "居酒屋、餐廳打烊前 30 分鐘會來問。要加點就趁現在。 / Announced about 30 minutes before closing. Order now or not at all.",
+      "variants": ["ラストオーダーになります", "そろそろラストオーダーですが", "ラストオーダーのお時間ですがいかがですか"]
+    },
+    {
+      "id": "restaurant.bill.together",
+      "role": "staff",
+      "ja": "お会計はご一緒ですか？",
+      "furigana": [["お", ""], ["会計", "かいけい"], ["はご", ""], ["一緒", "いっしょ"], ["ですか？", ""]],
+      "zh_tw": "帳單要一起算嗎？",
+      "en": "Is the bill together?",
+      "note": "陷阱：会計 ＝ 結帳，不是會計學。一緒 ＝ 一起。 / Trap: 会計 means the bill, not accounting. 一緒 = together.",
+      "trap": "会計 ＝ 結帳，不是會計",
+      "variants": ["お会計ご一緒でよろしいですか", "お支払いはご一緒ですか", "ご一緒でよろしいですか"],
+      "replies": ["restaurant.together", "restaurant.separate"]
+    },
+    {
+      "id": "restaurant.thanks",
+      "role": "staff",
+      "ja": "ありがとうございました。またお越しくださいませ。",
+      "furigana": [["ありがとうございました。また", ""], ["お", ""], ["越", "こ"], ["しくださいませ。", ""]],
+      "zh_tw": "謝謝光臨，歡迎再來。",
+      "en": "Thank you. Please come again.",
+      "note": "越す ＝ 前來（敬語）。你回「ごちそうさまでした」。 / 越す = to come (polite). You reply with ごちそうさまでした.",
+      "variants": ["ありがとうございました", "またお越しください", "ありがとうございます"],
+      "replies": ["restaurant.gochisou"]
+    },
+
+    {
+      "id": "restaurant.two",
+      "role": "me",
+      "ja": "二人です。",
+      "furigana": [["二人", "ふたり"], ["です。", ""]],
+      "zh_tw": "兩位。",
+      "en": "Two people.",
+      "note": "一人 ひとり、二人 ふたり、三人 さんにん、四人 よにん。前兩個是特殊唸法。 / 一人 hitori, 二人 futari, then 三人 sannin, 四人 yonin. The first two are irregular."
+    },
+    {
+      "id": "restaurant.meeting",
+      "role": "me",
+      "ja": "待ち合わせです。友達が先に入っています。",
+      "furigana": [["待", "ま"], ["ち", ""], ["合", "あ"], ["わせです。", ""], ["友達", "ともだち"], ["が", ""], ["先", "さき"], ["に", ""], ["入", "はい"], ["っています。", ""]],
+      "zh_tw": "我跟人約好了，朋友已經先進去了。",
+      "en": "I'm meeting someone. My friend is already inside.",
+      "note": "只說前半句「待ち合わせです」也夠用，店員一聽就懂，不會再帶你到新桌。 / Just 「待ち合わせです」 is enough; staff understand at once and will not seat you elsewhere."
+    },
+    {
+      "id": "restaurant.friend.there",
+      "role": "me",
+      "ja": "あそこに友達がいます。",
+      "furigana": [["あそこに", ""], ["友達", "ともだち"], ["がいます。", ""]],
+      "zh_tw": "朋友在那邊。（指過去）",
+      "en": "My friend is over there. (pointing)",
+      "note": "已經看到朋友就指過去說這句，比解釋快。 / If you can already see them, point and say this. Faster than explaining."
+    },
+    {
+      "id": "restaurant.nonsmoking",
+      "role": "me",
+      "ja": "禁煙席でお願いします。",
+      "furigana": [["禁煙席", "きんえんせき"], ["でお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "禁菸區，麻煩你。",
+      "en": "Non-smoking, please.",
+      "note": "又是 〜でお願いします。換成 喫煙席 就是吸菸區。 / The 〜でお願いします frame again. Swap in 喫煙席 for smoking."
+    },
+    {
+      "id": "restaurant.notyet",
+      "role": "me",
+      "ja": "もう少し待ってください。",
+      "furigana": [["もう", ""], ["少", "すこ"], ["し", ""], ["待", "ま"], ["ってください。", ""]],
+      "zh_tw": "請再等一下。（還沒決定）",
+      "en": "A little longer, please. (not ready yet)",
+      "note": "還在看菜單時說。或更短：「まだです」。 / Say it while still reading the menu. Or just 「まだです」."
+    },
+    {
+      "id": "restaurant.this",
+      "role": "me",
+      "ja": "これをお願いします。",
+      "furigana": [["これをお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "我要這個。（指菜單）",
+      "en": "This one, please. (pointing at the menu)",
+      "note": "指著菜單說，最萬用。兩份就說「これを二つ」。 / Point at the menu and say it. For two, 「これを二つ」."
+    },
+    {
+      "id": "restaurant.two.of",
+      "role": "me",
+      "ja": "これを二つお願いします。",
+      "furigana": [["これを", ""], ["二", "ふた"], ["つお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "這個要兩份。",
+      "en": "Two of these, please.",
+      "note": "一つ ひとつ、二つ ふたつ、三つ みっつ、四つ よっつ。點菜數量就用這組。 / 一つ hitotsu, 二つ futatsu, 三つ mittsu, 四つ yottsu. Use this set for dishes."
+    },
+    {
+      "id": "restaurant.recommend",
+      "role": "me",
+      "ja": "おすすめは何ですか？",
+      "furigana": [["おすすめは", ""], ["何", "なん"], ["ですか？", ""]],
+      "zh_tw": "有什麼推薦的？",
+      "en": "What do you recommend?",
+      "note": "看不懂菜單時最好用的一句。店員通常會指菜單給你看。 / The best line when the menu defeats you. Staff usually point at the menu."
+    },
+    {
+      "id": "restaurant.same",
+      "role": "me",
+      "ja": "同じものをもう一つお願いします。",
+      "furigana": [["同", "おな"], ["じものをもう", ""], ["一", "ひと"], ["つお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "再來一份一樣的。",
+      "en": "One more of the same, please.",
+      "note": "同じ ＝ 同、一樣。加點時不用重講菜名。 / 同じ = same. Saves repeating the dish name when ordering more."
+    },
+    {
+      "id": "restaurant.water",
+      "role": "me",
+      "ja": "お水お願いします。",
+      "furigana": [["お", ""], ["水", "みず"], ["お", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請給我水。",
+      "en": "Water, please.",
+      "note": "水是免費的，要幾杯都可以。熱茶是 お茶（おちゃ）。 / Water is free, as much as you like. Hot tea is お茶."
+    },
+    {
+      "id": "restaurant.beer",
+      "role": "me",
+      "ja": "生ビールを一つお願いします。",
+      "furigana": [["生", "なま"], ["ビールを", ""], ["一", "ひと"], ["つお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "一杯生啤酒。",
+      "en": "One draft beer, please.",
+      "note": "生 ＝ 生的，生ビール 就是生啤。居酒屋第一杯的標準點法。 / 生 = raw or fresh; 生ビール is draft beer. The standard first order at an izakaya."
+    },
+    {
+      "id": "restaurant.nodrink",
+      "role": "me",
+      "ja": "お水で大丈夫です。",
+      "furigana": [["お", ""], ["水", "みず"], ["で", ""], ["大丈夫", "だいじょうぶ"], ["です。", ""]],
+      "zh_tw": "水就好了。",
+      "en": "Water is fine.",
+      "note": "婉拒飲料的說法。大丈夫です 又出現了。 / Declines the drink offer. 大丈夫です again."
+    },
+    {
+      "id": "restaurant.thatsall",
+      "role": "me",
+      "ja": "以上でお願いします。",
+      "furigana": [["以上", "いじょう"], ["でお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "就這些，麻煩你。",
+      "en": "That's everything, thanks.",
+      "note": "用店員的詞回他，最自然。 / Echoing the staff member's own word is the natural reply."
+    },
+    {
+      "id": "restaurant.nopork",
+      "role": "me",
+      "ja": "豚肉は入っていますか？",
+      "furigana": [["豚肉", "ぶたにく"], ["は", ""], ["入", "はい"], ["っていますか？", ""]],
+      "zh_tw": "裡面有豬肉嗎？",
+      "en": "Does this contain pork?",
+      "note": "豚 ＝ 豬（中文的豚是小豬）。入っている ＝ 有放進去。換字就能問別的：牛肉、卵、エビ。 / 豚 = pig; Chinese 豚 means piglet. Swap the noun to ask about 牛肉, 卵 (egg), エビ (prawn)."
+    },
+    {
+      "id": "restaurant.nospicy",
+      "role": "me",
+      "ja": "辛くしないでください。",
+      "furigana": [["辛", "から"], ["くしないでください。", ""]],
+      "zh_tw": "請不要做辣的。",
+      "en": "Not spicy, please.",
+      "note": "陷阱：辛 在日文是「辣」，中文的辛苦是另一回事。〜しないでください ＝ 請不要〜。 / Trap: 辛 means spicy in Japanese. 〜しないでください = please do not 〜.",
+      "trap": "辛い ＝ 辣，不是辛苦"
+    },
+    {
+      "id": "restaurant.large",
+      "role": "me",
+      "ja": "大盛りでお願いします。",
+      "furigana": [["大盛", "おおも"], ["りでお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "要大份的。",
+      "en": "Large portion, please.",
+      "note": "大盛り ＝ 大份，並盛（なみもり）＝ 普通，小盛 ＝ 小份。多數店大盛免費或加 100 日圓。 / 大盛り = large, 並盛 = regular, 小盛 = small. Often free or 100 yen extra."
+    },
+    {
+      "id": "restaurant.kaedama",
+      "role": "me",
+      "ja": "替え玉お願いします。",
+      "furigana": [["替", "か"], ["え", ""], ["玉", "だま"], ["お", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "加麵，麻煩你。",
+      "en": "Extra noodles, please.",
+      "note": "替え玉 ＝ 換一球麵。只有豚骨拉麵店有，湯要留著。 / 替え玉 is a second ball of noodles, tonkotsu shops only. Keep some soup for it."
+    },
+    {
+      "id": "restaurant.call",
+      "role": "me",
+      "ja": "すみません。",
+      "furigana": [["すみません。", ""]],
+      "zh_tw": "不好意思。（叫店員）",
+      "en": "Excuse me. (calling staff)",
+      "note": "叫店員就說這句，聲音要夠大。桌上有鈴就按鈴。 / Say it clearly and loudly enough to carry. If the table has a call button, press that."
+    },
+    {
+      "id": "restaurant.bill",
+      "role": "me",
+      "ja": "お会計お願いします。",
+      "furigana": [["お", ""], ["会計", "かいけい"], ["お", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "麻煩結帳。",
+      "en": "The bill, please.",
+      "note": "很多店要自己拿帳單走去收銀台，店員會指方向。 / In many places you carry the slip to the register; staff will point the way."
+    },
+    {
+      "id": "restaurant.together",
+      "role": "me",
+      "ja": "一緒でお願いします。",
+      "furigana": [["一緒", "いっしょ"], ["でお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "一起算。",
+      "en": "Together, please.",
+      "note": "一緒 ＝ 一起。〜でお願いします 再一次。 / 一緒 = together. The 〜でお願いします frame once more."
+    },
+    {
+      "id": "restaurant.separate",
+      "role": "me",
+      "ja": "別々でお願いします。",
+      "furigana": [["別々", "べつべつ"], ["でお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "分開付。",
+      "en": "Separately, please.",
+      "note": "別々 ＝ 各自、分開。有些小店不接受分開付，會說「まとめてお願いします」。 / 別々 = separately. Small places may refuse and ask you to pay as one."
+    },
+    {
+      "id": "restaurant.takeaway",
+      "role": "me",
+      "ja": "持ち帰りできますか？",
+      "furigana": [["持", "も"], ["ち", ""], ["帰", "かえ"], ["りできますか？", ""]],
+      "zh_tw": "可以打包嗎？",
+      "en": "Can I take this away?",
+      "note": "持ち帰り ＝ 帶回去，就是打包。生食類多半不行。 / 持ち帰り = take home. Usually refused for raw dishes."
+    },
+    {
+      "id": "restaurant.toilet",
+      "role": "me",
+      "ja": "お手洗いはどこですか？",
+      "furigana": [["お", ""], ["手洗", "てあら"], ["いはどこですか？", ""]],
+      "zh_tw": "洗手間在哪裡？",
+      "en": "Where is the toilet?",
+      "note": "手洗い ＝ 洗手（的地方），比 トイレ 客氣一點。 / 手洗い literally hand-washing, slightly politer than トイレ."
+    },
+    {
+      "id": "restaurant.thanks.me",
+      "role": "me",
+      "ja": "ありがとうございます。",
+      "furigana": [["ありがとうございます。", ""]],
+      "zh_tw": "謝謝。",
+      "en": "Thank you.",
+      "note": "帶位、上菜時說。現在式。 / Said when seated and when food arrives. Present tense."
+    },
+    {
+      "id": "restaurant.gochisou",
+      "role": "me",
+      "ja": "ごちそうさまでした。",
+      "furigana": [["ごちそうさまでした。", ""]],
+      "zh_tw": "謝謝款待。（吃飽離開時）",
+      "en": "Thank you for the meal.",
+      "note": "離開時對店員說，日本人一定會說。比 ありがとう 更貼切。 / Said to staff on leaving. Japanese people always say it; it fits better than ありがとう here."
+    }
+  ]
+}

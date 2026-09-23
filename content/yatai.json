@@ -1,0 +1,842 @@
+{
+  "id": "yatai",
+  "title": {
+    "ja": "屋台・移動販売",
+    "zh_tw": "路邊攤・餐車",
+    "en": "Food truck / street stall"
+  },
+  "subtitle": {
+    "zh_tw": "烤雞串車 / 章魚燒攤 / 祭典攤位",
+    "en": "Yakitori truck / takoyaki stall / festival stand"
+  },
+  "speaker": {
+    "zh_tw": "老闆",
+    "en": "Vendor"
+  },
+  "intro": {
+    "zh_tw": "這一課和其他場景不一樣：攤販老闆不講敬語。便利店那套「ご利用ですか」在這裡不會出現，你會聽到「タレ？塩？」「何本？」這種很短的話。聽起來像在催你，其實只是攤販的講話方式。學會聽懂不客氣的日文，比學會說更重要。",
+    "en": "This lesson is different from the others: stall owners do not use keigo. The convenience-store phrases vanish and you hear clipped lines like 「タレ？塩？」 and 「何本？」. It can sound brusque; it is just how stalls talk. Understanding casual Japanese matters more here than producing it."
+  },
+  "notes": [
+    {
+      "zh_tw": "攤販用普通形（タメ口），不是敬語。「何本？」＝「何本になさいますか？」。句子短不是沒禮貌。",
+      "en": "Stalls use plain form, not keigo. 「何本？」 is the short version of 「何本になさいますか？」. Brevity is not rudeness."
+    },
+    {
+      "zh_tw": "烤雞串一定會被問「タレか塩か」——醬汁還是鹽。不確定就說 タレで，第一次去幾乎不會錯。",
+      "en": "Yakitori always brings the question タレ or 塩, sauce or salt. If unsure say タレで; it is rarely the wrong choice."
+    },
+    {
+      "zh_tw": "串用「本」數，而且會變音：一本 いっぽん、二本 にほん、三本 さんぼん、五本 ごほん、六本 ろっぽん、十本 じゅっぽん。",
+      "en": "Skewers are counted with 本, and the sound shifts: ippon, nihon, sanbon, gohon, roppon, juppon."
+    },
+    {
+      "zh_tw": "看不懂菜單就點「盛り合わせ」（綜合拼盤），最安全的一句。一串大約 120～180 日圓。",
+      "en": "If the menu defeats you, order 盛り合わせ, the assorted set. A skewer runs about 120–180 yen."
+    },
+    {
+      "zh_tw": "很多移動販売只收現金。先問「カード使えますか」比較保險，有些車貼了 PayPay 貼紙就可以掃碼。",
+      "en": "Many trucks are cash only. Ask 「カード使えますか」 first; some display a PayPay sticker for QR payment."
+    },
+    {
+      "zh_tw": "賣完就收攤（売り切れ御免），想吃就早點去。也可以問「何時までやってますか」。",
+      "en": "They close when sold out, so go early. You can ask 「何時までやってますか」, how late are you open."
+    },
+    {
+      "zh_tw": "現烤要等，老闆會說「十分くらいかかるよ」。有長椅就坐著等，沒有就說「また来ます」晚點回來。",
+      "en": "Grilling takes time and they will say it takes about ten minutes. Sit on the benches if there are any, or say 「また来ます」 and come back."
+    },
+    {
+      "zh_tw": "車窗上貼的白紙通常是營業許可證，日本規定移動販売必須展示。看到就表示是合法攤位。",
+      "en": "The white notice in the window is the business licence; mobile vendors must display it. Seeing one means the stall is licensed."
+    }
+  ],
+  "dialogue": [
+    {
+      "staff": "yatai.irasshai",
+      "me": [
+        "yatai.recommend",
+        "yatai.this"
+      ]
+    },
+    {
+      "staff": "yatai.recommend.reply",
+      "me": [
+        "yatai.moriawase",
+        "yatai.twoeach"
+      ]
+    },
+    {
+      "staff": "yatai.howmany",
+      "me": [
+        "yatai.five",
+        "yatai.two"
+      ]
+    },
+    {
+      "staff": "yatai.tare.shio",
+      "me": [
+        "yatai.tare",
+        "yatai.shio",
+        "yatai.omakase"
+      ]
+    },
+    {
+      "staff": "yatai.wait",
+      "me": [
+        "yatai.willwait",
+        "yatai.comeback"
+      ]
+    },
+    {
+      "staff": "yatai.soldout",
+      "me": [
+        "yatai.other.recommend"
+      ]
+    },
+    {
+      "staff": "yatai.cash",
+      "me": [
+        "yatai.ok.cash"
+      ]
+    },
+    {
+      "staff": "yatai.total",
+      "me": [
+        "yatai.thanks.me"
+      ]
+    },
+    {
+      "staff": "yatai.hot",
+      "me": [
+        "yatai.thanks.me"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "yatai.irasshai",
+      "role": "staff",
+      "ja": "いらっしゃい！",
+      "furigana": [
+        [
+          "いらっしゃい！",
+          ""
+        ]
+      ],
+      "zh_tw": "來啦！",
+      "en": "Come on in!",
+      "note": "注意不是 いらっしゃいませ。攤販省掉 ませ，語氣更隨便、更熱情。 / Note it is not いらっしゃいませ. Stalls drop the ませ, which sounds warmer and rougher.",
+      "variants": [
+        "いらっしゃい",
+        "はいどうぞ",
+        "何にする？"
+      ],
+      "replies": [
+        "yatai.recommend",
+        "yatai.this"
+      ]
+    },
+    {
+      "id": "yatai.recommend.reply",
+      "role": "staff",
+      "ja": "ももとねぎまが人気だよ。",
+      "furigana": [
+        [
+          "ももとねぎまが",
+          ""
+        ],
+        [
+          "人気",
+          "にんき"
+        ],
+        [
+          "だよ。",
+          ""
+        ]
+      ],
+      "zh_tw": "腿肉跟雞蔥最受歡迎。",
+      "en": "Thigh and chicken-and-leek are the popular ones.",
+      "note": "人気 ＝ 人氣、受歡迎，和中文一樣。だよ 是普通形的語尾，敬語會說 です。 / 人気 reads as in Chinese. だよ is the plain-form ending; keigo would use です.",
+      "variants": [
+        "ももが一番出るよ",
+        "つくねもおすすめ",
+        "盛り合わせもあるよ"
+      ],
+      "replies": [
+        "yatai.moriawase",
+        "yatai.twoeach"
+      ]
+    },
+    {
+      "id": "yatai.howmany",
+      "role": "staff",
+      "ja": "何本にする？",
+      "furigana": [
+        [
+          "何本",
+          "なんぼん"
+        ],
+        [
+          "にする？",
+          ""
+        ]
+      ],
+      "zh_tw": "要幾串？",
+      "en": "How many skewers?",
+      "note": "陷阱：本 是細長物的量詞（串、根），不是「書本」。〜にする ＝ 決定要〜，普通形。 / Trap: 本 counts long thin things like skewers, not books. 〜にする = to decide on, plain form.",
+      "trap": "本 ＝ 串／根，不是書本",
+      "variants": [
+        "何本？",
+        "いくつ？",
+        "何本いる？",
+        "何本ですか"
+      ],
+      "replies": [
+        "yatai.five",
+        "yatai.two"
+      ]
+    },
+    {
+      "id": "yatai.tare.shio",
+      "role": "staff",
+      "ja": "タレと塩、どっちにする？",
+      "furigana": [
+        [
+          "タレと",
+          ""
+        ],
+        [
+          "塩",
+          "しお"
+        ],
+        [
+          "、どっちにする？",
+          ""
+        ]
+      ],
+      "zh_tw": "要醬汁還是鹽？",
+      "en": "Sauce or salt?",
+      "note": "烤雞串的招牌問題，躲不掉。どっち 是 どちら 的普通形。塩 ＝ 鹽。 / The signature yakitori question. どっち is the casual どちら. 塩 = salt.",
+      "variants": [
+        "タレ？塩？",
+        "味はどうする？",
+        "タレでいい？",
+        "塩とタレどっち"
+      ],
+      "replies": [
+        "yatai.tare",
+        "yatai.shio",
+        "yatai.omakase"
+      ]
+    },
+    {
+      "id": "yatai.wait",
+      "role": "staff",
+      "ja": "今から焼くから、十分くらいかかるよ。",
+      "furigana": [
+        [
+          "今",
+          "いま"
+        ],
+        [
+          "から",
+          ""
+        ],
+        [
+          "焼",
+          "や"
+        ],
+        [
+          "くから、",
+          ""
+        ],
+        [
+          "十分",
+          "じゅっぷん"
+        ],
+        [
+          "くらいかかるよ。",
+          ""
+        ]
+      ],
+      "zh_tw": "現在才開始烤，要十分鐘左右。",
+      "en": "I'm grilling it now, so about ten minutes.",
+      "note": "焼く ＝ 烤（焼き鳥的焼）。かかる ＝ 花費（時間或錢）。くらい ＝ 左右。 / 焼く = to grill, the 焼 of yakitori. かかる = to take time or cost. くらい = about.",
+      "variants": [
+        "ちょっと待ってね",
+        "五分くらいかかるよ",
+        "今焼くから待ってて",
+        "十分ほどかかります"
+      ],
+      "replies": [
+        "yatai.willwait",
+        "yatai.comeback"
+      ]
+    },
+    {
+      "id": "yatai.soldout",
+      "role": "staff",
+      "ja": "ごめん、それもう売り切れ。",
+      "furigana": [
+        [
+          "ごめん、それもう",
+          ""
+        ],
+        [
+          "売",
+          "う"
+        ],
+        [
+          "り",
+          ""
+        ],
+        [
+          "切",
+          "き"
+        ],
+        [
+          "れ。",
+          ""
+        ]
+      ],
+      "zh_tw": "抱歉，那個賣完了。",
+      "en": "Sorry, that one's sold out.",
+      "note": "ごめん 是普通形的道歉，敬語會說 申し訳ございません。売り切れ ＝ 賣完。 / ごめん is the casual apology; keigo would be 申し訳ございません. 売り切れ = sold out.",
+      "trap": "売り切れ ＝ 賣完，不是「賣切開」",
+      "variants": [
+        "それ売り切れちゃった",
+        "もう終わっちゃった",
+        "今日はもうないんだ"
+      ],
+      "replies": [
+        "yatai.other.recommend"
+      ]
+    },
+    {
+      "id": "yatai.cash",
+      "role": "staff",
+      "ja": "現金だけなんだ、ごめんね。",
+      "furigana": [
+        [
+          "現金",
+          "げんきん"
+        ],
+        [
+          "だけなんだ、ごめんね。",
+          ""
+        ]
+      ],
+      "zh_tw": "只收現金，抱歉喔。",
+      "en": "Cash only, sorry.",
+      "note": "だけ ＝ 只有。なんだ、ね 都是普通形的軟化語尾。 / だけ = only. なんだ and ね are casual softening endings.",
+      "variants": [
+        "現金のみだよ",
+        "カードは使えないんだ",
+        "ペイペイなら使えるよ"
+      ],
+      "replies": [
+        "yatai.ok.cash"
+      ]
+    },
+    {
+      "id": "yatai.total",
+      "role": "staff",
+      "ja": "六百円ね。",
+      "furigana": [
+        [
+          "六百円",
+          "ろっぴゃくえん"
+        ],
+        [
+          "ね。",
+          ""
+        ]
+      ],
+      "zh_tw": "六百日圓。",
+      "en": "Six hundred yen.",
+      "note": "沒有「〜になります」，就是直接講價錢加個 ね。金額聽不懂就看手指或給大鈔。 / No 〜になります, just the number plus ね. If you miss it, watch their fingers or hand over a note.",
+      "variants": [
+        "六百円です",
+        "ちょうど六百円",
+        "はい、六百円"
+      ],
+      "replies": [
+        "yatai.thanks.me"
+      ]
+    },
+    {
+      "id": "yatai.hot",
+      "role": "staff",
+      "ja": "熱いから気をつけてね。",
+      "furigana": [
+        [
+          "熱",
+          "あつ"
+        ],
+        [
+          "いから",
+          ""
+        ],
+        [
+          "気",
+          "き"
+        ],
+        [
+          "をつけてね。",
+          ""
+        ]
+      ],
+      "zh_tw": "很燙，小心喔。",
+      "en": "It's hot, be careful.",
+      "note": "気をつけて ＝ 小心。熱い ＝ 燙（不是「熱情」）。 / 気をつけて = take care. 熱い = hot to the touch.",
+      "variants": [
+        "熱いよ",
+        "気をつけて",
+        "できたてだからね"
+      ],
+      "replies": [
+        "yatai.thanks.me"
+      ]
+    },
+    {
+      "id": "yatai.until",
+      "role": "staff",
+      "ja": "八時までやってるよ。",
+      "furigana": [
+        [
+          "八時",
+          "はちじ"
+        ],
+        [
+          "までやってるよ。",
+          ""
+        ]
+      ],
+      "zh_tw": "開到八點。",
+      "en": "We're here until eight.",
+      "note": "やってる 是 やっている 的口語省略。まで ＝ 到。 / やってる is the spoken contraction of やっている. まで = until.",
+      "variants": [
+        "八時くらいまでかな",
+        "売り切れたら終わり",
+        "七時までだよ"
+      ]
+    },
+    {
+      "id": "yatai.recommend",
+      "role": "me",
+      "ja": "おすすめは何ですか？",
+      "furigana": [
+        [
+          "おすすめは",
+          ""
+        ],
+        [
+          "何",
+          "なん"
+        ],
+        [
+          "ですか？",
+          ""
+        ]
+      ],
+      "zh_tw": "推薦哪個？",
+      "en": "What do you recommend?",
+      "note": "你可以用敬語，老闆用普通形，這樣完全沒問題。客人講客氣話是正常的。 / You may use polite form while they answer casually. A customer being polite is entirely normal."
+    },
+    {
+      "id": "yatai.this",
+      "role": "me",
+      "ja": "これください。",
+      "furigana": [
+        [
+          "これください。",
+          ""
+        ]
+      ],
+      "zh_tw": "我要這個。（指）",
+      "en": "This one, please. (pointing)",
+      "note": "指著烤台上的串說。攤販最有效的一句。 / Point at the skewers on the grill. The most effective line at a stall."
+    },
+    {
+      "id": "yatai.moriawase",
+      "role": "me",
+      "ja": "盛り合わせを一つお願いします。",
+      "furigana": [
+        [
+          "盛",
+          "も"
+        ],
+        [
+          "り",
+          ""
+        ],
+        [
+          "合",
+          "あ"
+        ],
+        [
+          "わせを",
+          ""
+        ],
+        [
+          "一",
+          "ひと"
+        ],
+        [
+          "つお",
+          ""
+        ],
+        [
+          "願",
+          "ねが"
+        ],
+        [
+          "いします。",
+          ""
+        ]
+      ],
+      "zh_tw": "綜合拼盤一份。",
+      "en": "One assorted set, please.",
+      "note": "盛り合わせ ＝ 各樣裝在一起。看不懂菜單時最安全的一句。 / 盛り合わせ = an assortment served together. The safest order when the menu defeats you."
+    },
+    {
+      "id": "yatai.twoeach",
+      "role": "me",
+      "ja": "それを二本ずつお願いします。",
+      "furigana": [
+        [
+          "それを",
+          ""
+        ],
+        [
+          "二本",
+          "にほん"
+        ],
+        [
+          "ずつお",
+          ""
+        ],
+        [
+          "願",
+          "ねが"
+        ],
+        [
+          "いします。",
+          ""
+        ]
+      ],
+      "zh_tw": "那些各兩串。",
+      "en": "Two of each of those, please.",
+      "note": "ずつ ＝ 各、每樣。老闆推薦兩三種時最好用。 / ずつ = each, apiece. Perfect when they have named two or three items."
+    },
+    {
+      "id": "yatai.five",
+      "role": "me",
+      "ja": "五本お願いします。",
+      "furigana": [
+        [
+          "五本",
+          "ごほん"
+        ],
+        [
+          "お",
+          ""
+        ],
+        [
+          "願",
+          "ねが"
+        ],
+        [
+          "いします。",
+          ""
+        ]
+      ],
+      "zh_tw": "五串。",
+      "en": "Five, please.",
+      "note": "五本 ごほん。注意 一本 いっぽん、三本 さんぼん、六本 ろっぽん 會變音。 / Gohon. Watch the sound shifts in ippon, sanbon, roppon."
+    },
+    {
+      "id": "yatai.two",
+      "role": "me",
+      "ja": "二本お願いします。",
+      "furigana": [
+        [
+          "二本",
+          "にほん"
+        ],
+        [
+          "お",
+          ""
+        ],
+        [
+          "願",
+          "ねが"
+        ],
+        [
+          "いします。",
+          ""
+        ]
+      ],
+      "zh_tw": "兩串。",
+      "en": "Two, please.",
+      "note": "二本 にほん，和「日本」同音，靠情境分辨。 / Nihon, a homophone of 日本 Japan. Context tells them apart."
+    },
+    {
+      "id": "yatai.tare",
+      "role": "me",
+      "ja": "タレでお願いします。",
+      "furigana": [
+        [
+          "タレでお",
+          ""
+        ],
+        [
+          "願",
+          "ねが"
+        ],
+        [
+          "いします。",
+          ""
+        ]
+      ],
+      "zh_tw": "要醬汁。",
+      "en": "Sauce, please.",
+      "note": "タレ ＝ 甜鹹醬汁，經典口味。〜でお願いします 又出現了。 / タレ is the classic sweet-savoury glaze. The 〜でお願いします frame again."
+    },
+    {
+      "id": "yatai.shio",
+      "role": "me",
+      "ja": "塩でお願いします。",
+      "furigana": [
+        [
+          "塩",
+          "しお"
+        ],
+        [
+          "でお",
+          ""
+        ],
+        [
+          "願",
+          "ねが"
+        ],
+        [
+          "いします。",
+          ""
+        ]
+      ],
+      "zh_tw": "要鹽。",
+      "en": "Salt, please.",
+      "note": "塩 ＝ 鹽（日文寫法和中文的鹽不同字）。清爽，吃得出肉味。 / 塩 is the Japanese form of the salt character. Lighter, lets the meat show through."
+    },
+    {
+      "id": "yatai.half",
+      "role": "me",
+      "ja": "半分ずつお願いします。",
+      "furigana": [
+        [
+          "半分",
+          "はんぶん"
+        ],
+        [
+          "ずつお",
+          ""
+        ],
+        [
+          "願",
+          "ねが"
+        ],
+        [
+          "いします。",
+          ""
+        ]
+      ],
+      "zh_tw": "一半醬汁一半鹽。",
+      "en": "Half and half, please.",
+      "note": "半分 ＝ 一半。兩種都想試就這樣說。 / 半分 = half. Say this when you want to try both."
+    },
+    {
+      "id": "yatai.omakase",
+      "role": "me",
+      "ja": "おまかせで。",
+      "furigana": [
+        [
+          "おまかせで。",
+          ""
+        ]
+      ],
+      "zh_tw": "你決定就好。",
+      "en": "You choose.",
+      "note": "任せる ＝ 交給。計程車路線也用同一句。最輕鬆的回答。 / From 任せる, to entrust. The same line works for taxi routes. The easiest answer of all."
+    },
+    {
+      "id": "yatai.willwait",
+      "role": "me",
+      "ja": "大丈夫です、待ちます。",
+      "furigana": [
+        [
+          "大丈夫",
+          "だいじょうぶ"
+        ],
+        [
+          "です、",
+          ""
+        ],
+        [
+          "待",
+          "ま"
+        ],
+        [
+          "ちます。",
+          ""
+        ]
+      ],
+      "zh_tw": "沒關係，我等。",
+      "en": "That's fine, I'll wait.",
+      "note": "這裡的 大丈夫 是「沒關係」。同一個詞在便利店是「不用了」，看情境。 / Here 大丈夫 means that is fine. At the register it means no thanks. Context decides."
+    },
+    {
+      "id": "yatai.comeback",
+      "role": "me",
+      "ja": "じゃあ、また来ます。",
+      "furigana": [
+        [
+          "じゃあ、また",
+          ""
+        ],
+        [
+          "来",
+          "き"
+        ],
+        [
+          "ます。",
+          ""
+        ]
+      ],
+      "zh_tw": "那我等一下再來。",
+      "en": "I'll come back then.",
+      "note": "じゃあ ＝ 那麼。また ＝ 再。不想等就這樣說，很自然。 / じゃあ = well then, また = again. A natural way to leave without waiting."
+    },
+    {
+      "id": "yatai.other.recommend",
+      "role": "me",
+      "ja": "じゃあ、他にはありますか？",
+      "furigana": [
+        [
+          "じゃあ、",
+          ""
+        ],
+        [
+          "他",
+          "ほか"
+        ],
+        [
+          "にはありますか？",
+          ""
+        ]
+      ],
+      "zh_tw": "那還有什麼？",
+      "en": "What else do you have then?",
+      "note": "賣完時的接話。他 ＝ 其他。 / What to say when something is sold out. 他 = other."
+    },
+    {
+      "id": "yatai.card.ask",
+      "role": "me",
+      "ja": "カード使えますか？",
+      "furigana": [
+        [
+          "カード",
+          ""
+        ],
+        [
+          "使",
+          "つか"
+        ],
+        [
+          "えますか？",
+          ""
+        ]
+      ],
+      "zh_tw": "可以刷卡嗎？",
+      "en": "Can I pay by card?",
+      "note": "點餐前先問比較保險。使えますか ＝ 能用嗎。 / Ask before ordering to be safe. 使えますか = can it be used?"
+    },
+    {
+      "id": "yatai.ok.cash",
+      "role": "me",
+      "ja": "大丈夫です。",
+      "furigana": [
+        [
+          "大丈夫",
+          "だいじょうぶ"
+        ],
+        [
+          "です。",
+          ""
+        ]
+      ],
+      "zh_tw": "沒關係。",
+      "en": "That's fine.",
+      "note": "只收現金時的回答。不用多解釋。 / The reply when they say cash only. No need to explain further."
+    },
+    {
+      "id": "yatai.howlate",
+      "role": "me",
+      "ja": "何時までやってますか？",
+      "furigana": [
+        [
+          "何時",
+          "なんじ"
+        ],
+        [
+          "までやってますか？",
+          ""
+        ]
+      ],
+      "zh_tw": "開到幾點？",
+      "en": "How late are you open?",
+      "note": "移動販売常常只出現幾小時，值得先問。 / Trucks often stay only a few hours, so it is worth asking."
+    },
+    {
+      "id": "yatai.takeaway",
+      "role": "me",
+      "ja": "持ち帰りで。",
+      "furigana": [
+        [
+          "持",
+          "も"
+        ],
+        [
+          "ち",
+          ""
+        ],
+        [
+          "帰",
+          "かえ"
+        ],
+        [
+          "りで。",
+          ""
+        ]
+      ],
+      "zh_tw": "帶走。",
+      "en": "To take away.",
+      "note": "攤販版的短說法，不用講完整句。有長椅就是可以坐著吃。 / The clipped stall version; no full sentence needed. Benches mean you may eat there."
+    },
+    {
+      "id": "yatai.thanks.me",
+      "role": "me",
+      "ja": "ありがとうございます。",
+      "furigana": [
+        [
+          "ありがとうございます。",
+          ""
+        ]
+      ],
+      "zh_tw": "謝謝。",
+      "en": "Thank you.",
+      "note": "拿到東西時說。對攤販說 どうも 也可以，更輕鬆。 / Said as you take the food. どうも also works at a stall and sounds more relaxed."
+    }
+  ]
+}
