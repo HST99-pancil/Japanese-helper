@@ -1,0 +1,329 @@
+{
+  "id": "ticket",
+  "title": { "ja": "回数券", "zh_tw": "回數券", "en": "Multi-ride tickets" },
+  "subtitle": { "zh_tw": "錢湯 / 泳池 / 公車 / 自助洗衣", "en": "Bathhouse / pool / bus / laundromat" },
+  "speaker": { "zh_tw": "櫃台", "en": "Counter" },
+  "intro": {
+    "zh_tw": "回數券的概念和中文完全一樣，連漢字都一樣寫。日本最常見的是「十一枚綴り」——買十次的錢，拿十一張票。錢湯、泳池、公車、自助洗衣、理髮店都有。這一課的重點是三個問題：幾張、多久到期、別人能不能用。",
+    "en": "回数券 means exactly what 回數券 means in Chinese, written with the same characters. The classic Japanese deal is 十一枚綴り: pay for ten visits, get eleven tickets. Bathhouses, pools, buses, laundromats and barbers all sell them. This lesson turns on three questions: how many, when it expires, and whether someone else can use it."
+  },
+  "notes": [
+    { "zh_tw": "最標準的划算方式是「十一枚綴り」：付十次的錢拿十一張票，等於第十一次免費。有些地方是十二枚或打九折。", "en": "The standard deal is 十一枚綴り: pay for ten and get eleven tickets, so the eleventh visit is free. Some places give twelve, or a straight ten percent off." },
+    { "zh_tw": "票用「枚」數，不是「張」：一枚 いちまい、二枚 にまい、十枚 じゅうまい、何枚 なんまい。扁平的東西都用 枚。", "en": "Tickets are counted with 枚, not 張: ichimai, nimai, juumai, nanmai. 枚 counts anything flat." },
+    { "zh_tw": "最常見的地方：錢湯、溫泉、市民泳池、體育館、自助洗衣、理髮店、公車、咖啡店（コーヒーチケット）。", "en": "Most common at: public baths, hot springs, municipal pools, sports centres, laundromats, barbers, buses, and cafés (coffee tickets)." },
+    { "zh_tw": "電車的回數券大多已經停售了。JR 東日本在二〇二一年廢止了大部分區間，很多私鐵也跟進，改成 IC 卡的點數回饋。去窗口問電車回數券通常會白跑。", "en": "Train 回数券 have mostly been discontinued. JR East ended most of them in 2021 and many private railways followed, replacing them with IC card point schemes. Asking at a railway window is usually a wasted trip." },
+    { "zh_tw": "幾乎都不能退款（払い戻し不可），買之前先確認有效期限。常見是發行日起一年。", "en": "Almost never refundable. Check the expiry before buying; one year from the date of issue is typical." },
+    { "zh_tw": "好消息：回數券通常不記名，全家人都能用，一次撕幾張也可以。買之前可以問「他の人も使えますか」確認。", "en": "Good news: they are usually not tied to one person, so the whole family can use them and you can tear off several at once. Confirm with 「他の人も使えますか」." },
+    { "zh_tw": "很多地方是在券売機買，不是跟人買。看到機器就先找「回数券」那個鍵。多數只收現金。", "en": "Many places sell them from a machine, not a person. Look for the 回数券 button on the 券売機. Cash only in most cases." },
+    { "zh_tw": "公車的回數券跟司機買，或到營業所買。短期旅客通常買「一日乗車券」更划算。", "en": "On buses you buy from the driver or at the depot. For a short visit, a 一日乗車券 day pass is usually better value." }
+  ],
+  "dialogue": [
+    { "staff": "ticket.greet", "me": ["ticket.ask"] },
+    { "staff": "ticket.explain", "me": ["ticket.howmany.sheets", "ticket.save.ask"] },
+    { "staff": "ticket.adult.child", "me": ["ticket.adult", "ticket.both"] },
+    { "staff": "ticket.howmany", "me": ["ticket.one"] },
+    { "staff": "ticket.expiry", "me": ["ticket.today.ask"] },
+    { "staff": "ticket.anyone.ok", "me": ["ticket.understood"] },
+    { "staff": "ticket.norefund", "me": ["ticket.understood"] },
+    { "staff": "ticket.cash", "me": ["ticket.ok.cash"] },
+    { "staff": "ticket.total", "me": ["ticket.thanks.me"] },
+    { "staff": "ticket.here", "me": ["ticket.thanks.me"] }
+  ],
+  "cards": [
+    {
+      "id": "ticket.greet",
+      "role": "staff",
+      "ja": "いらっしゃいませ。",
+      "furigana": [["いらっしゃいませ。", ""]],
+      "zh_tw": "歡迎光臨。",
+      "en": "Welcome.",
+      "note": "錢湯的櫃台叫 番台（ばんだい）或 受付（うけつけ）。 / The counter at a bathhouse is called 番台 or 受付.",
+      "variants": ["はい、どうぞ", "いらっしゃい", "こんにちは"],
+      "replies": ["ticket.ask"]
+    },
+    {
+      "id": "ticket.explain",
+      "role": "staff",
+      "ja": "回数券は十一枚綴りで、十回分の料金になります。",
+      "furigana": [["回数券", "かいすうけん"], ["は", ""], ["十一枚", "じゅういちまい"], ["綴", "つづ"], ["りで、", ""], ["十回分", "じゅっかいぶん"], ["の", ""], ["料金", "りょうきん"], ["になります。", ""]],
+      "zh_tw": "回數券是十一張一本，算十次的錢。",
+      "en": "The book has eleven tickets for the price of ten visits.",
+      "note": "綴り ＝ 裝訂成一本。十回分 ＝ 十次份。這句就是「買十送一」。 / 綴り = a bound set. 十回分 = the amount for ten times. This sentence is the buy-ten-get-one-free deal.",
+      "variants": ["十一枚で十回分のお値段です", "一綴り十一枚になります", "十二枚綴りになります", "一割引きになります"],
+      "replies": ["ticket.howmany.sheets", "ticket.save.ask"]
+    },
+    {
+      "id": "ticket.adult.child",
+      "role": "staff",
+      "ja": "大人用と子供用、どちらになさいますか？",
+      "furigana": [["大人用", "おとなよう"], ["と", ""], ["子供用", "こどもよう"], ["、どちらになさいますか？", ""]],
+      "zh_tw": "大人的還是小孩的？",
+      "en": "Adult or child?",
+      "note": "用（よう）＝ 供〜使用。大人用 ＝ 大人用的。小孩票便宜很多，別忘了問。 / 用 = for the use of. Children's tickets are much cheaper; remember to ask.",
+      "variants": ["大人と子供どちらですか", "大人用でよろしいですか", "お子様の分もご入用ですか"],
+      "replies": ["ticket.adult", "ticket.both"]
+    },
+    {
+      "id": "ticket.howmany",
+      "role": "staff",
+      "ja": "何綴りにされますか？",
+      "furigana": [["何", "なん"], ["綴", "つづ"], ["りにされますか？", ""]],
+      "zh_tw": "要幾本？",
+      "en": "How many books?",
+      "note": "綴り 是「本」的量詞。也可能問 何枚（幾張）。〜にされますか ＝ 要哪個（敬語）。 / 綴り counts booklets. They may instead ask 何枚, how many sheets.",
+      "variants": ["何枚にされますか", "いくつご入用ですか", "一綴りでよろしいですか"],
+      "replies": ["ticket.one"]
+    },
+    {
+      "id": "ticket.expiry",
+      "role": "staff",
+      "ja": "有効期限は発行日から一年です。",
+      "furigana": [["有効期限", "ゆうこうきげん"], ["は", ""], ["発行日", "はっこうび"], ["から", ""], ["一年", "いちねん"], ["です。", ""]],
+      "zh_tw": "有效期限是發行日起一年。",
+      "en": "Valid for one year from the date of issue.",
+      "note": "有効期限 四個字和中文一樣，唸 ゆうこうきげん。発行日 ＝ 發行日。這句幾乎全看得懂。 / 有効期限 reads exactly as Chinese 有效期限. 発行日 = date of issue. You can read this whole sentence already.",
+      "variants": ["有効期限は一年間です", "期限はございません", "有効期限は三か月です", "期限内にお使いください"],
+      "replies": ["ticket.today.ask"]
+    },
+    {
+      "id": "ticket.anyone.ok",
+      "role": "staff",
+      "ja": "どなたでもお使いいただけます。",
+      "furigana": [["どなたでもお", ""], ["使", "つか"], ["いいただけます。", ""]],
+      "zh_tw": "任何人都可以使用。",
+      "en": "Anyone can use them.",
+      "note": "どなた ＝ 哪位（敬語的 誰）。でも ＝ 都。全家共用沒問題。 / どなた is the polite 誰. でも = any at all. The whole family can share them.",
+      "variants": ["ご家族でお使いいただけます", "ご本人様のみとなります", "何枚でも一度にお使いいただけます"],
+      "replies": ["ticket.understood"]
+    },
+    {
+      "id": "ticket.norefund",
+      "role": "staff",
+      "ja": "払い戻しはできませんので、ご了承ください。",
+      "furigana": [["払", "はら"], ["い", ""], ["戻", "もど"], ["しはできませんので、ご", ""], ["了承", "りょうしょう"], ["ください。", ""]],
+      "zh_tw": "不能退款，請見諒。",
+      "en": "They cannot be refunded, thank you for understanding.",
+      "note": "払い戻し ＝ 付出去的錢退回來 ＝ 退款。ご了承ください ＝ 請諒解，日本店家的固定說法。 / 払い戻し literally pay-back, so refund. ご了承ください is the standard Japanese way of saying please accept this.",
+      "trap": "払い戻し ＝ 退款，不是「付還」",
+      "variants": ["払い戻しは致しかねます", "返金はできません", "払い戻しは手数料がかかります"],
+      "replies": ["ticket.understood"]
+    },
+    {
+      "id": "ticket.cash",
+      "role": "staff",
+      "ja": "お支払いは現金のみとなります。",
+      "furigana": [["お", ""], ["支払", "しはら"], ["いは", ""], ["現金", "げんきん"], ["のみとなります。", ""]],
+      "zh_tw": "只收現金。",
+      "en": "Cash only.",
+      "note": "のみ ＝ 只（書面語，比 だけ 正式）。錢湯、公車常常只收現金。 / のみ = only, more formal than だけ. Bathhouses and buses are often cash only.",
+      "variants": ["現金のみです", "カードもご利用いただけます", "回数券は現金のみとなります"],
+      "replies": ["ticket.ok.cash"]
+    },
+    {
+      "id": "ticket.total",
+      "role": "staff",
+      "ja": "五千円になります。",
+      "furigana": [["五千円", "ごせんえん"], ["になります。", ""]],
+      "zh_tw": "五千日圓。",
+      "en": "That's 5,000 yen.",
+      "note": "金額看螢幕或收據就好。價錢各地不同，東京錢湯一次約五百多日圓。 / Read the amount off the screen or receipt. Prices vary; a Tokyo bathhouse is a little over 500 yen a visit.",
+      "variants": ["五千円ちょうどです", "五千五百円になります", "お会計五千円です"],
+      "replies": ["ticket.thanks.me"]
+    },
+    {
+      "id": "ticket.here",
+      "role": "staff",
+      "ja": "こちらが回数券です。大切にお持ちください。",
+      "furigana": [["こちらが", ""], ["回数券", "かいすうけん"], ["です。", ""], ["大切", "たいせつ"], ["にお", ""], ["持", "も"], ["ちください。", ""]],
+      "zh_tw": "這是回數券，請收好。",
+      "en": "Here are your tickets. Please keep them safe.",
+      "note": "大切に ＝ 珍惜地、好好地。弄丟不補發，所以他會提醒你。 / 大切に = carefully, preciously. Lost tickets are not replaced, hence the warning.",
+      "variants": ["こちらになります", "なくさないようにお願いします", "はい、どうぞ"],
+      "replies": ["ticket.thanks.me"]
+    },
+    {
+      "id": "ticket.machine",
+      "role": "staff",
+      "ja": "回数券はあちらの券売機でお買い求めください。",
+      "furigana": [["回数券", "かいすうけん"], ["はあちらの", ""], ["券売機", "けんばいき"], ["でお", ""], ["買", "か"], ["い", ""], ["求", "もと"], ["めください。", ""]],
+      "zh_tw": "回數券請在那邊的售票機買。",
+      "en": "Please buy the tickets from the machine over there.",
+      "note": "券売機 ＝ 售票機（券 ＋ 売 ＋ 機）。買い求める ＝ 購買（客氣說法）。 / 券売機 = ticket vending machine, literally ticket-sell-machine. 買い求める is a polite word for to buy.",
+      "variants": ["券売機でお願いします", "あちらの機械でお買い求めください", "自動券売機になります"]
+    },
+    {
+      "id": "ticket.notavailable",
+      "role": "staff",
+      "ja": "申し訳ございません、回数券は販売しておりません。",
+      "furigana": [["申", "もう"], ["し", ""], ["訳", "わけ"], ["ございません、", ""], ["回数券", "かいすうけん"], ["は", ""], ["販売", "はんばい"], ["しておりません。", ""]],
+      "zh_tw": "抱歉，我們沒有賣回數券。",
+      "en": "Sorry, we don't sell multi-ride tickets.",
+      "note": "販売 ＝ 販賣，和中文一樣。電車窗口最常給這個答案。 / 販売 reads as in Chinese. This is the usual answer at a railway window now.",
+      "variants": ["回数券の取り扱いはございません", "回数券は廃止になりました", "ICカードのポイントサービスをご利用ください"]
+    },
+
+    {
+      "id": "ticket.ask",
+      "role": "me",
+      "ja": "回数券はありますか？",
+      "furigana": [["回数券", "かいすうけん"], ["はありますか？", ""]],
+      "zh_tw": "有回數券嗎？",
+      "en": "Do you have multi-ride tickets?",
+      "note": "本課的第一句。〜はありますか 問任何東西有沒有都能用。 / The opening line of this lesson. 〜はありますか asks whether anything exists."
+    },
+    {
+      "id": "ticket.want",
+      "role": "me",
+      "ja": "回数券をお願いします。",
+      "furigana": [["回数券", "かいすうけん"], ["をお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "我要回數券。",
+      "en": "Multi-ride tickets, please.",
+      "note": "已經知道有賣就直接說這句。〜をお願いします 又出現了。 / Use this when you already know they sell them. The 〜をお願いします frame again."
+    },
+    {
+      "id": "ticket.howmany.sheets",
+      "role": "me",
+      "ja": "何枚入っていますか？",
+      "furigana": [["何枚", "なんまい"], ["入", "はい"], ["っていますか？", ""]],
+      "zh_tw": "裡面有幾張？",
+      "en": "How many tickets are in it?",
+      "note": "枚 ＝ 扁平物的量詞。入っている ＝ 裝在裡面。問便當有什麼也用同一個詞。 / 枚 counts flat things. 入っている = contained inside, the same word as asking what is in a bento."
+    },
+    {
+      "id": "ticket.save.ask",
+      "role": "me",
+      "ja": "普通に買うよりお得ですか？",
+      "furigana": [["普通", "ふつう"], ["に", ""], ["買", "か"], ["うよりお", ""], ["得", "とく"], ["ですか？", ""]],
+      "zh_tw": "比單次買划算嗎？",
+      "en": "Is it cheaper than buying singly?",
+      "note": "陷阱：得 在日文是「划算、賺到」，不是「得到」。お得 到處看得到，看到就是便宜。 / Trap: 得 in Japanese means a good deal, not to obtain. お得 is everywhere on signage and always means a saving.",
+      "trap": "お得 ＝ 划算，不是「得到」"
+    },
+    {
+      "id": "ticket.adult",
+      "role": "me",
+      "ja": "大人用をお願いします。",
+      "furigana": [["大人用", "おとなよう"], ["をお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "大人的，麻煩你。",
+      "en": "Adult, please.",
+      "note": "大人 唸 おとな，是特殊唸法，不是 だいじん。 / 大人 is read otona, an irregular reading, not daijin."
+    },
+    {
+      "id": "ticket.both",
+      "role": "me",
+      "ja": "大人用と子供用を一つずつお願いします。",
+      "furigana": [["大人用", "おとなよう"], ["と", ""], ["子供用", "こどもよう"], ["を", ""], ["一", "ひと"], ["つずつお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "大人的跟小孩的各一本。",
+      "en": "One adult and one child, please.",
+      "note": "ずつ ＝ 各。和路邊攤的「二本ずつ」同一個字。 / ずつ = each, the same word as 二本ずつ at the food stall."
+    },
+    {
+      "id": "ticket.one",
+      "role": "me",
+      "ja": "一つお願いします。",
+      "furigana": [["一", "ひと"], ["つお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "一本就好。",
+      "en": "Just one, please.",
+      "note": "數量問題的萬用答案。兩本就說 二つ（ふたつ）。 / The universal answer to a quantity question. For two, 二つ."
+    },
+    {
+      "id": "ticket.expiry.ask",
+      "role": "me",
+      "ja": "有効期限はありますか？",
+      "furigana": [["有効期限", "ゆうこうきげん"], ["はありますか？", ""]],
+      "zh_tw": "有有效期限嗎？",
+      "en": "Is there an expiry date?",
+      "note": "買之前一定要問。短期旅客買了用不完就虧了。 / Always ask before buying. A short visit may not use up a book."
+    },
+    {
+      "id": "ticket.today.ask",
+      "role": "me",
+      "ja": "今日から使えますか？",
+      "furigana": [["今日", "きょう"], ["から", ""], ["使", "つか"], ["えますか？", ""]],
+      "zh_tw": "今天就可以用嗎？",
+      "en": "Can I use it from today?",
+      "note": "使える ＝ 能用。多數可以當場撕一張用掉。 / 使える = usable. You can usually tear one off and use it immediately."
+    },
+    {
+      "id": "ticket.anyone.ask",
+      "role": "me",
+      "ja": "他の人も使えますか？",
+      "furigana": [["他", "ほか"], ["の", ""], ["人", "ひと"], ["も", ""], ["使", "つか"], ["えますか？", ""]],
+      "zh_tw": "其他人也可以用嗎？",
+      "en": "Can someone else use them?",
+      "note": "全家要共用就先問這句。多數回數券不記名，可以。 / Ask this if the family will share. Most books are not tied to one person."
+    },
+    {
+      "id": "ticket.together.ask",
+      "role": "me",
+      "ja": "一度に二枚使えますか？",
+      "furigana": [["一度", "いちど"], ["に", ""], ["二枚", "にまい"], ["使", "つか"], ["えますか？", ""]],
+      "zh_tw": "一次可以用兩張嗎？",
+      "en": "Can I use two at once?",
+      "note": "兩個人一起進去時問。錢湯通常可以，公車有時不行。 / Ask when two of you go in together. Usually fine at a bathhouse, sometimes not on a bus."
+    },
+    {
+      "id": "ticket.refund.ask",
+      "role": "me",
+      "ja": "払い戻しはできますか？",
+      "furigana": [["払", "はら"], ["い", ""], ["戻", "もど"], ["しはできますか？", ""]],
+      "zh_tw": "可以退款嗎？",
+      "en": "Can they be refunded?",
+      "note": "答案通常是不行。問清楚再買。 / The answer is usually no. Ask before you buy, not after."
+    },
+    {
+      "id": "ticket.machine.where",
+      "role": "me",
+      "ja": "券売機はどこですか？",
+      "furigana": [["券売機", "けんばいき"], ["はどこですか？", ""]],
+      "zh_tw": "售票機在哪裡？",
+      "en": "Where is the ticket machine?",
+      "note": "很多地方是機器賣，不是人賣。〜はどこですか 問位置都能用。 / Many places sell from a machine. 〜はどこですか asks where anything is."
+    },
+    {
+      "id": "ticket.single",
+      "role": "me",
+      "ja": "今日は一回分だけお願いします。",
+      "furigana": [["今日", "きょう"], ["は", ""], ["一回分", "いっかいぶん"], ["だけお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "今天只要單次的。",
+      "en": "Just a single visit today, please.",
+      "note": "不想買整本就這樣說。一回分 ＝ 一次份。だけ ＝ 只要。 / Say this if you do not want the whole book. 一回分 = one visit's worth, だけ = only."
+    },
+    {
+      "id": "ticket.remaining",
+      "role": "me",
+      "ja": "あと何枚残っていますか？",
+      "furigana": [["あと", ""], ["何枚", "なんまい"], ["残", "のこ"], ["っていますか？", ""]],
+      "zh_tw": "還剩幾張？",
+      "en": "How many are left?",
+      "note": "殘 ＝ 剩下（日文寫 残）。票交出去給櫃台時可以問。 / 残 is the Japanese form of 殘, to remain. Ask when you hand the book over."
+    },
+    {
+      "id": "ticket.ok.cash",
+      "role": "me",
+      "ja": "現金でお願いします。",
+      "furigana": [["現金", "げんきん"], ["でお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "付現金。",
+      "en": "Cash, please.",
+      "note": "和便利店、計程車同一句。〜でお願いします 這個句型你已經用了五個場景。 / The same line as at the register and in the taxi. You have now used this frame in five scenarios."
+    },
+    {
+      "id": "ticket.understood",
+      "role": "me",
+      "ja": "わかりました。",
+      "furigana": [["わかりました。", ""]],
+      "zh_tw": "了解。",
+      "en": "Understood.",
+      "note": "聽到不能退款、有期限之類的說明時回這句就好。 / The right reply when they explain a condition like no refunds."
+    },
+    {
+      "id": "ticket.thanks.me",
+      "role": "me",
+      "ja": "ありがとうございます。",
+      "furigana": [["ありがとうございます。", ""]],
+      "zh_tw": "謝謝。",
+      "en": "Thank you.",
+      "note": "拿到票時說。 / Said as you take the tickets."
+    }
+  ]
+}
