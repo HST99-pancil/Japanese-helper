@@ -1,0 +1,330 @@
+{
+  "id": "onsen",
+  "title": { "ja": "温泉・銭湯", "zh_tw": "溫泉・錢湯", "en": "Hot spring / bathhouse" },
+  "subtitle": { "zh_tw": "帶小孩去泡湯", "en": "Going with small children" },
+  "speaker": { "zh_tw": "受付", "en": "Front desk" },
+  "intro": {
+    "zh_tw": "帶小孩去泡湯，要先搞定三件事：還包尿布的小孩多半不能下池、幾歲以後不能跟異性家長進去、有沒有貸切風呂。這一課就是把這三個問題問清楚。順帶一提，日文的「湯」是熱水和浴池，不是喝的湯——這是最容易搞混的一個字。",
+    "en": "Taking children to a bath turns on three things: a child still in nappies usually cannot enter the water, there is an age limit for going in with the opposite-sex parent, and whether a private bath is available. This lesson asks all three. Note too that Japanese 湯 means hot water and a bath, not soup — the single most confusing character here."
+  },
+  "notes": [
+    { "zh_tw": "最大的陷阱：湯 在日文是熱水、浴池，不是喝的湯。男湯（おとこゆ）＝ 男浴池，女湯（おんなゆ）＝ 女浴池。門簾上藍色寫 男、紅色寫 女。喝的湯是 スープ 或 汁。", "en": "The biggest trap: 湯 means hot water or a bath, not soup. 男湯 is the men's bath, 女湯 the women's. The blue curtain says 男, the red says 女. Soup is スープ or 汁." },
+    { "zh_tw": "還沒戒尿布的小孩，多數浴場不能下池：「おむつの取れていないお子様のご入浴はご遠慮ください」。有些接受戲水尿布（水遊び用おむつ），但多數連這個也不行。一定要先問。", "en": "A child still in nappies usually cannot enter the water: the sign reads おむつの取れていないお子様のご入浴はご遠慮ください. Some places accept swim nappies, most do not. Always ask first." },
+    { "zh_tw": "異性同浴的年齡上限由各都道府縣條例訂，近年一直下修。東京自二〇二二年一月起是「七歲以上不可」，等於六歲以下都能跟異性家長進去。其他縣多為六或七歲，少數仍是十歲。看門口告示最準。", "en": "The age limit for entering with the opposite-sex parent is set by prefectural ordinance and has been falling. Tokyo has prohibited seven and above since January 2022, so six and under may go in. Other prefectures set six or seven; a few still allow up to nine. The notice at the door is the authority." },
+    { "zh_tw": "帶嬰兒的標準解法是「貸切風呂」（包場）或旅館的「家族風呂」「部屋風呂」。自己一家人用，沒有上面的限制，水溫也好控制。有小孩就直接往這個方向問。", "en": "With a baby, the answer is a 貸切風呂 private bath, or a ryokan's 家族風呂 or in-room bath. Your family has it to yourselves, the rules above do not apply, and you control the temperature." },
+    { "zh_tw": "進池前一定要在淋浴區把身體洗乾淨，這是鐵則。小池子邊的「掛け湯」是進池前先沖身體用的。毛巾不可以放進池水裡，放頭上或放旁邊。", "en": "Wash your body thoroughly at the shower stations before entering. This is absolute. The 掛け湯 basin by the pool is for rinsing first. Never put your towel in the water; rest it on your head or at the edge." },
+    { "zh_tw": "水溫常在四十到四十二度，對一歲小孩太燙。強酸性泉、硫磺泉對嬰兒皮膚刺激大。小孩泡三到五分鐘就要起來，多補水。", "en": "Water is often 40–42°C, too hot for a one-year-old. Strongly acidic and sulphur springs irritate a baby's skin. Keep small children in for three to five minutes and give them plenty to drink." },
+    { "zh_tw": "更衣室通常有嬰兒床（ベビーベッド）和嬰兒椅（ベビーチェア），讓你先把小孩放著穿衣服。不確定就問，這是很正常的問題。", "en": "Changing rooms usually have a baby cot and a baby seat so you can put the child down while you dress. Ask if unsure; it is a completely ordinary question." },
+    { "zh_tw": "有刺青多半不能進（入れ墨・タトゥーお断り）。小孩不可以在池子裡游泳、跑跳、潛水，這點日本人很在意。", "en": "Tattoos are usually not allowed. Children must not swim, run or duck under the water; Japanese bathers mind this a great deal." }
+  ],
+  "dialogue": [
+    { "staff": "onsen.welcome", "me": ["onsen.family"] },
+    { "staff": "onsen.age.ask", "me": ["onsen.ages"] },
+    { "staff": "onsen.nappy.ask", "me": ["onsen.nappy.yes", "onsen.nappy.no"] },
+    { "staff": "onsen.nappy.rule", "me": ["onsen.understood", "onsen.private.ask"] },
+    { "staff": "onsen.private.yes", "me": ["onsen.private.want", "onsen.reserve.ask"] },
+    { "staff": "onsen.opposite.rule", "me": ["onsen.daughter.ask"] },
+    { "staff": "onsen.price", "me": ["onsen.child.price.ask"] },
+    { "staff": "onsen.towel", "me": ["onsen.towel.want"] },
+    { "staff": "onsen.babybed", "me": ["onsen.thanks.me"] },
+    { "staff": "onsen.wash", "me": ["onsen.understood"] }
+  ],
+  "cards": [
+    {
+      "id": "onsen.welcome",
+      "role": "staff",
+      "ja": "いらっしゃいませ。何名様ですか？",
+      "furigana": [["いらっしゃいませ。", ""], ["何名様", "なんめいさま"], ["ですか？", ""]],
+      "zh_tw": "歡迎光臨，請問幾位？",
+      "en": "Welcome. How many people?",
+      "note": "和餐廳同一句。大人小孩分開講比較清楚。 / The same line as at a restaurant. Count adults and children separately for clarity.",
+      "variants": ["何名様でしょうか", "ご利用は何名様ですか", "大人何名様ですか"],
+      "replies": ["onsen.family"]
+    },
+    {
+      "id": "onsen.age.ask",
+      "role": "staff",
+      "ja": "お子様は何歳ですか？",
+      "furigana": [["お", ""], ["子様", "こさま"], ["は", ""], ["何歳", "なんさい"], ["ですか？", ""]],
+      "zh_tw": "小孩幾歲？",
+      "en": "How old are the children?",
+      "note": "年齡決定票價和能不能跟異性家長進去，所以一定會問。 / Age decides the price and whether they may enter with the opposite-sex parent, so this is always asked.",
+      "variants": ["お子様は何歳でいらっしゃいますか", "お子様のご年齢は", "何歳のお子様ですか"],
+      "replies": ["onsen.ages"]
+    },
+    {
+      "id": "onsen.nappy.ask",
+      "role": "staff",
+      "ja": "おむつは取れていますか？",
+      "furigana": [["おむつは", ""], ["取", "と"], ["れていますか？", ""]],
+      "zh_tw": "尿布戒掉了嗎？",
+      "en": "Is the child out of nappies?",
+      "note": "陷阱：おむつが取れる ＝ 戒掉尿布、學會自己上廁所，不是「把尿布拿走」。這是本課最關鍵的一句。 / Trap: おむつが取れる means toilet-trained, not that the nappy is removed. This is the pivotal line of the lesson.",
+      "trap": "おむつが取れる ＝ 戒尿布，不是「拿掉尿布」",
+      "variants": ["おむつは外れていますか", "トイレは一人でできますか", "おむつのお子様はいらっしゃいますか"],
+      "replies": ["onsen.nappy.yes", "onsen.nappy.no"]
+    },
+    {
+      "id": "onsen.nappy.rule",
+      "role": "staff",
+      "ja": "おむつの取れていないお子様は、ご入浴いただけません。",
+      "furigana": [["おむつの", ""], ["取", "と"], ["れていないお", ""], ["子様", "こさま"], ["は、ご", ""], ["入浴", "にゅうよく"], ["いただけません。", ""]],
+      "zh_tw": "還沒戒尿布的小孩不能下池。",
+      "en": "Children still in nappies cannot enter the bath.",
+      "note": "入浴 ＝ 入浴、泡澡，和中文一樣。いただけません ＝ 不能（敬語）。門口告示也是這句。 / 入浴 reads as in Chinese. いただけません is the polite cannot. The same sentence appears on the door notice.",
+      "variants": ["おむつのお子様はご遠慮いただいております", "水遊び用おむつでもご遠慮ください", "おむつが取れていれば大丈夫です"],
+      "replies": ["onsen.understood", "onsen.private.ask"]
+    },
+    {
+      "id": "onsen.private.yes",
+      "role": "staff",
+      "ja": "貸切風呂もございます。",
+      "furigana": [["貸切風呂", "かしきりぶろ"], ["もございます。", ""]],
+      "zh_tw": "我們也有包場浴池。",
+      "en": "We also have a private bath.",
+      "note": "貸切 ＝ 包下來、整個租給你。有小孩就是往這個方向問。ございます 是 あります 的敬語。 / 貸切 = reserved exclusively. This is the direction to push with children. ございます is the polite あります.",
+      "trap": "貸切 ＝ 包場，不是「借切」",
+      "variants": ["家族風呂がございます", "個室のお風呂もございます", "貸切風呂は予約制になります"],
+      "replies": ["onsen.private.want", "onsen.reserve.ask"]
+    },
+    {
+      "id": "onsen.opposite.rule",
+      "role": "staff",
+      "ja": "六歳以下のお子様は、異性のお風呂に入れます。",
+      "furigana": [["六歳以下", "ろくさいいか"], ["のお", ""], ["子様", "こさま"], ["は、", ""], ["異性", "いせい"], ["のお", ""], ["風呂", "ふろ"], ["に", ""], ["入", "はい"], ["れます。", ""]],
+      "zh_tw": "六歲以下可以進異性的浴池。",
+      "en": "Children six and under may enter the opposite-sex bath.",
+      "note": "異性 和中文一樣。年齡上限各縣不同，東京是七歲以上不可。四歲在哪裡都沒問題。 / 異性 reads as in Chinese. The limit varies by prefecture; Tokyo prohibits seven and above. Four is fine anywhere.",
+      "variants": ["七歳以上は異性のお風呂に入れません", "十歳未満なら大丈夫です", "小学生から別々になります"],
+      "replies": ["onsen.daughter.ask"]
+    },
+    {
+      "id": "onsen.price",
+      "role": "staff",
+      "ja": "三歳以下のお子様は無料です。",
+      "furigana": [["三歳以下", "さんさいいか"], ["のお", ""], ["子様", "こさま"], ["は", ""], ["無料", "むりょう"], ["です。", ""]],
+      "zh_tw": "三歲以下免費。",
+      "en": "Children three and under are free.",
+      "note": "無料 ＝ 免費，和中文的無料一樣意思。以下 ＝ 含本數。 / 無料 = free of charge. 以下 includes the number itself.",
+      "variants": ["未就学児は無料です", "小学生は子供料金になります", "お子様料金は三百円です"],
+      "replies": ["onsen.child.price.ask"]
+    },
+    {
+      "id": "onsen.towel",
+      "role": "staff",
+      "ja": "タオルのレンタルもございます。",
+      "furigana": [["タオルのレンタルもございます。", ""]],
+      "zh_tw": "也有毛巾出租。",
+      "en": "We also rent towels.",
+      "note": "多數溫泉毛巾要另外買或租，一條一百到兩百日圓。自己帶最省。 / Most baths charge for towels, 100–200 yen. Bringing your own is cheapest.",
+      "variants": ["タオルは別料金になります", "タオルセットは二百円です", "バスタオルもご用意しております"],
+      "replies": ["onsen.towel.want"]
+    },
+    {
+      "id": "onsen.babybed",
+      "role": "staff",
+      "ja": "脱衣所にベビーベッドがございます。",
+      "furigana": [["脱衣所", "だつぎじょ"], ["にベビーベッドがございます。", ""]],
+      "zh_tw": "更衣室裡有嬰兒床。",
+      "en": "There is a baby cot in the changing room.",
+      "note": "脱衣所 ＝ 脫衣服的地方 ＝ 更衣室。三個字都看得懂。 / 脱衣所 is literally the undressing place, the changing room. All three characters read across.",
+      "variants": ["脱衣所にベビーチェアもございます", "おむつ替えスペースもございます", "ベビーベッドは女湯のみになります"],
+      "replies": ["onsen.thanks.me"]
+    },
+    {
+      "id": "onsen.wash",
+      "role": "staff",
+      "ja": "体を洗ってから湯船にお入りください。",
+      "furigana": [["体", "からだ"], ["を", ""], ["洗", "あら"], ["ってから", ""], ["湯船", "ゆぶね"], ["にお", ""], ["入", "はい"], ["りください。", ""]],
+      "zh_tw": "請先洗好身體再進池子。",
+      "en": "Please wash before entering the bath.",
+      "note": "湯船 ＝ 浴池（湯 ＋ 船）。〜てから ＝ 做完〜之後。這是日本泡湯的鐵則。 / 湯船 = the tub, literally hot-water boat. 〜てから = after doing 〜. This rule is absolute in Japan.",
+      "variants": ["先に体を洗ってください", "かけ湯をしてからお入りください", "タオルは湯船に入れないでください"],
+      "replies": ["onsen.understood"]
+    },
+    {
+      "id": "onsen.key",
+      "role": "staff",
+      "ja": "こちらがロッカーの鍵です。",
+      "furigana": [["こちらがロッカーの", ""], ["鍵", "かぎ"], ["です。", ""]],
+      "zh_tw": "這是置物櫃的鑰匙。",
+      "en": "Here is your locker key.",
+      "note": "鍵 ＝ 鑰匙。通常是手環式，可以戴著進去。 / 鍵 = key. Usually a wristband you can wear into the bath.",
+      "variants": ["ロッカーキーになります", "こちらの番号のロッカーをお使いください", "鍵はなくさないようにお願いします"]
+    },
+    {
+      "id": "onsen.tattoo",
+      "role": "staff",
+      "ja": "入れ墨のある方はご遠慮いただいております。",
+      "furigana": [["入", "い"], ["れ", ""], ["墨", "ずみ"], ["のある", ""], ["方", "かた"], ["はご", ""], ["遠慮", "えんりょ"], ["いただいております。", ""]],
+      "zh_tw": "有刺青的客人請勿入場。",
+      "en": "Guests with tattoos are not admitted.",
+      "note": "入れ墨 ＝ 刺青（墨 ＝ 墨水）。ご遠慮いただいております 是超客氣的「請不要」，和藥妝店同一句型。 / 入れ墨 = tattoo, literally inserted ink. ご遠慮いただいております is the same ultra-polite refusal as at the drugstore.",
+      "variants": ["タトゥーの方はご利用いただけません", "入れ墨お断り", "シールで隠していただければ大丈夫です"]
+    },
+
+    {
+      "id": "onsen.family",
+      "role": "me",
+      "ja": "大人二人と子供二人です。",
+      "furigana": [["大人", "おとな"], ["二人", "ふたり"], ["と", ""], ["子供", "こども"], ["二人", "ふたり"], ["です。", ""]],
+      "zh_tw": "兩個大人、兩個小孩。",
+      "en": "Two adults and two children.",
+      "note": "大人 唸 おとな。二人 唸 ふたり，都是特殊唸法。 / 大人 is otona and 二人 is futari, both irregular readings."
+    },
+    {
+      "id": "onsen.ages",
+      "role": "me",
+      "ja": "一歳と四歳です。",
+      "furigana": [["一歳", "いっさい"], ["と", ""], ["四歳", "よんさい"], ["です。", ""]],
+      "zh_tw": "一歲跟四歲。",
+      "en": "One and four.",
+      "note": "一歳 いっさい、四歳 よんさい、八歳 はっさい 會變音。四歲在哪裡都能跟爸媽進去。 / Ages one, four and eight shift sound. A four-year-old may go in with either parent anywhere."
+    },
+    {
+      "id": "onsen.nappy.no",
+      "role": "me",
+      "ja": "下の子はまだおむつです。",
+      "furigana": [["下", "した"], ["の", ""], ["子", "こ"], ["はまだおむつです。", ""]],
+      "zh_tw": "小的那個還包尿布。",
+      "en": "The younger one is still in nappies.",
+      "note": "下の子 ＝ 小的那個孩子，上の子 ＝ 大的那個。まだ ＝ 還。誠實講，之後才好安排。 / 下の子 is the younger child, 上の子 the elder. まだ = still. Say it honestly so they can help you."
+    },
+    {
+      "id": "onsen.nappy.yes",
+      "role": "me",
+      "ja": "上の子は取れていますが、下の子はまだです。",
+      "furigana": [["上", "うえ"], ["の", ""], ["子", "こ"], ["は", ""], ["取", "と"], ["れていますが、", ""], ["下", "した"], ["の", ""], ["子", "こ"], ["はまだです。", ""]],
+      "zh_tw": "大的戒了，小的還沒。",
+      "en": "The elder one is trained, the younger isn't.",
+      "note": "〜が ＝ 但是（接續）。一句話交代兩個小孩的狀況。 / 〜が here means but. One sentence covers both children."
+    },
+    {
+      "id": "onsen.nappy.swim.ask",
+      "role": "me",
+      "ja": "水遊び用のおむつでも大丈夫ですか？",
+      "furigana": [["水遊", "みずあそ"], ["び", ""], ["用", "よう"], ["のおむつでも", ""], ["大丈夫", "だいじょうぶ"], ["ですか？", ""]],
+      "zh_tw": "戲水尿布可以嗎？",
+      "en": "Are swim nappies acceptable?",
+      "note": "水遊び ＝ 玩水。多數浴場連這個也不行，但值得一問。 / 水遊び = playing in water. Most baths refuse even these, but it is worth asking."
+    },
+    {
+      "id": "onsen.private.ask",
+      "role": "me",
+      "ja": "貸切風呂はありますか？",
+      "furigana": [["貸切風呂", "かしきりぶろ"], ["はありますか？", ""]],
+      "zh_tw": "有包場浴池嗎？",
+      "en": "Do you have a private bath?",
+      "note": "帶嬰兒最重要的一句。被拒絕之後馬上接這句，多數地方有解法。 / The key line when you have a baby. Ask it right after a refusal; most places have an answer."
+    },
+    {
+      "id": "onsen.private.want",
+      "role": "me",
+      "ja": "貸切風呂をお願いします。",
+      "furigana": [["貸切風呂", "かしきりぶろ"], ["をお", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "我要包場浴池。",
+      "en": "The private bath, please.",
+      "note": "通常四十五分鐘到一小時一組，另外收費。 / Usually booked in 45-minute or one-hour slots for an extra charge."
+    },
+    {
+      "id": "onsen.reserve.ask",
+      "role": "me",
+      "ja": "予約は必要ですか？",
+      "furigana": [["予約", "よやく"], ["は", ""], ["必要", "ひつよう"], ["ですか？", ""]],
+      "zh_tw": "需要預約嗎？",
+      "en": "Do I need to book?",
+      "note": "予約 和 必要 兩個詞都和中文一樣。貸切風呂常常要預約。 / Both 予約 and 必要 read as in Chinese. Private baths often need booking."
+    },
+    {
+      "id": "onsen.daughter.ask",
+      "role": "me",
+      "ja": "娘も男湯に入れますか？",
+      "furigana": [["娘", "むすめ"], ["も", ""], ["男湯", "おとこゆ"], ["に", ""], ["入", "はい"], ["れますか？", ""]],
+      "zh_tw": "女兒可以進男湯嗎？",
+      "en": "Can my daughter come into the men's bath?",
+      "note": "陷阱：娘 在日文是「女兒」，不是母親。男湯 ＝ 男浴池，湯不是喝的。兒子進女湯就說 息子も女湯に。 / Trap: 娘 means daughter in Japanese, not mother. 男湯 is the men's bath. For a son, 息子も女湯に.",
+      "trap": "娘 ＝ 女兒，不是母親"
+    },
+    {
+      "id": "onsen.child.price.ask",
+      "role": "me",
+      "ja": "子供料金はいくらですか？",
+      "furigana": [["子供料金", "こどもりょうきん"], ["はいくらですか？", ""]],
+      "zh_tw": "兒童票多少錢？",
+      "en": "How much is the child rate?",
+      "note": "子供料金 四個字全部看得懂。回數券也可以順便問。 / All four characters of 子供料金 read across. Worth asking about 回数券 at the same time."
+    },
+    {
+      "id": "onsen.towel.want",
+      "role": "me",
+      "ja": "タオルを二枚お願いします。",
+      "furigana": [["タオルを", ""], ["二枚", "にまい"], ["お", ""], ["願", "ねが"], ["いします。", ""]],
+      "zh_tw": "請給我兩條毛巾。",
+      "en": "Two towels, please.",
+      "note": "枚 ＝ 扁平物的量詞，和回數券同一個字。 / 枚 counts flat things, the same counter as for tickets."
+    },
+    {
+      "id": "onsen.babychair.ask",
+      "role": "me",
+      "ja": "赤ちゃん用の椅子はありますか？",
+      "furigana": [["赤", "あか"], ["ちゃん", ""], ["用", "よう"], ["の", ""], ["椅子", "いす"], ["はありますか？", ""]],
+      "zh_tw": "有嬰兒椅嗎？",
+      "en": "Is there a baby seat?",
+      "note": "赤ちゃん ＝ 嬰兒（字面是「紅寶寶」）。洗澡時把小孩放著用。 / 赤ちゃん = baby, literally little red one. Used to park the child while you wash."
+    },
+    {
+      "id": "onsen.temp.ask",
+      "role": "me",
+      "ja": "お湯は何度ですか？",
+      "furigana": [["お", ""], ["湯", "ゆ"], ["は", ""], ["何度", "なんど"], ["ですか？", ""]],
+      "zh_tw": "水溫幾度？",
+      "en": "How hot is the water?",
+      "note": "お湯 ＝ 熱水。何度 ＝ 幾度。四十二度以上對小孩太燙，要先問。 / お湯 = hot water. 何度 = how many degrees. Above 42 is too hot for a child, so ask."
+    },
+    {
+      "id": "onsen.hot",
+      "role": "me",
+      "ja": "子供には熱すぎませんか？",
+      "furigana": [["子供", "こども"], ["には", ""], ["熱", "あつ"], ["すぎませんか？", ""]],
+      "zh_tw": "對小孩會不會太燙？",
+      "en": "Isn't it too hot for children?",
+      "note": "〜すぎる ＝ 太過〜。熱い ＝ 燙。櫃台通常會告訴你哪一池比較溫。 / 〜すぎる = too much. The desk will usually point you to a cooler pool."
+    },
+    {
+      "id": "onsen.together.ask",
+      "role": "me",
+      "ja": "子供と一緒に入れますか？",
+      "furigana": [["子供", "こども"], ["と", ""], ["一緒", "いっしょ"], ["に", ""], ["入", "はい"], ["れますか？", ""]],
+      "zh_tw": "可以跟小孩一起進去嗎？",
+      "en": "Can I go in together with my child?",
+      "note": "一緒に ＝ 一起。最簡單的總括問法，不確定就先問這句。 / 一緒に = together. The simplest catch-all question when unsure."
+    },
+    {
+      "id": "onsen.nappy.change.ask",
+      "role": "me",
+      "ja": "おむつを替える場所はありますか？",
+      "furigana": [["おむつを", ""], ["替", "か"], ["える", ""], ["場所", "ばしょ"], ["はありますか？", ""]],
+      "zh_tw": "有換尿布的地方嗎？",
+      "en": "Is there somewhere to change a nappy?",
+      "note": "替える ＝ 更換（和拉麵的 替え玉 同一個字）。場所 ＝ 場所、地方。 / 替える = to change, the same verb as in 替え玉 at a ramen shop. 場所 = place."
+    },
+    {
+      "id": "onsen.understood",
+      "role": "me",
+      "ja": "わかりました。",
+      "furigana": [["わかりました。", ""]],
+      "zh_tw": "了解。",
+      "en": "Understood.",
+      "note": "聽到規定、被拒絕時的標準回應，不尷尬。 / The graceful reply to a rule or a refusal."
+    },
+    {
+      "id": "onsen.thanks.me",
+      "role": "me",
+      "ja": "ありがとうございます。",
+      "furigana": [["ありがとうございます。", ""]],
+      "zh_tw": "謝謝。",
+      "en": "Thank you.",
+      "note": "拿到鑰匙、毛巾時說。 / Said when you receive the key or towels."
+    }
+  ]
+}

@@ -28,7 +28,7 @@ the offline, full-screen version.
   and optional recognition; `store.js` localStorage with export/import;
   `content.js` loads scenarios
 - `content/*.json` — one file per scenario (cashier, restaurant, taxi,
-  shopping, yatai, ticket); `content/index.json` lists them
+  shopping, yatai, ticket, onsen); `content/index.json` lists them
 - `tools/validate.js` — checks every card (`node tools/validate.js`)
 - `sw.js`, `manifest.json` — offline cache and installable app
 

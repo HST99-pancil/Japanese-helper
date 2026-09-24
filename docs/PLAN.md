@@ -217,6 +217,7 @@ content/
   shopping.json
   yatai.json
   ticket.json
+  onsen.json
 tools/
   validate.js           checks ids, roles, furigana bases, reply links, dialogue refs
 sw.js, manifest.json, icon.svg
