@@ -14,7 +14,8 @@ for (const sid of index.scenarios) {
   if (!fs.existsSync(file)) { fail(`missing file ${file}`); continue; }
   const s = JSON.parse(fs.readFileSync(file, "utf8"));
   if (s.id !== sid) fail(`id "${s.id}" does not match filename`);
-  for (const k of ["title", "notes", "dialogue", "cards"]) if (!s[k]) fail(`missing "${k}"`);
+  for (const k of ["title", "notes", "cards"]) if (!s[k]) fail(`missing "${k}"`);
+  if (!s.dialogue && !s.situations) fail('missing "dialogue" or "situations"');
   const ids = new Map();
   for (const c of s.cards || []) {
     const where = c.id || "(no id)";
@@ -35,16 +36,35 @@ for (const sid of index.scenarios) {
     for (const r of c.replies || []) if (!ids.has(r)) fail(`${c.id}: reply "${r}" not found`);
     if (c.replies && c.role !== "staff") fail(`${c.id}: only staff cards have replies`);
   }
-  for (const [i, turn] of (s.dialogue || []).entries()) {
-    if (!ids.has(turn.staff)) fail(`dialogue[${i}]: staff "${turn.staff}" not found`);
-    else if (ids.get(turn.staff).role !== "staff") fail(`dialogue[${i}]: "${turn.staff}" is not a staff card`);
-    for (const m of turn.me || []) {
-      if (!ids.has(m)) fail(`dialogue[${i}]: me "${m}" not found`);
-      else if (ids.get(m).role !== "me") fail(`dialogue[${i}]: "${m}" is not a me card`);
+  const sits = Array.isArray(s.situations) && s.situations.length
+    ? s.situations
+    : [{ id: "main", turns: s.dialogue || [] }];
+  if (Array.isArray(s.situations)) {
+    const sIds = new Set();
+    for (const sit of s.situations) {
+      if (!sit.id) fail("situation without id");
+      if (sIds.has(sit.id)) fail(`duplicate situation id ${sit.id}`);
+      sIds.add(sit.id);
+      if (!sit.title || !sit.title.zh_tw || !sit.title.en) fail(`situation ${sit.id}: missing title`);
+      if (!Array.isArray(sit.turns) || !sit.turns.length) fail(`situation ${sit.id}: no turns`);
+    }
+    if (s.dialogue) fail("use either dialogue or situations, not both");
+  }
+  let nTurns = 0;
+  for (const sit of sits) {
+    for (const [i, turn] of (sit.turns || []).entries()) {
+      const where = `${sit.id}[${i}]`;
+      nTurns++;
+      if (!ids.has(turn.staff)) fail(`${where}: staff "${turn.staff}" not found`);
+      else if (ids.get(turn.staff).role !== "staff") fail(`${where}: "${turn.staff}" is not a staff card`);
+      for (const m of turn.me || []) {
+        if (!ids.has(m)) fail(`${where}: me "${m}" not found`);
+        else if (ids.get(m).role !== "me") fail(`${where}: "${m}" is not a me card`);
+      }
     }
   }
   const staff = (s.cards || []).filter((c) => c.role === "staff").length;
-  console.log(`  ${s.cards.length} cards (${staff} staff, ${s.cards.length - staff} me), ${s.dialogue.length} turns, ${s.notes.length} notes`);
+  console.log(`  ${s.cards.length} cards (${staff} staff, ${s.cards.length - staff} me), ${nTurns} turns in ${sits.length} situation(s), ${s.notes.length} notes`);
 }
 if (errors) { console.error(`\n${errors} error(s)`); process.exit(1); }
 console.log("\nOK");

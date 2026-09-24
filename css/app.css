@@ -72,6 +72,9 @@ ruby rt { font-size: .5em; color: var(--muted); }
 .actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0; }
 .actions.grade .btn { flex: 1; } .actions.small { margin: 8px 0 0; } .actions.small .btn { min-height: 40px; padding: 8px 14px; }
 
+.sit-head { color: var(--ink); font-size: 1.05rem; margin: 30px 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); }
+.sit-head small { color: var(--muted); font-weight: 400; font-size: .85rem; }
+
 /* drills */
 .drill-head { font-size: .85rem; margin: -4px 0 10px; }
 .prompt { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 18px; min-height: 160px; }

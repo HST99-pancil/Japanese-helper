@@ -85,22 +85,34 @@ function viewScenario(sid) {
   if (!s) return go("#/");
   const p = progress(s.cards);
   const staff = cardsOf(sid, "staff"), me = cardsOf(sid, "me");
+  const sits = situationsOf(sid), nTurns = turnCount(sid);
   const notes = s.notes.map((n) => `<li><div class="zh">${h(n.zh_tw)}</div><div class="en">${h(n.en)}</div></li>`).join("");
   app.innerHTML = `
     ${topbar(`${h(s.title.ja)} <small>${h(s.title.zh_tw)}</small>`)}
     <p class="intro zh">${h(s.intro.zh_tw)}</p>
     <p class="intro en muted">${h(s.intro.en)}</p>
     <div class="lessons">
-      ${s.dialogue.length ? `<a class="lesson" href="#/s/${sid}/read"><b>1</b><span>讀劇本<small>Read the script · ${s.dialogue.length} 個回合</small></span></a>` : ""}
-      ${staff.length ? `<a class="lesson" href="#/s/${sid}/recognise"><b>${s.dialogue.length ? 2 : "▶"}</b><span>聽懂${speakerZh(sid)}<small>Recognise · ${staff.length} 句</small></span></a>` : ""}
-      ${me.length ? `<a class="lesson" href="#/s/${sid}/produce"><b>${s.dialogue.length ? 3 : "▶"}</b><span>自己說<small>Produce · ${me.length} 句</small></span></a>` : ""}
-      ${s.dialogue.length ? `<a class="lesson" href="#/s/${sid}/rehearse"><b>4</b><span>模擬演練<small>Rehearse the whole dialogue</small></span></a>` : ""}
+      ${nTurns ? `<a class="lesson" href="#/s/${sid}/read"><b>1</b><span>讀劇本<small>Read the script · ${nTurns} 個回合${sits.length > 1 ? ` · ${sits.length} 種情況` : ""}</small></span></a>` : ""}
+      ${staff.length ? `<a class="lesson" href="#/s/${sid}/recognise"><b>${nTurns ? 2 : "▶"}</b><span>聽懂${speakerZh(sid)}<small>Recognise · ${staff.length} 句</small></span></a>` : ""}
+      ${me.length ? `<a class="lesson" href="#/s/${sid}/produce"><b>${nTurns ? 3 : "▶"}</b><span>自己說<small>Produce · ${me.length} 句</small></span></a>` : ""}
+      ${nTurns ? `<a class="lesson" href="#/s/${sid}/rehearse"><b>4</b><span>模擬演練<small>Rehearse · ${sits.length > 1 ? `${sits.length} 種情況` : "the whole dialogue"}</small></span></a>` : ""}
       <a class="lesson ref" href="#/s/${sid}/cards"><b>▦</b><span>單字卡 · 現場查閱<small>Reference cards · Show mode</small></span></a>
     </div>
     <div class="progress-line muted">${p.learned}/${p.total} 已學會（程度 3 以上） · ${p.seen} 已看過</div>
     ${notes ? `<h2>注意事項 · Notes</h2><ul class="notes">${notes}</ul>` : ""}
     ${s.custom ? `<p class="muted small">要刪除句子：到單字卡，點「刪除」。 / To remove a phrase, open the cards and tap 刪除.</p>` : ""}`;
 }
+
+function situationsOf(sid) {
+  const sc = scenario(sid);
+  if (!sc) return [];
+  if (Array.isArray(sc.situations) && sc.situations.length) {
+    return sc.situations.map((x, i) => ({ id: x.id || String(i), title: x.title || null, turns: x.turns || [] }));
+  }
+  if (Array.isArray(sc.dialogue) && sc.dialogue.length) return [{ id: "main", title: null, turns: sc.dialogue }];
+  return [];
+}
+function turnCount(sid) { return situationsOf(sid).reduce((n, x) => n + x.turns.length, 0); }
 
 function speakerLabel(sid) {
   const sp = scenario(sid)?.speaker;
@@ -123,14 +135,19 @@ function viewRead(sid) {
   if (!s) return go("#/");
   s.cards.forEach(touch);
   const inDialogue = new Set();
-  const turns = s.dialogue.map((t, i) => {
-    inDialogue.add(t.staff); t.me.forEach((m) => inDialogue.add(m));
-    const st = card(t.staff);
-    const replies = t.me.map((id) => cardBlock(card(id))).join("");
-    return `<section class="turn"><div class="turn-n">${i + 1}</div>
-      <div class="who">${speakerLabel(sid)}</div>${cardBlock(st)}
-      ${replies ? `<div class="who me">你 · You</div><div class="replies">${replies}</div>` : ""}
-    </section>`;
+  const sits = situationsOf(sid);
+  const turns = sits.map((sit) => {
+    const block = sit.turns.map((t, i) => {
+      inDialogue.add(t.staff); t.me.forEach((m) => inDialogue.add(m));
+      const st = card(t.staff);
+      const replies = t.me.map((id) => cardBlock(card(id))).join("");
+      return `<section class="turn"><div class="turn-n">${i + 1}</div>
+        <div class="who">${speakerLabel(sid)}</div>${cardBlock(st)}
+        ${replies ? `<div class="who me">你 · You</div><div class="replies">${replies}</div>` : ""}
+      </section>`;
+    }).join("");
+    const head = sit.title ? `<h2 class="sit-head">${h(sit.title.zh_tw)} <small>${h(sit.title.en)}</small></h2>` : "";
+    return head + block;
   }).join("");
   const extras = s.cards.filter((c) => !inDialogue.has(c.id));
   app.innerHTML = `
@@ -243,7 +260,7 @@ function viewProduce(sid) {
   const s = scenario(sid); if (!s) return go("#/");
   // dialogue order first, extras after, so the flow is learned in sequence
   const order = []; const seen = new Set();
-  for (const t of s.dialogue) for (const m of t.me) if (!seen.has(m)) { seen.add(m); order.push(card(m)); }
+  for (const sit of situationsOf(sid)) for (const t of sit.turns) for (const m of t.me) if (!seen.has(m)) { seen.add(m); order.push(card(m)); }
   for (const c of cardsOf(sid, "me")) if (!seen.has(c.id)) order.push(c);
   startDrill({ title: `3 · 自己說 <small>${h(s.title.zh_tw)}</small>`, back: `#/s/${sid}`, queue: order });
 }
@@ -255,22 +272,31 @@ function viewReview() {
 
 // ---------- rehearsal ----------
 let reh = null;
-function viewRehearse(sid) {
+function viewRehearse(sid, sitId) {
   const s = scenario(sid); if (!s) return go("#/");
-  reh = { sid, i: 0, phase: "staff", transcript: "", graded: new Set() };
+  const sits = situationsOf(sid);
+  if (!sits.length) return go(`#/s/${sid}`);
+  if (sits.length > 1 && !sitId) {
+    app.innerHTML = `${topbar(`4 · 模擬演練 <small>${h(s.title.zh_tw)}</small>`, `#/s/${sid}`)}
+      <p class="hint muted">這個場景有幾種情況，選一個來演練。 / This scenario has more than one situation. Pick one to rehearse.</p>
+      <div class="lessons">${sits.map((x) => `<a class="lesson" href="#/s/${sid}/rehearse/${encodeURIComponent(x.id)}"><b>▶</b><span>${h(x.title?.zh_tw || x.id)}<small>${h(x.title?.en || "")} · ${x.turns.length} 個回合</small></span></a>`).join("")}</div>`;
+    return;
+  }
+  const sit = sits.find((x) => x.id === sitId) || sits[0];
+  reh = { sid, sit, i: 0, phase: "staff", transcript: "", graded: new Set() };
   renderRehearse();
 }
 function renderRehearse() {
   const r = reh, s = scenario(r.sid);
   const back = `#/s/${r.sid}`;
-  if (r.i >= s.dialogue.length) {
+  if (r.i >= r.sit.turns.length) {
     app.innerHTML = `${topbar(`4 · 模擬演練`, back)}<div class="summary"><div class="big">完成 🎉</div>
       <p class="muted">整段對話走完了。明天再演練一次，或去複習。 / You walked the whole dialogue. Rehearse again tomorrow, or review.</p>
       <div class="actions"><a class="btn primary" href="${back}">回到場景</a><button class="btn" id="again">再演練一次</button></div></div>`;
-    document.getElementById("again").onclick = () => viewRehearse(r.sid);
+    document.getElementById("again").onclick = () => { reh = { ...r, i: 0, phase: "staff", transcript: "", graded: new Set() }; renderRehearse(); };
     return;
   }
-  const t = s.dialogue[r.i], st = card(t.staff);
+  const t = r.sit.turns[r.i], st = card(t.staff);
   const stLv = getCardState(st.id).level;
   const showText = stLv <= 1 || r.phase !== "staff";
   const showMeaning = r.phase !== "staff";
@@ -308,7 +334,7 @@ function renderRehearse() {
     }
   }
   app.innerHTML = `${topbar(`4 · 模擬演練 <small>${h(s.title.zh_tw)}</small>`, back)}
-    <div class="drill-head muted">回合 ${r.i + 1} / ${s.dialogue.length}</div>${body}`;
+    <div class="drill-head muted">${r.sit.title ? h(r.sit.title.zh_tw) + " · " : ""}回合 ${r.i + 1} / ${r.sit.turns.length}</div>${body}`;
   bind();
   if (r.phase === "staff" && getSettings().autoplay) speak(st.ja);
   document.getElementById("meaning")?.addEventListener("click", () => { r.phase = t.me.length ? "me" : "done"; renderRehearse(); });
@@ -548,7 +574,7 @@ function route() {
       case "read": return viewRead(sid);
       case "recognise": return viewRecognise(sid);
       case "produce": return viewProduce(sid);
-      case "rehearse": return viewRehearse(sid);
+      case "rehearse": return viewRehearse(sid, parts[3] ? decodeURIComponent(parts[3]) : null);
       case "cards": return viewCards(sid);
     }
   }

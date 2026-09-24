@@ -1,5 +1,5 @@
 // Offline support: app shell cache-first, content network-first with cache fallback.
-const VERSION = "v2";
+const VERSION = "v3";
 const SHELL = ["./", "./index.html", "./css/app.css", "./js/app.js", "./js/content.js", "./js/srs.js", "./js/speech.js", "./js/store.js", "./js/ai.js", "./manifest.json", "./icon.svg"];
 
 self.addEventListener("install", (e) => {

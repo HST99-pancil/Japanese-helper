@@ -48,6 +48,8 @@ saved into a "我的句子" deck that joins daily review.
 Edit the scenario JSON, run `node tools/validate.js`, commit. No code changes
 needed. Each card has `ja`, `furigana` (segments whose bases must concatenate to
 `ja`), `zh_tw`, `en`, an optional `note`, `trap`, `variants`, and for staff cards
-`replies` pointing at the user's possible answers. A scenario may set
+`replies` pointing at the user's possible answers. A scenario carries either a
+flat `dialogue` array or a `situations` array of `{id, title, turns}` when one
+setting has several distinct conversations. A scenario may also set
 `"speaker"` to rename the other party (司機 in a taxi, 老闆 at a stall) and
 `"destination": true` to show the typed-destination card.

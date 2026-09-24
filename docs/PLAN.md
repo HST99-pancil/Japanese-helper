@@ -224,6 +224,14 @@ sw.js, manifest.json, icon.svg
 docs/PLAN.md
 ```
 
+### Situations
+
+A scenario's dialogue is either a flat `dialogue` array of turns, or a
+`situations` array of `{id, title, turns}` when one setting has several
+distinct conversations. Lesson 1 renders every situation under its own
+heading; lesson 4 shows a picker first; lesson 3 walks all situations in
+order. Both shapes validate and render, so existing scenarios were untouched.
+
 ### Card schema
 
 ```json
