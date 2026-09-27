@@ -89,6 +89,18 @@
     {
       "zh_tw": "人數的兩套數法：自己講用 一人 ひとり、二人 ふたり、三人 さんにん；店員用敬稱 一名様 いちめいさま、二名様 にめいさま、三名様 さんめいさま。聽到 名様 就是在講人數。",
       "en": "Two ways to count people: you say hitori, futari, sannin; staff use the polite meisama form. Hearing 名様 always means a head count."
+    },
+    {
+      "zh_tw": "「お先にどうぞ」是日本的萬用讓路句：電梯、門口、排隊、走廊全部通用。學一句用一輩子。反過來別人讓你，你就說 すみません 或 ありがとうございます。",
+      "en": "お先にどうぞ is the universal Japanese way to let someone go ahead: lifts, doorways, queues, corridors. When someone does it for you, answer すみません or ありがとうございます."
+    },
+    {
+      "zh_tw": "譲る（ゆずる）＝ 讓。日文的 譲 就是中文的讓，意思完全一樣。順番を譲る ＝ 讓順序，席を譲る ＝ 電車上讓座。",
+      "en": "譲る is the Japanese form of 讓 and means exactly the same: to yield. 順番を譲る gives up your place in a queue, 席を譲る your seat on a train."
+    },
+    {
+      "zh_tw": "你選擇等大桌時，店員常會問可不可以讓後面的客人先入座（後ろのお客様を先にご案内してもよろしいですか）。答應就說「はい、どうぞ」，他會說「助かります」——這不是客套，是真的幫到他。",
+      "en": "Once you choose to wait for a bigger table, staff often ask whether they may seat later arrivals first. Say はい、どうぞ and you will hear 助かります, which is genuine thanks rather than a formula."
     }
   ],
   "situations": [
@@ -275,6 +287,19 @@
           "me": [
             "restaurant.together.want",
             "restaurant.split.ok"
+          ]
+        },
+        {
+          "staff": "restaurant.others.first",
+          "me": [
+            "restaurant.after.you",
+            "restaurant.later.ok"
+          ]
+        },
+        {
+          "staff": "restaurant.thanks.helpful",
+          "me": [
+            "restaurant.no.problem"
           ]
         },
         {
@@ -2572,6 +2597,233 @@
       "zh_tw": "好的。",
       "en": "Understood.",
       "note": "被要求填名字、說明規則時回這句。 / The reply when asked to write your name or told a rule."
+    },
+    {
+      "id": "restaurant.others.first",
+      "role": "staff",
+      "ja": "後ろのお客様を先にご案内してもよろしいですか？",
+      "furigana": [
+        [
+          "後",
+          "うし"
+        ],
+        [
+          "ろのお",
+          ""
+        ],
+        [
+          "客様",
+          "きゃくさま"
+        ],
+        [
+          "を",
+          ""
+        ],
+        [
+          "先",
+          "さき"
+        ],
+        [
+          "にご",
+          ""
+        ],
+        [
+          "案内",
+          "あんない"
+        ],
+        [
+          "してもよろしいですか？",
+          ""
+        ]
+      ],
+      "zh_tw": "可以讓後面的客人先入座嗎？",
+      "en": "May I seat the customers behind you first?",
+      "note": "你選擇等大桌時，店員常會這樣問。客様 ＝ 客人（敬稱）。〜てもよろしいですか ＝ 可以〜嗎（敬語）。 / Often asked once you choose to wait for a bigger table. 客様 is the polite word for customer.",
+      "variants": [
+        "先に後ろの方をご案内してもよろしいでしょうか",
+        "お二人様のお客様を先にご案内します",
+        "順番が前後してもよろしいですか"
+      ],
+      "replies": [
+        "restaurant.after.you",
+        "restaurant.later.ok"
+      ]
+    },
+    {
+      "id": "restaurant.thanks.helpful",
+      "role": "staff",
+      "ja": "ありがとうございます、助かります。",
+      "furigana": [
+        [
+          "ありがとうございます、",
+          ""
+        ],
+        [
+          "助",
+          "たす"
+        ],
+        [
+          "かります。",
+          ""
+        ]
+      ],
+      "zh_tw": "謝謝，幫大忙了。",
+      "en": "Thank you, that helps a lot.",
+      "note": "助かる ＝ 得救、幫上忙。店員真心道謝時說的，不是客套。 / 助かる = to be saved or helped. A genuine thank-you rather than a formula.",
+      "variants": [
+        "助かります",
+        "恐れ入ります",
+        "ご協力ありがとうございます"
+      ],
+      "replies": [
+        "restaurant.no.problem"
+      ]
+    },
+    {
+      "id": "restaurant.after.you",
+      "role": "me",
+      "ja": "お先にどうぞ。",
+      "furigana": [
+        [
+          "お",
+          ""
+        ],
+        [
+          "先",
+          "さき"
+        ],
+        [
+          "にどうぞ。",
+          ""
+        ]
+      ],
+      "zh_tw": "你們先請。",
+      "en": "Please, go ahead.",
+      "note": "日本的萬用讓路句：電梯、門口、排隊、走廊全部通用。先に ＝ 先，這裡和中文的「先」意思一樣（計程車的「もう少し先で」才是「前面」）。 / The universal Japanese way to let someone go ahead — lifts, doorways, queues, corridors. Here 先に means first, matching Chinese; only in もう少し先で does 先 mean ahead in space."
+    },
+    {
+      "id": "restaurant.later.ok",
+      "role": "me",
+      "ja": "私たちは後でいいので、先にどうぞ。",
+      "furigana": [
+        [
+          "私",
+          "わたし"
+        ],
+        [
+          "たちは",
+          ""
+        ],
+        [
+          "後",
+          "あと"
+        ],
+        [
+          "でいいので、",
+          ""
+        ],
+        [
+          "先",
+          "さき"
+        ],
+        [
+          "にどうぞ。",
+          ""
+        ]
+      ],
+      "zh_tw": "我們晚一點沒關係，請他們先。",
+      "en": "We're happy to go later, please seat them first.",
+      "note": "〜ので ＝ 因為所以。和「待ちますので」同一個結構：先講自己讓步，再講要求。 / The same 〜ので structure as 待ちますので: concede first, then ask."
+    },
+    {
+      "id": "restaurant.yield",
+      "role": "me",
+      "ja": "順番を譲ります。",
+      "furigana": [
+        [
+          "順番",
+          "じゅんばん"
+        ],
+        [
+          "を",
+          ""
+        ],
+        [
+          "譲",
+          "ゆず"
+        ],
+        [
+          "ります。",
+          ""
+        ]
+      ],
+      "zh_tw": "我們讓順序。",
+      "en": "We'll give up our place in the queue.",
+      "note": "譲る ＝ 讓。日文的 譲 就是中文的讓。電車上讓座也是同一個字：席を譲る。順番 ＝ 順序。 / 譲 is the Japanese form of 讓, to yield. Giving up your seat on a train uses the same verb: 席を譲る."
+    },
+    {
+      "id": "restaurant.others.first.ask",
+      "role": "me",
+      "ja": "後ろの方を先にご案内ください。",
+      "furigana": [
+        [
+          "後",
+          "うし"
+        ],
+        [
+          "ろの",
+          ""
+        ],
+        [
+          "方",
+          "かた"
+        ],
+        [
+          "を",
+          ""
+        ],
+        [
+          "先",
+          "さき"
+        ],
+        [
+          "にご",
+          ""
+        ],
+        [
+          "案内",
+          "あんない"
+        ],
+        [
+          "ください。",
+          ""
+        ]
+      ],
+      "zh_tw": "請讓後面的客人先入座。",
+      "en": "Please seat the people behind us first.",
+      "note": "方（かた）＝ 人的敬稱。後ろの方 ＝ 後面的客人。你主動提的說法。 / 方 is the polite word for person. Use this to offer before being asked."
+    },
+    {
+      "id": "restaurant.no.problem",
+      "role": "me",
+      "ja": "いえいえ、大丈夫です。",
+      "furigana": [
+        [
+          "いえいえ、",
+          ""
+        ],
+        [
+          "大丈夫",
+          "だいじょうぶ"
+        ],
+        [
+          "です。",
+          ""
+        ]
+      ],
+      "zh_tw": "不會不會，沒關係。",
+      "en": "Not at all, it's fine.",
+      "note": "いえいえ ＝ 哪裡哪裡。被道謝時的客氣回應。 / いえいえ waves the thanks away, like not at all."
     }
   ]
 }
