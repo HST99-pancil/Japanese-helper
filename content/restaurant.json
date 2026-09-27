@@ -6,8 +6,8 @@
     "en": "Restaurant"
   },
   "subtitle": {
-    "zh_tw": "家庭餐廳 / 居酒屋 / 拉麵店 / 食券機",
-    "en": "Family restaurant / izakaya / ramen counter / ticket machine"
+    "zh_tw": "家庭餐廳 / 居酒屋 / 拉麵店 / 等位",
+    "en": "Family restaurant / izakaya / ramen counter / waiting for a table"
   },
   "intro": {
     "zh_tw": "這一課有兩種情況：坐下來慢慢點（家庭餐廳、居酒屋），和拉麵店的吧台——後者店員會一口氣問你麵的粗細、硬度、味道濃淡、要不要蒜，不在乎的一律回「普通でお願いします」就行。看得懂菜單上的漢字已經贏一半，剩下的是把「〜でお願いします」講順。",
@@ -77,6 +77,18 @@
     {
       "zh_tw": "桌上放著的調味料一律免費，不用問。店員說「卓上のものはご自由にお使いください」就是隨便用的意思。沒放在桌上的（例如柚子胡椒）才需要開口要。",
       "en": "Anything on the table is free and needs no asking. 卓上のものはご自由にお使いください means help yourself. Only ask for what is not out, such as yuzu kosho."
+    },
+    {
+      "zh_tw": "人多的時候店員常提議分開坐（二名様と一名様に分かれて）。這是為了讓你快點入座，不是規定。想坐一起就說「待ちますので、一緒の席でお願いします」，完全不失禮。",
+      "en": "With a larger party staff often suggest splitting you up. It is an offer to seat you sooner, not a rule. Say 待ちますので、一緒の席でお願いします and nobody minds."
+    },
+    {
+      "zh_tw": "等位時門口通常有板子或平板，寫名字和人數（お名前とご人数をご記入ください）。名字寫拼音或片假名都可以。有些店給號碼牌。",
+      "en": "While waiting there is usually a clipboard or tablet for your name and party size. Roman letters are fine. Some places hand out a number instead."
+    },
+    {
+      "zh_tw": "人數的兩套數法：自己講用 一人 ひとり、二人 ふたり、三人 さんにん；店員用敬稱 一名様 いちめいさま、二名様 にめいさま、三名様 さんめいさま。聽到 名様 就是在講人數。",
+      "en": "Two ways to count people: you say hitori, futari, sannin; staff use the polite meisama form. Hearing 名様 always means a head count."
     }
   ],
   "situations": [
@@ -227,6 +239,60 @@
           "staff": "restaurant.thanks",
           "me": [
             "restaurant.gochisou"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "title": {
+        "zh_tw": "客滿等位（要坐在一起）",
+        "en": "Full house, waiting for one table"
+      },
+      "turns": [
+        {
+          "staff": "restaurant.welcome",
+          "me": [
+            "restaurant.three.people"
+          ]
+        },
+        {
+          "staff": "restaurant.full",
+          "me": [
+            "restaurant.howlong.wait",
+            "restaurant.can.wait"
+          ]
+        },
+        {
+          "staff": "restaurant.wait.howlong",
+          "me": [
+            "restaurant.can.wait",
+            "restaurant.come.back"
+          ]
+        },
+        {
+          "staff": "restaurant.split.ask",
+          "me": [
+            "restaurant.together.want",
+            "restaurant.split.ok"
+          ]
+        },
+        {
+          "staff": "restaurant.write.name",
+          "me": [
+            "restaurant.ok"
+          ]
+        },
+        {
+          "staff": "restaurant.will.call",
+          "me": [
+            "restaurant.thanks.me"
+          ]
+        },
+        {
+          "staff": "restaurant.ready",
+          "me": [
+            "restaurant.thanks.me"
           ]
         }
       ]
@@ -2088,6 +2154,424 @@
       "zh_tw": "小孩也能吃嗎？",
       "en": "Can children eat this?",
       "note": "食べられる ＝ 能吃（可能形）。でも ＝ 即使是。帶小孩點餐時很實用。 / 食べられる is the potential form, can eat. でも = even. Useful when ordering for children."
+    },
+    {
+      "id": "restaurant.full",
+      "role": "staff",
+      "ja": "ただいま満席です。",
+      "furigana": [
+        [
+          "ただいま",
+          ""
+        ],
+        [
+          "満席",
+          "まんせき"
+        ],
+        [
+          "です。",
+          ""
+        ]
+      ],
+      "zh_tw": "目前客滿。",
+      "en": "We're full at the moment.",
+      "note": "満席 ＝ 客滿（席 ＝ 座位）。和溫泉那課的 満室 同一個構造。ただいま ＝ 目前。 / 満席 = all seats taken, built like 満室 at the bathhouse. ただいま = right now.",
+      "variants": [
+        "ただいま満席となっております",
+        "少々お待ちいただくことになります",
+        "ただいまお席がいっぱいです"
+      ],
+      "replies": [
+        "restaurant.howlong.wait",
+        "restaurant.can.wait"
+      ]
+    },
+    {
+      "id": "restaurant.wait.howlong",
+      "role": "staff",
+      "ja": "二十分ほどお待ちいただきますが、よろしいですか？",
+      "furigana": [
+        [
+          "二十分",
+          "にじゅっぷん"
+        ],
+        [
+          "ほどお",
+          ""
+        ],
+        [
+          "待",
+          "ま"
+        ],
+        [
+          "ちいただきますが、よろしいですか？",
+          ""
+        ]
+      ],
+      "zh_tw": "大概要等二十分鐘，可以嗎？",
+      "en": "It'll be about twenty minutes. Is that all right?",
+      "note": "ほど ＝ 大約。よろしいですか ＝ 可以嗎（敬語）。可以就說 大丈夫です、待ちます。 / ほど = approximately. よろしいですか is the polite is that all right. Say 大丈夫です、待ちます if it is.",
+      "variants": [
+        "三十分ほどお待ちいただきます",
+        "十五分くらいでご案内できます",
+        "少々お時間をいただきます"
+      ],
+      "replies": [
+        "restaurant.can.wait",
+        "restaurant.come.back"
+      ]
+    },
+    {
+      "id": "restaurant.split.ask",
+      "role": "staff",
+      "ja": "二名様と一名様に分かれてのご案内になりますが、よろしいですか？",
+      "furigana": [
+        [
+          "二名様",
+          "にめいさま"
+        ],
+        [
+          "と",
+          ""
+        ],
+        [
+          "一名様",
+          "いちめいさま"
+        ],
+        [
+          "に",
+          ""
+        ],
+        [
+          "分",
+          "わ"
+        ],
+        [
+          "かれてのご",
+          ""
+        ],
+        [
+          "案内",
+          "あんない"
+        ],
+        [
+          "になりますが、よろしいですか？",
+          ""
+        ]
+      ],
+      "zh_tw": "要分成兩位和一位分開帶位，可以嗎？",
+      "en": "I'd have to seat you as a two and a one. Is that all right?",
+      "note": "陷阱：案内 ＝ 帶位、引導，不是「案件內容」。分かれる ＝ 分開。想坐一起就說要等，完全不失禮。 / Trap: 案内 means to show someone to their seat, not case contents. 分かれる = to be split. Declining and waiting is perfectly normal.",
+      "trap": "案内 ＝ 帶位、引導",
+      "variants": [
+        "お席が離れてしまいますがよろしいですか",
+        "二人と一人に分かれますが大丈夫ですか",
+        "カウンターとテーブルに分かれますが"
+      ],
+      "replies": [
+        "restaurant.together.want",
+        "restaurant.split.ok"
+      ]
+    },
+    {
+      "id": "restaurant.write.name",
+      "role": "staff",
+      "ja": "こちらにお名前をご記入ください。",
+      "furigana": [
+        [
+          "こちらにお",
+          ""
+        ],
+        [
+          "名前",
+          "なまえ"
+        ],
+        [
+          "をご",
+          ""
+        ],
+        [
+          "記入",
+          "きにゅう"
+        ],
+        [
+          "ください。",
+          ""
+        ]
+      ],
+      "zh_tw": "請在這裡寫上名字。",
+      "en": "Please write your name here.",
+      "note": "記入 ＝ 填寫。門口通常有板子或平板，寫名字和人數。名字寫拼音或片假名都可以。 / 記入 = to write in. There is usually a clipboard or tablet at the door for your name and party size. Roman letters are fine.",
+      "variants": [
+        "お名前とご人数をご記入ください",
+        "こちらにご記入をお願いします",
+        "番号札をお渡しします"
+      ],
+      "replies": [
+        "restaurant.ok"
+      ]
+    },
+    {
+      "id": "restaurant.will.call",
+      "role": "staff",
+      "ja": "お席が空きましたらお呼びいたします。",
+      "furigana": [
+        [
+          "お",
+          ""
+        ],
+        [
+          "席",
+          "せき"
+        ],
+        [
+          "が",
+          ""
+        ],
+        [
+          "空",
+          "あ"
+        ],
+        [
+          "きましたらお",
+          ""
+        ],
+        [
+          "呼",
+          "よ"
+        ],
+        [
+          "びいたします。",
+          ""
+        ]
+      ],
+      "zh_tw": "有位子就叫您。",
+      "en": "We'll call you when a table frees up.",
+      "note": "空く（あく）＝ 有空位。和溫泉的「何時なら空いていますか」同一個字。呼ぶ ＝ 叫、呼喚。 / 空く = to become free, the same verb as at the bathhouse. 呼ぶ = to call.",
+      "variants": [
+        "順番にお呼びします",
+        "お名前をお呼びしますのでお待ちください",
+        "準備ができましたらお声がけします"
+      ],
+      "replies": [
+        "restaurant.thanks.me"
+      ]
+    },
+    {
+      "id": "restaurant.ready",
+      "role": "staff",
+      "ja": "お待たせしました。三名様、こちらへどうぞ。",
+      "furigana": [
+        [
+          "お",
+          ""
+        ],
+        [
+          "待",
+          "ま"
+        ],
+        [
+          "たせしました。",
+          ""
+        ],
+        [
+          "三名様",
+          "さんめいさま"
+        ],
+        [
+          "、こちらへどうぞ。",
+          ""
+        ]
+      ],
+      "zh_tw": "久等了，三位這邊請。",
+      "en": "Thank you for waiting. Table for three, this way.",
+      "note": "名様 ＝ 位（敬稱）。一名様 いちめいさま、二名様 にめいさま、三名様 さんめいさま。 / 名様 is the polite counter for people: ichimeisama, nimeisama, sanmeisama.",
+      "variants": [
+        "お待たせいたしました、こちらへどうぞ",
+        "お席のご用意ができました",
+        "三名様でお待ちのお客様"
+      ],
+      "replies": [
+        "restaurant.thanks.me"
+      ]
+    },
+    {
+      "id": "restaurant.three.people",
+      "role": "me",
+      "ja": "三人です。",
+      "furigana": [
+        [
+          "三人",
+          "さんにん"
+        ],
+        [
+          "です。",
+          ""
+        ]
+      ],
+      "zh_tw": "三位。",
+      "en": "Three of us.",
+      "note": "一人 ひとり、二人 ふたり 是特殊唸法，三人 開始就規則了：さんにん、よにん、ごにん。 / 一人 and 二人 are irregular; from three it is regular: sannin, yonin, gonin."
+    },
+    {
+      "id": "restaurant.howlong.wait",
+      "role": "me",
+      "ja": "どのくらい待ちますか？",
+      "furigana": [
+        [
+          "どのくらい",
+          ""
+        ],
+        [
+          "待",
+          "ま"
+        ],
+        [
+          "ちますか？",
+          ""
+        ]
+      ],
+      "zh_tw": "大概要等多久？",
+      "en": "How long is the wait?",
+      "note": "どのくらい ＝ 大概多少。決定要不要等之前先問這句。 / どのくらい = roughly how much. Ask before deciding whether to wait."
+    },
+    {
+      "id": "restaurant.can.wait",
+      "role": "me",
+      "ja": "大丈夫です、待ちます。",
+      "furigana": [
+        [
+          "大丈夫",
+          "だいじょうぶ"
+        ],
+        [
+          "です、",
+          ""
+        ],
+        [
+          "待",
+          "ま"
+        ],
+        [
+          "ちます。",
+          ""
+        ]
+      ],
+      "zh_tw": "沒關係，我們等。",
+      "en": "That's fine, we'll wait.",
+      "note": "這裡的 大丈夫 是「沒關係」。在便利店是「不用了」，看情境。 / Here 大丈夫 means that is fine. At the register it means no thanks. Context decides."
+    },
+    {
+      "id": "restaurant.together.want",
+      "role": "me",
+      "ja": "待ちますので、三人一緒の席でお願いします。",
+      "furigana": [
+        [
+          "待",
+          "ま"
+        ],
+        [
+          "ちますので、",
+          ""
+        ],
+        [
+          "三人",
+          "さんにん"
+        ],
+        [
+          "一緒",
+          "いっしょ"
+        ],
+        [
+          "の",
+          ""
+        ],
+        [
+          "席",
+          "せき"
+        ],
+        [
+          "でお",
+          ""
+        ],
+        [
+          "願",
+          "ねが"
+        ],
+        [
+          "いします。",
+          ""
+        ]
+      ],
+      "zh_tw": "我們可以等，請給三個人坐在一起的位子。",
+      "en": "We'll wait, so a table for three together please.",
+      "note": "〜ので ＝ 因為〜所以。先講「我們會等」，再講要求，聽起來就不是在為難店員。這一句是本段的重點。 / 〜ので = since, so. Leading with your willingness to wait makes the request easy to grant. This is the key line of the section."
+    },
+    {
+      "id": "restaurant.split.ok",
+      "role": "me",
+      "ja": "それでも大丈夫です。",
+      "furigana": [
+        [
+          "それでも",
+          ""
+        ],
+        [
+          "大丈夫",
+          "だいじょうぶ"
+        ],
+        [
+          "です。",
+          ""
+        ]
+      ],
+      "zh_tw": "那樣也可以。",
+      "en": "That's fine too.",
+      "note": "それでも ＝ 即使那樣。接受分開坐的說法。 / それでも = even so. Use it to accept being split up."
+    },
+    {
+      "id": "restaurant.come.back",
+      "role": "me",
+      "ja": "じゃあ、後でまた来ます。",
+      "furigana": [
+        [
+          "じゃあ、",
+          ""
+        ],
+        [
+          "後",
+          "あと"
+        ],
+        [
+          "でまた",
+          ""
+        ],
+        [
+          "来",
+          "き"
+        ],
+        [
+          "ます。",
+          ""
+        ]
+      ],
+      "zh_tw": "那我們等一下再來。",
+      "en": "We'll come back later then.",
+      "note": "等太久就這樣說，很自然。和路邊攤的「また来ます」同一句。 / Natural when the wait is too long. The same line as at the food stall."
+    },
+    {
+      "id": "restaurant.ok",
+      "role": "me",
+      "ja": "わかりました。",
+      "furigana": [
+        [
+          "わかりました。",
+          ""
+        ]
+      ],
+      "zh_tw": "好的。",
+      "en": "Understood.",
+      "note": "被要求填名字、說明規則時回這句。 / The reply when asked to write your name or told a rule."
     }
   ]
 }
