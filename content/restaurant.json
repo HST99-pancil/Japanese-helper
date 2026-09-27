@@ -61,6 +61,22 @@
     {
       "zh_tw": "店員可能連問四五個問題。不在乎的全部回「普通でお願いします」就好，不會失禮。〜め ＝ 偏〜一點：硬め、濃いめ、薄め、多め、少なめ。",
       "en": "Staff may fire off four or five questions. Answer 普通でお願いします to any you do not care about; nobody minds. The suffix 〜め means on the 〜 side: katame, koime, usume, oome, sukuname."
+    },
+    {
+      "zh_tw": "桌上常見的調味料，看漢字就懂大半：胡椒（黑胡椒）、一味唐辛子（純辣椒粉）、七味唐辛子（七味粉，辣椒加陳皮芝麻等）、柚子胡椒／柚子唐辛子（柚子＋辣椒）、酢（醋）、ラー油（辣油）、おろしニンニク（蒜泥）、紅生姜（紅薑）、高菜（醃芥菜）。",
+      "en": "Table condiments, mostly readable from the kanji: 胡椒 black pepper, 一味唐辛子 pure chili powder, 七味唐辛子 seven-spice with chili, citrus peel and sesame, 柚子胡椒 or 柚子唐辛子 yuzu and chili, 酢 vinegar, ラー油 chili oil, おろしニンニク grated garlic, 紅生姜 red pickled ginger, 高菜 pickled mustard greens."
+    },
+    {
+      "zh_tw": "陷阱：日文的 柚子 不是中文的柚子（文旦、pomelo），是一種小型香橙，酸而香氣極強，用的是皮不是果肉。另一個陷阱：柚子胡椒 裡一顆胡椒都沒有——九州方言用「胡椒」指辣椒。",
+      "en": "Trap: Japanese 柚子 is not the Chinese pomelo but a small sour citrus prized for its peel. Second trap: 柚子胡椒 contains no pepper whatsoever, because Kyushu dialect used 胡椒 to mean chili."
+    },
+    {
+      "zh_tw": "柚子唐辛子和柚子胡椒是同一類東西，膏狀的多半叫柚子胡椒，粉狀的多半叫柚子唐辛子。用法都一樣：一次一點點，先放在叉燒或麵上試味，不要一開始就整團攪進湯裡，柚子香會蓋掉醬油味。",
+      "en": "柚子唐辛子 and 柚子胡椒 are the same family: the paste is usually called 柚子胡椒, the powder 柚子唐辛子. Either way, use a tiny amount, try it on the pork or the noodles first, and do not stir a lump straight into the soup — the citrus will bury the soy broth."
+    },
+    {
+      "zh_tw": "桌上放著的調味料一律免費，不用問。店員說「卓上のものはご自由にお使いください」就是隨便用的意思。沒放在桌上的（例如柚子胡椒）才需要開口要。",
+      "en": "Anything on the table is free and needs no asking. 卓上のものはご自由にお使いください means help yourself. Only ask for what is not out, such as yuzu kosho."
     }
   ],
   "situations": [
@@ -1832,6 +1848,246 @@
       "zh_tw": "我開動了。",
       "en": "Thank you for the food. (before eating)",
       "note": "開動前說，對著食物說就好，不用對店員。吃完是 ごちそうさまでした。 / Said before eating, to the food rather than to staff. Afterwards you say ごちそうさまでした."
+    },
+    {
+      "id": "restaurant.condiment.free",
+      "role": "staff",
+      "ja": "卓上のものはご自由にお使いください。",
+      "furigana": [
+        [
+          "卓上",
+          "たくじょう"
+        ],
+        [
+          "のものはご",
+          ""
+        ],
+        [
+          "自由",
+          "じゆう"
+        ],
+        [
+          "にお",
+          ""
+        ],
+        [
+          "使",
+          "つか"
+        ],
+        [
+          "いください。",
+          ""
+        ]
+      ],
+      "zh_tw": "桌上的調味料請自由取用。",
+      "en": "Please help yourself to anything on the table.",
+      "note": "卓上 ＝ 桌上。自由 和中文一樣。桌上放著的一律免費，不用問。 / 卓上 = on the table. 自由 reads as in Chinese. Anything sitting on the table is free to use.",
+      "variants": [
+        "ご自由にお使いください",
+        "卓上の調味料はご自由に",
+        "お好みで入れてください"
+      ]
+    },
+    {
+      "id": "restaurant.yuzu.explain",
+      "role": "staff",
+      "ja": "柚子の風味の唐辛子です。",
+      "furigana": [
+        [
+          "柚子",
+          "ゆず"
+        ],
+        [
+          "の",
+          ""
+        ],
+        [
+          "風味",
+          "ふうみ"
+        ],
+        [
+          "の",
+          ""
+        ],
+        [
+          "唐辛子",
+          "とうがらし"
+        ],
+        [
+          "です。",
+          ""
+        ]
+      ],
+      "zh_tw": "是柚子風味的辣椒。",
+      "en": "It's chili with yuzu citrus.",
+      "note": "陷阱：日文的 柚子 不是中文的柚子（文旦），是一種小型香橙，重點在皮的香氣。風味 ＝ 風味，和中文一樣。 / Trap: Japanese 柚子 is not the Chinese pomelo but a small aromatic citrus, prized for its peel. 風味 reads as in Chinese.",
+      "trap": "柚子 ＝ 香橙，不是文旦",
+      "variants": [
+        "柚子胡椒です",
+        "柚子と唐辛子を合わせたものです",
+        "ちょっと辛いですよ"
+      ]
+    },
+    {
+      "id": "restaurant.little.by.little",
+      "role": "staff",
+      "ja": "少しずつ入れてみてください。",
+      "furigana": [
+        [
+          "少",
+          "すこ"
+        ],
+        [
+          "しずつ",
+          ""
+        ],
+        [
+          "入",
+          "い"
+        ],
+        [
+          "れてみてください。",
+          ""
+        ]
+      ],
+      "zh_tw": "請一點一點加看看。",
+      "en": "Try adding a little at a time.",
+      "note": "ずつ ＝ 每次、各。〜てみる ＝ 試試看。柚子香很霸道，一次一點點。 / ずつ = at a time. 〜てみる = try doing. Yuzu is powerful; go slowly.",
+      "variants": [
+        "入れすぎないでくださいね",
+        "少しで十分ですよ",
+        "お好みで足してください"
+      ]
+    },
+    {
+      "id": "restaurant.what.is.this",
+      "role": "me",
+      "ja": "これは何ですか？",
+      "furigana": [
+        [
+          "これは",
+          ""
+        ],
+        [
+          "何",
+          "なん"
+        ],
+        [
+          "ですか？",
+          ""
+        ]
+      ],
+      "zh_tw": "這是什麼？",
+      "en": "What is this?",
+      "note": "指著桌上的罐子問。全日本最好用的一句，任何看不懂的東西都能問。 / Point at the jar and ask. The single most useful sentence in Japan for anything you cannot identify."
+    },
+    {
+      "id": "restaurant.spicy.ask",
+      "role": "me",
+      "ja": "辛いですか？",
+      "furigana": [
+        [
+          "辛",
+          "から"
+        ],
+        [
+          "いですか？",
+          ""
+        ]
+      ],
+      "zh_tw": "會辣嗎？",
+      "en": "Is it spicy?",
+      "note": "陷阱：辛い ＝ 辣，不是辛苦。帶小孩的話先問這句。 / Trap: 辛い means spicy, not hard or bitter. Worth asking when you have children with you.",
+      "trap": "辛い ＝ 辣，不是辛苦"
+    },
+    {
+      "id": "restaurant.yuzu.ask",
+      "role": "me",
+      "ja": "柚子胡椒はありますか？",
+      "furigana": [
+        [
+          "柚子胡椒",
+          "ゆずこしょう"
+        ],
+        [
+          "はありますか？",
+          ""
+        ]
+      ],
+      "zh_tw": "有柚子胡椒嗎？",
+      "en": "Do you have yuzu kosho?",
+      "note": "陷阱：柚子胡椒 裡一顆胡椒都沒有。九州方言用「胡椒」指辣椒。有些店標 柚子唐辛子，同一個東西。 / Trap: 柚子胡椒 contains no pepper at all. Kyushu dialect used 胡椒 for chili. Some shops label it 柚子唐辛子 instead; same thing.",
+      "trap": "柚子胡椒 裡沒有胡椒，是辣椒"
+    },
+    {
+      "id": "restaurant.how.use",
+      "role": "me",
+      "ja": "どうやって使いますか？",
+      "furigana": [
+        [
+          "どうやって",
+          ""
+        ],
+        [
+          "使",
+          "つか"
+        ],
+        [
+          "いますか？",
+          ""
+        ]
+      ],
+      "zh_tw": "這個怎麼用？",
+      "en": "How do I use this?",
+      "note": "どうやって ＝ 怎麼樣地。不會用就問，店員通常很樂意示範。 / どうやって = in what way. Staff are usually glad to show you."
+    },
+    {
+      "id": "restaurant.may.i.use",
+      "role": "me",
+      "ja": "これ、使ってもいいですか？",
+      "furigana": [
+        [
+          "これ、",
+          ""
+        ],
+        [
+          "使",
+          "つか"
+        ],
+        [
+          "ってもいいですか？",
+          ""
+        ]
+      ],
+      "zh_tw": "這個可以用嗎？",
+      "en": "May I use this?",
+      "note": "〜てもいいですか ＝ 可以〜嗎。和溫泉的「交替で入ってもいいですか」同一個句型。 / 〜てもいいですか asks permission, the same frame as 交替で入ってもいいですか at the bathhouse."
+    },
+    {
+      "id": "restaurant.not.too.spicy",
+      "role": "me",
+      "ja": "子供でも食べられますか？",
+      "furigana": [
+        [
+          "子供",
+          "こども"
+        ],
+        [
+          "でも",
+          ""
+        ],
+        [
+          "食",
+          "た"
+        ],
+        [
+          "べられますか？",
+          ""
+        ]
+      ],
+      "zh_tw": "小孩也能吃嗎？",
+      "en": "Can children eat this?",
+      "note": "食べられる ＝ 能吃（可能形）。でも ＝ 即使是。帶小孩點餐時很實用。 / 食べられる is the potential form, can eat. でも = even. Useful when ordering for children."
     }
   ]
 }
